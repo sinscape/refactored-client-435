@@ -23,9 +23,9 @@ public class Minimap extends FramePieceRenderer {
     private static int[] resizableMinimapOffsets2;
     private static ProducingGraphicsBuffer resizableMiniMapimage;
     private static int[] resizableMinimapLineOffsets;
+    private final ProducingGraphicsBuffer tempResizableMiniMapimage;
     private int[] resizableCompasOffsets1;
     private int[] resizableCompasOffsets2;
-    private ProducingGraphicsBuffer tempResizableMiniMapimage;
 
     public Minimap() {
         this.tempResizableMiniMapimage = Class40_Sub5_Sub13.createGraphicsBuffer(210, 210, MouseHandler.gameCanvas);
@@ -146,7 +146,7 @@ public class Minimap extends FramePieceRenderer {
         }
         for(int i = 0; Player.npcCount > i; i++) {
             Npc npc = Player.npcs[Player.npcIds[i]];
-            if(npc != null && npc.isVisible(1)) {
+            if(npc != null && npc.isVisible()) {
                 ActorDefinition definition = npc.actorDefinition;
                 if(definition.childrenIds != null) {
                     definition = definition.getChildDefinition(-1);
@@ -160,7 +160,7 @@ public class Minimap extends FramePieceRenderer {
         }
         for(int i = 0; Player.localPlayerCount > i; i++) {
             Player player = Player.trackedPlayers[Player.trackedPlayerIndices[i]];
-            if(player != null && player.isVisible(1)) {
+            if(player != null && player.isVisible()) {
                 int playerX = player.worldX / 32 + -(Player.localPlayer.worldX / 32);
                 int playerY = -(Player.localPlayer.worldY / 32) + player.worldY / 32;
                 boolean isFriend = false;

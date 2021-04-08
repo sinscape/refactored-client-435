@@ -267,7 +267,7 @@ public class Instrument {
                     t = filter_env.step(n_s + 1);
                 }
                 delay = 128;
-                for(; ; ) {
+                while(true) {
                     if(delay > n_s - M) {
                         delay = n_s - M;
                     }

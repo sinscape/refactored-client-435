@@ -34,7 +34,7 @@ public class Class40_Sub5_Sub11 extends CachedNode {
     }
 
     public void method634(Buffer arg0) {
-        for(; ; ) {
+        while(true) {
             int i = arg0.getUnsignedByte();
             if(i == 0) {
                 break;

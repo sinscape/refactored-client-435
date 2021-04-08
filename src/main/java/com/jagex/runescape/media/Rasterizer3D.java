@@ -3,6 +3,7 @@ package com.jagex.runescape.media;
 import com.jagex.runescape.Interface3;
 
 public class Rasterizer3D extends Rasterizer {
+    private static final boolean useLatestShadeLine = true;
     public static int[] anIntArray2929 = new int[2048];
     public static int bottomY;
     public static int center_y;
@@ -23,7 +24,6 @@ public class Rasterizer3D extends Rasterizer {
     public static int[] cosinetable = new int[2048];
     public static boolean restrict_edges = false;
     public static boolean lowMemory = false;
-    private static boolean useLatestShadeLine = true;
 
     static {
         for(int i = 1; i < 512; i++) {
@@ -1074,7 +1074,7 @@ public class Rasterizer3D extends Rasterizer {
 
     //562 drawshadedline
     //has vertex blending :O
-    public static void drawShadedLine562(int dest[], int dest_off, int startX, int endX, int colorIndex, int grad) {
+    public static void drawShadedLine562(int[] dest, int dest_off, int startX, int endX, int colorIndex, int grad) {
         int off = 0;
         int color;
         int loops;

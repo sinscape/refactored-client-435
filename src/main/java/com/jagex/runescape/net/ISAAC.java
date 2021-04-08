@@ -46,7 +46,7 @@ public class ISAAC {
         for(int i = 0; seed.length > i; i++) {
             rsl[i] = seed[i];
         }
-        init(true);
+        init();
     }
 
     public static void method281(Scene arg0, int arg1, CollisionMap[] arg2) {
@@ -198,7 +198,7 @@ public class ISAAC {
                                     if(i_30_ == 0 && OverlayDefinition.tile_underlay_path[i][i_16_][i_27_] != 0) {
                                         bool = false;
                                     }
-                                    if(i_31_ > 0 && !Npc.loadFloor(-1 + i_31_, arg1 + -27320).aBoolean2338) {
+                                    if(i_31_ > 0 && !Npc.loadFloor(-1 + i_31_, arg1 + -27314).aBoolean2338) {
                                         bool = false;
                                     }
                                     if(bool && i_32_ == i_33_ && i_34_ == i_32_ && i_32_ == i_35_) {
@@ -208,8 +208,7 @@ public class ISAAC {
                                 }
                                 int i_45_ = 0;
                                 if(i_41_ != -1) {
-                                    i_45_ = Rasterizer3D.hsl2rgb[Class40_Sub5_Sub17_Sub6.method831(
-                                            i_41_, 96, (byte) 73)];
+                                    i_45_ = Rasterizer3D.hsl2rgb[Class40_Sub5_Sub17_Sub6.method831(i_41_, 96)];
                                 }
                                 if(i_31_ != 0) {
                                     int i_46_ = 1 + OverlayDefinition.tile_underlay_path[i][i_16_][i_27_];
@@ -256,10 +255,10 @@ public class ISAAC {
                                         i_53_ = Rasterizer3D.hsl2rgb[MovedStatics.method420(i_50_, 96, true)];
                                     }
                                     arg0.addTile(i, i_16_, i_27_, i_46_, i_47_, i_48_, i_32_, i_33_, i_34_, i_35_,
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_36_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_37_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_38_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_40_, (byte) 73),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_36_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_37_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_38_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_40_),
                                             MovedStatics.method420(i_49_, i_36_, true),
                                             MovedStatics.method420(i_49_, i_37_, true),
                                             MovedStatics.method420(i_49_, i_38_, true),
@@ -267,11 +266,10 @@ public class ISAAC {
                                     );
                                 } else {
                                     arg0.addTile(i, i_16_, i_27_, 0, 0, -1, i_32_, i_33_, i_34_, i_35_,
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_36_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_37_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_38_, (byte) 73),
-                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_40_, (byte) 73), 0, 0, 0, 0,
-                                            i_45_, 0
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_36_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_37_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_38_),
+                                            Class40_Sub5_Sub17_Sub6.method831(i_39_, i_40_), 0, 0, 0, 0, i_45_, 0
                                     );
                                 }
                             }
@@ -301,9 +299,6 @@ public class ISAAC {
         int i = 1;
         int i_59_ = 2;
         int i_60_ = 4;
-        if(arg1 != 27324) {
-            method281(null, 6, null);
-        }
         for(int i_61_ = 0; i_61_ < 4; i_61_++) {
             if(i_61_ > 0) {
                 i <<= 3;
@@ -358,7 +353,7 @@ public class ISAAC {
                                     for(int i_76_ = i_65_; i_76_ <= i_66_; i_76_++) {
                                         MovedStatics.anIntArrayArrayArray262[i_75_][i_64_][i_76_] = HuffmanEncoding
                                                 .method1021(MovedStatics.anIntArrayArrayArray262[i_75_][i_64_][i_76_],
-                                                        i ^ 0xffffffff
+                                                        ~i
                                                 );
                                     }
                                 }
@@ -455,7 +450,7 @@ public class ISAAC {
                                     for(int i_97_ = i_91_; i_92_ >= i_97_; i_97_++) {
                                         MovedStatics.anIntArrayArrayArray262[i_62_][i_96_][i_97_] = HuffmanEncoding
                                                 .method1021(MovedStatics.anIntArrayArrayArray262[i_62_][i_96_][i_97_],
-                                                        i_60_ ^ 0xffffffff
+                                                        ~i_60_
                                                 );
                                     }
                                 }
@@ -468,22 +463,18 @@ public class ISAAC {
 
     }
 
-    public static void method283(long arg0, int arg1) {
+    public static void method283(long arg0) {
         try {
-            int i = -93 / ((-50 - arg1) / 45);
             Thread.sleep(arg0);
         } catch(InterruptedException interruptedexception) {
             /* empty */
         }
     }
 
-    public static void method285(byte arg0) {
-        if(arg0 != 118) {
-            aBoolean519 = true;
-        }
+    public static void method285() {
         for(
-                Class40_Sub3 class40_sub3 = (Class40_Sub3) LinkedList.aLinkedList_1064.method902((byte) -90);
-                class40_sub3 != null; class40_sub3 = (Class40_Sub3) LinkedList.aLinkedList_1064.method909(-4)
+                Class40_Sub3 class40_sub3 = (Class40_Sub3) LinkedList.aLinkedList_1064.method902();
+                class40_sub3 != null; class40_sub3 = (Class40_Sub3) LinkedList.aLinkedList_1064.method909()
         ) {
             if(class40_sub3.anInt2031 == -1) {
                 class40_sub3.anInt2033 = 0;
@@ -492,13 +483,6 @@ public class ISAAC {
                 class40_sub3.remove();
             }
         }
-    }
-
-    public static int method288(byte arg0) {
-        if(arg0 < 117) {
-            method288((byte) 125);
-        }
-        return 5;
     }
 
     public void isaac() {
@@ -536,7 +520,7 @@ public class ISAAC {
         return rsl[count];
     }
 
-    public void init(boolean arg0) {
+    public void init() {
         int b;
         int c;
         int d;
@@ -617,9 +601,6 @@ public class ISAAC {
             mem[i + 5] = f;
             mem[i + 6] = g;
             mem[7 + i] = h;
-        }
-        if(!arg0) {
-            aClass9_516 = null;
         }
         /* second pass makes all of seed affect all of mem */
         for(int i = 0; i < 256; i += 8) {

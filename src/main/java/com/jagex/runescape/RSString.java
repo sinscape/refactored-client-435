@@ -52,7 +52,7 @@ public class RSString {
                 return class40_sub5_sub6.aByteArray2441;
             }
         }
-        byte[] is = arg1.getFile(arg2, arg0);
+        byte[] is = arg1.getFile(arg0, arg2);
         if(is == null) {
             return null;
         }
@@ -134,11 +134,11 @@ public class RSString {
             l *= 37L;
             int i_1_ = arg0.charAt(i);
             if(i_1_ >= 65 && i_1_ <= 90) {
-                l += (long) (i_1_ + 1 + -65);
+                l += i_1_ + 1 + -65;
             } else if(i_1_ >= 97 && i_1_ <= 122) {
-                l += (long) (1 + i_1_ + -97);
+                l += 1 + i_1_ + -97;
             } else if(i_1_ >= 48 && i_1_ <= 57) {
-                l += (long) (27 - (-i_1_ + 48));
+                l += 27 - (-i_1_ + 48);
             }
         }
         for(/**/; l % 37L == 0 && l != 0; l /= 37L) {
@@ -308,7 +308,7 @@ public class RSString {
         synchronized(aClass1718 != null ? aClass1718 : (aClass1718 = method90("com.jagex.runescape.RSString"))) {
             if(MovedStatics.aClass23_805 != null) {
                 for(
-                        Class40_Sub7 class40_sub7 = (Class40_Sub7) MovedStatics.aClass23_805.method331(l, 6120);
+                        Class40_Sub7 class40_sub7 = (Class40_Sub7) MovedStatics.aClass23_805.method331(l);
                         class40_sub7 != null; class40_sub7 = (Class40_Sub7) MovedStatics.aClass23_805.method333()
                 ) {
                     if(equals(class40_sub7.aClass1_2124)) {

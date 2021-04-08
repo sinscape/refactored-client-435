@@ -50,7 +50,7 @@ public class OverlayDefinition extends CachedNode {
     }
 
     public static void method557(int arg0) {
-        Class42.method886(0, 0, false, null, arg0);
+        Class42.method886(0, false, null, arg0);
     }
 
     public static void addActionRow(
@@ -99,7 +99,7 @@ public class OverlayDefinition extends CachedNode {
                 ProducingGraphicsBuffer.anInt1634 = 0;
             }
             if(actionId == 0 || actionId == 35) {
-                FloorDecoration.method344(-40);
+                FloorDecoration.destroy();
                 MovedStatics.method440((byte) -73);
                 if(ProducingGraphicsBuffer_Sub1.aProducingGraphicsBuffer_2213 == null) {
                     ProducingGraphicsBuffer_Sub1.aProducingGraphicsBuffer_2213 = Class40_Sub5_Sub13
@@ -108,7 +108,7 @@ public class OverlayDefinition extends CachedNode {
             }
             if(actionId == 5 || actionId == 10 || actionId == 20) {
                 ProducingGraphicsBuffer_Sub1.aProducingGraphicsBuffer_2213 = null;
-                FloorDecoration.method344(-69);
+                FloorDecoration.destroy();
                 Item.method779(MouseHandler.gameCanvas, true, CacheArchive.huffmanCacheArchive,
                         CacheArchive.gameImageCacheArchive
                 );

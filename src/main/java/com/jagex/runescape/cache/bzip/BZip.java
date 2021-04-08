@@ -330,7 +330,7 @@ public class BZip {
 
     public static int getBits(int bitCount, BZipContext context) {
         int bits;
-        for(; ; ) {
+        while(true) {
             if(context.bsLive >= bitCount) {
                 int i = context.bsBuff >> context.bsLive - bitCount & (1 << bitCount) - 1;
                 context.bsLive -= bitCount;
@@ -368,9 +368,9 @@ public class BZip {
         int i_7_ = i_6_;
         int i_8_ = arg0.nBlock + 1;
         while_10_:
-        for(; ; ) {
+        while(true) {
             if(i_0_ > 0) {
-                for(; ; ) {
+                while(true) {
                     if(i_6_ == 0) {
                         break while_10_;
                     }

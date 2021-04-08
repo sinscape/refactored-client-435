@@ -67,14 +67,14 @@ public class GameObject extends Renderable {
     ) {
         Buffer buffer = new Buffer(block_data);
         int object_id = -1;
-        for(; ; ) {
+        while(true) {
             int delta_id = buffer.getSmart();
             if(delta_id == 0) {
                 break;
             }
             int pos = 0;
             object_id += delta_id;
-            for(; ; ) {
+            while(true) {
                 int delta_pos = buffer.getSmart();
                 if(delta_pos == 0) {
                     break;

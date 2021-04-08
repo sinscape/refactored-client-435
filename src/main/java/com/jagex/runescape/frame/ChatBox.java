@@ -13,6 +13,14 @@ import com.jagex.runescape.scene.tile.WallDecoration;
 import com.jagex.runescape.scene.util.CollisionMap;
 
 public class ChatBox {
+    private static final String[] itemSearchResultNames = new String[100];
+    private static final int[] itemSearchResultIds = new int[100];
+    private static final char[] VALID_CHARACTERS = {
+            ' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
+            'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '?', '.', ',', ':',
+            ';', '(', ')', '-', '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', ']', '_', '{',
+            '}', '/', '|'
+    };
     public static boolean redrawChatbox = false;
     public static boolean messagePromptRaised = false;
     public static String inputMessage = "";
@@ -31,14 +39,6 @@ public class ChatBox {
     public static String chatboxInput = "";
     public static String chatMessage = "";
     private static String lastItemSearchInput = "";
-    private static String[] itemSearchResultNames = new String[100];
-    private static int[] itemSearchResultIds = new int[100];
-    private static char[] VALID_CHARACTERS = {
-            ' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
-            'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '?', '.', ',', ':',
-            ';', '(', ')', '-', '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', ']', '_', '{',
-            '}', '/', '|'
-    };
 
     public static void renderChatbox() {
         MovedStatics.aBoolean260 = true;
@@ -188,7 +188,7 @@ public class ChatBox {
                 name = Native.username.toString();
             }
             typeFace.drawString(name + Native.colon, 4, 90, 0);
-            typeFace.drawBasicStringLegacy("@blu@" + chatboxInput + Native.aClass1_478,
+            typeFace.drawBasicStringLegacy("@blu@" + chatboxInput + Native.asterisk,
                     typeFace.getStringWidth(name + Native.aClass1_515) + 6, 90
             );
             Rasterizer.drawHorizontalLine(0, 77, 479, 0);

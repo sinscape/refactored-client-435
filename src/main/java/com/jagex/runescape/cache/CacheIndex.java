@@ -93,7 +93,7 @@ public class CacheIndex {
                         return false;
                     }
 
-                    metaChannel.setReadIndex((long) (index * 6));
+                    metaChannel.setReadIndex(index * 6);
                     metaChannel.method1035(CacheIndex.buffer, 6, 0);
                     sector = (CacheIndex.buffer[5] & 0xff) + ((CacheIndex.buffer[3] & 0xff) << 16) +
                             ((CacheIndex.buffer[4] & 0xff) << 8);
@@ -123,7 +123,7 @@ public class CacheIndex {
                 for(/**/; i_10_ < length; i_10_ += i_12_) {
                     int i_13_ = 0;
                     if(overwrite) {
-                        dataChannel.setReadIndex((long) (520 * sector));
+                        dataChannel.setReadIndex(520 * sector);
                         try {
                             dataChannel.method1035(CacheIndex.buffer, 8, 0);
                         } catch(java.io.EOFException eofexception) {
@@ -167,7 +167,7 @@ public class CacheIndex {
                     i_11_++;
                     CacheIndex.buffer[6] = (byte) i_13_;
                     CacheIndex.buffer[7] = (byte) id;
-                    dataChannel.setReadIndex((long) (520 * sector));
+                    dataChannel.setReadIndex(520 * sector);
                     dataChannel.method1033(0, 8, CacheIndex.buffer);
                     sector = i_13_;
                     dataChannel.method1033(i_10_, i_12_, buffer);

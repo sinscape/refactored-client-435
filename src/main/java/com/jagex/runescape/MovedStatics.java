@@ -19,7 +19,10 @@ import com.jagex.runescape.language.Native;
 import com.jagex.runescape.media.Rasterizer3D;
 import com.jagex.runescape.media.renderable.GameObject;
 import com.jagex.runescape.media.renderable.Renderable;
-import com.jagex.runescape.media.renderable.actor.*;
+import com.jagex.runescape.media.renderable.actor.Actor;
+import com.jagex.runescape.media.renderable.actor.Npc;
+import com.jagex.runescape.media.renderable.actor.Player;
+import com.jagex.runescape.media.renderable.actor.PlayerAppearance;
 import com.jagex.runescape.net.ISAAC;
 import com.jagex.runescape.net.PacketBuffer;
 import com.jagex.runescape.node.HashTable;
@@ -77,7 +80,7 @@ public class MovedStatics {
     public static volatile long aLong174 = 0L;
     public static int anInt175 = 0;
     public static int[] anIntArray178;
-    public static GameShell anApplet_Sub1_179 = null;
+    public static GameShell mainGameShellInstance = null;
     public static int anInt188;
     public static Class22 aClass22_189;
     public static int anInt194;
@@ -97,7 +100,7 @@ public class MovedStatics {
     public static int anInt1318 = 3353893;
     public static IndexedImage tabBottomBack;
     public static IndexedImage[] aClass40_Sub5_Sub14_Sub2Array215;
-    public static long aLong219 = 0L;
+    public static long gameOpenedFor = 0L;
     public static NodeCache modelCache = new NodeCache(260);
     public static int anInt255;
     public static boolean aBoolean260 = false;
@@ -160,8 +163,8 @@ public class MovedStatics {
             if(arg0 <= -65) {
                 Class17.aProducingGraphicsBuffer_463 = null;
                 Class42.anIntArray1013 = null;
-                Class33.method405(16969, 10);
-                GameShell.method19(true, 24041);
+                Class33.method405(10);
+                GameShell.method19(true);
                 ISAAC.aBoolean512 = false;
             }
         }
@@ -171,7 +174,7 @@ public class MovedStatics {
         Actor.aCacheArchive_3144 = arg0;
     }
 
-    public static void method445(int arg0) {
+    public static void method445() {
         if(CollisionMap.anInt165 != 0) {
             int i = 0;
             if(Class40_Sub5_Sub15.systemUpdateTime != 0) {
@@ -216,16 +219,10 @@ public class MovedStatics {
                     }
                 }
             }
-            if(arg0 != 9767) {
-                anInt1923 = 48;
-            }
         }
     }
 
-    public static boolean method446(Signlink arg0, int arg1, boolean arg2, byte arg3) {
-        if(arg3 != 30) {
-            Pathfinding.doWalkTo(47, -7, 96, -97, -111, true, -110, 57, -36, -84, -42);
-        }
+    public static boolean method446(Signlink arg0, int arg1, boolean arg2) {
         if(!Class39.method452(arg0, arg2)) {
             return false;
         }
@@ -235,13 +232,10 @@ public class MovedStatics {
         return true;
     }
 
-    public static void method450(byte arg0) {
+    public static void method450() {
         if(Player.headIconDrawType == 2) {
-            if(arg0 >= -28) {
-                method445(-128);
-            }
             Class22_Sub1.method312(2 * ActorDefinition.anInt2404, Class35.anInt1730 + (-Class26.baseY + anInt175 << 7),
-                    (ProducingGraphicsBuffer.anInt1637 + -SpotAnimDefinition.baseX << 7) + Landscape.anInt1170, 4976905
+                    (ProducingGraphicsBuffer.anInt1637 + -SpotAnimDefinition.baseX << 7) + Landscape.anInt1170
             );
             if(ISAAC.anInt522 > -1 && pulseCycle % 20 < 10) {
                 UnderlayDefinition.aClass40_Sub5_Sub14_Sub4Array2567[0].drawImage(
@@ -250,10 +244,7 @@ public class MovedStatics {
         }
     }
 
-    public static void method996(int arg0) {
-        if(arg0 != 19655) {
-            English.systemUpdateIn = null;
-        }
+    public static void method996() {
         tabImageProducer.prepareRasterizer();
         if(ScreenController.frameMode == ScreenMode.FIXED) {
             FloorDecoration.inventoryBackgroundImage.drawImage(0, 0);
@@ -276,11 +267,8 @@ public class MovedStatics {
         ActorDefinition.sidebarOffsets = Rasterizer3D.setLineOffsets(ActorDefinition.sidebarOffsets);
     }
 
-    public static void method997(int arg0) {
-        if(arg0 != 47) {
-            initiateVertexHeights(-42, (byte) 12, 92, 18, -72);
-        }
-        if(Signlink.aString735.toLowerCase().indexOf("microsoft") == -1) {
+    public static void method997() {
+        if(Signlink.javaVendor.toLowerCase().indexOf("microsoft") == -1) {
             HuffmanEncoding.anIntArray1564[44] = 71;
             HuffmanEncoding.anIntArray1564[45] = 26;
             HuffmanEncoding.anIntArray1564[46] = 72;
@@ -342,8 +330,8 @@ public class MovedStatics {
         if(arg0) {
             for(
                     Class40_Sub5_Sub17_Sub6 class40_sub5_sub17_sub6 = (Class40_Sub5_Sub17_Sub6) Class57.aLinkedList_1332
-                            .method902((byte) -90); class40_sub5_sub17_sub6 != null;
-                    class40_sub5_sub17_sub6 = (Class40_Sub5_Sub17_Sub6) Class57.aLinkedList_1332.method909(-4)
+                            .method902(); class40_sub5_sub17_sub6 != null;
+                    class40_sub5_sub17_sub6 = (Class40_Sub5_Sub17_Sub6) Class57.aLinkedList_1332.method909()
             ) {
                 if(Player.worldLevel == class40_sub5_sub17_sub6.anInt3239 && !class40_sub5_sub17_sub6.aBoolean3237) {
                     if(pulseCycle >= class40_sub5_sub17_sub6.anInt3230) {
@@ -476,15 +464,15 @@ public class MovedStatics {
 
     public static void method327(boolean arg0, CacheArchive arg1, int arg2, int arg3, byte arg4, int arg5, byte arg6) {
         int i = 14 % ((arg6 - 5) / 62);
-        long l = (long) (arg3 + (arg2 << 16));
-        Class40_Sub5_Sub13 class40_sub5_sub13 = (Class40_Sub5_Sub13) Class51.aClass23_1194.method331(l, 6120);
+        long l = arg3 + (arg2 << 16);
+        Class40_Sub5_Sub13 class40_sub5_sub13 = (Class40_Sub5_Sub13) Class51.aClass23_1194.method331(l);
         if(class40_sub5_sub13 == null) {
-            class40_sub5_sub13 = (Class40_Sub5_Sub13) Class37.aClass23_869.method331(l, 6120);
+            class40_sub5_sub13 = (Class40_Sub5_Sub13) Class37.aClass23_869.method331(l);
             if(class40_sub5_sub13 == null) {
-                class40_sub5_sub13 = (Class40_Sub5_Sub13) GameObjectDefinition.aClass23_2545.method331(l, 6120);
+                class40_sub5_sub13 = (Class40_Sub5_Sub13) GameObjectDefinition.aClass23_2545.method331(l);
                 if(class40_sub5_sub13 == null) {
                     if(!arg0) {
-                        class40_sub5_sub13 = (Class40_Sub5_Sub13) aClass23_841.method331(l, 6120);
+                        class40_sub5_sub13 = (Class40_Sub5_Sub13) aClass23_841.method331(l);
                         if(class40_sub5_sub13 != null) {
                             return;
                         }
@@ -514,7 +502,7 @@ public class MovedStatics {
     public static void method332(int arg0) {
         synchronized(CollisionMap.anObject162) {
             if(Buffer.anInt1987 == 0) {
-                Main.signlink.method394(5, 0, new Class44());
+                Main.signlink.method394(5, new Class44());
             }
             Buffer.anInt1987 = arg0;
         }
@@ -525,11 +513,11 @@ public class MovedStatics {
     }
 
     public static void method335(byte arg0) {
-        Class40_Sub5_Sub17_Sub1 class40_sub5_sub17_sub1 = (Class40_Sub5_Sub17_Sub1) Class43.aLinkedList_1022.method902(
-                (byte) -90);
+        Class40_Sub5_Sub17_Sub1 class40_sub5_sub17_sub1 = (Class40_Sub5_Sub17_Sub1) Class43.aLinkedList_1022
+                .method902();
         if(arg0 == 61) {
             for(/**/; class40_sub5_sub17_sub1 != null;
-                    class40_sub5_sub17_sub1 = (Class40_Sub5_Sub17_Sub1) Class43.aLinkedList_1022.method909(arg0 + -65)
+                    class40_sub5_sub17_sub1 = (Class40_Sub5_Sub17_Sub1) Class43.aLinkedList_1022.method909()
             ) {
                 if(Player.worldLevel == class40_sub5_sub17_sub1.anInt2981 &&
                         pulseCycle <= class40_sub5_sub17_sub1.anInt2971) {
@@ -657,12 +645,10 @@ public class MovedStatics {
                 }
                 string = string.replace('&', '_');
                 string = string.replace('#', '_');
-                SignlinkNode signlinkNode = Actor.aClass31_3152.method388(false,
-                        new URL(Actor.aClass31_3152.anApplet740.getCodeBase(),
-                                "clienterror.ws?c=" + Class39.anInt901 + "&u=" + aLong853 + "&v1=" +
-                                        Signlink.aString735 + "&v2=" + Signlink.aString739 + "&e=" + string
-                        )
-                );
+                SignlinkNode signlinkNode = Actor.signlink.putUrl(new URL(Actor.signlink.anApplet740.getCodeBase(),
+                        "clienterror.ws?c=" + Class39.clientVersion + "&u=" + aLong853 + "&v1=" + Signlink.javaVendor +
+                                "&v2=" + Signlink.javaVersion + "&e=" + string
+                ));
                 while(signlinkNode.anInt434 == 0) {
                     Class43.sleep(1L);
                 }
@@ -750,8 +736,7 @@ public class MovedStatics {
 
     public static void method399(int arg0, int arg2) {
         long l = (arg0 << 16) + arg2;
-        Class40_Sub5_Sub13 class40_sub5_sub13 = (Class40_Sub5_Sub13) GameObjectDefinition.aClass23_2545.method331(
-                l, 6120);
+        Class40_Sub5_Sub13 class40_sub5_sub13 = (Class40_Sub5_Sub13) GameObjectDefinition.aClass23_2545.method331(l);
         if(class40_sub5_sub13 != null) {
             InteractiveObject.aNodeQueue_485.unshift(class40_sub5_sub13);
         }
@@ -841,7 +826,7 @@ public class MovedStatics {
     }
 
     public static void method522(int arg0, int arg1) {
-        VarbitDefinition varbitDefinition = method417(0, arg1);
+        VarbitDefinition varbitDefinition = method417(arg1);
         int i = varbitDefinition.leastSignificantBit;
         int i_0_ = varbitDefinition.index;
         int i_1_ = varbitDefinition.mostSignificantBit;
@@ -978,7 +963,7 @@ public class MovedStatics {
     }
 
     public static int calculateDataLoaded(int arg1, int arg2) {
-        long l = (long) ((arg1 << 16) + arg2);
+        long l = (arg1 << 16) + arg2;
         if(PacketBuffer.aClass40_Sub5_Sub13_2250 == null || PacketBuffer.aClass40_Sub5_Sub13_2250.key != l) {
             return 0;
         }
@@ -1002,20 +987,17 @@ public class MovedStatics {
         }
     }
 
-    public static VarbitDefinition method417(int arg0, int arg1) {
-        if(arg0 != 0) {
-            return null;
-        }
-        VarbitDefinition varbitDefinition = (VarbitDefinition) Class57.aClass9_1331.get((long) arg1);
+    public static VarbitDefinition method417(int arg1) {
+        VarbitDefinition varbitDefinition = (VarbitDefinition) Class57.aClass9_1331.get(arg1);
         if(varbitDefinition != null) {
             return varbitDefinition;
         }
-        byte[] is = RSCanvas.aCacheArchive_61.getFile(14, arg1);
+        byte[] is = RSCanvas.aCacheArchive_61.getFile(arg1, 14);
         varbitDefinition = new VarbitDefinition();
         if(is != null) {
             varbitDefinition.method562(new Buffer(is));
         }
-        Class57.aClass9_1331.put((long) arg1, varbitDefinition);
+        Class57.aClass9_1331.put(arg1, varbitDefinition);
         return varbitDefinition;
     }
 

@@ -10,9 +10,9 @@ import com.jagex.runescape.scene.util.CollisionMap;
 
 public class Class44 implements Runnable {
     public static int[][] anIntArrayArray1030;
-    public static int modewhat = 0;
     public static byte[][] aByteArrayArray1039 = new byte[250][];
     public static int anInt1040 = 256;
+    public static int modewhat = 0;
     public static int modewhere = 0;
     public static IndexedImage chatboxBackgroundImage;
     public static int anInt1048 = -1;
@@ -141,10 +141,10 @@ public class Class44 implements Runnable {
 
     public void run() {
         try {
-            for(; ; ) {
+            while(true) {
                 Class40_Sub6 class40_sub6;
                 synchronized(RSCanvas.aLinkedList_53) {
-                    class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method902((byte) -90);
+                    class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method902();
                 }
                 if(class40_sub6 == null) {
                     Class43.sleep(100L);
@@ -167,7 +167,7 @@ public class Class44 implements Runnable {
                     } else if(class40_sub6.anInt2112 == 1) {
                         class40_sub6.aByteArray2102 = class40_sub6.cacheIndex.get((int) class40_sub6.key);
                         synchronized(RSCanvas.aLinkedList_53) {
-                            IdentityKit.aLinkedList_2604.pushBack(class40_sub6, 115);
+                            IdentityKit.aLinkedList_2604.pushBack(class40_sub6);
                         }
                     }
                     synchronized(CollisionMap.anObject162) {

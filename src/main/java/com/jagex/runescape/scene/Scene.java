@@ -13,50 +13,51 @@ import java.util.Arrays;
 
 public class Scene {
     private static final int TILE_DRAW_DISTANCE = 75;
+    public static boolean lowMemory = true;
+    public static int cycle;
     public static int cameraPosX;
+    public static int cameraPosY;
+    public static int cameraPosZ;
+    public static int[] faceOffsetX2 = new int[]{53, -53, -53, 53};
+    public static int[] faceOffsetY2 = new int[]{-53, -53, 53, 53};
+    public static int[] faceOffsetX3 = new int[]{-45, 45, 45, -45};
+    public static int[] faceOffsetY3 = new int[]{45, 45, -45, -45};
+    public static int clickX = 0;
     public static int clickY = 0;
     public static int clickedTileX = -1;
-    public static int cameraPositionTileX;
-    public static int[] faceOffsetX2 = new int[]{53, -53, -53, 53};
     public static int clickedTileY = -1;
-    public static int hoveredTileY = -1;
     public static int hoveredTileX = -1;
-    public static int curveSineY;
-    public static int mapBoundsX;
-    public static int anInt85 = 0;
-    public static int cycle;
-    public static int currentPositionY;
-    public static boolean lowMemory = true;
-    public static int cameraPosZ;
-    public static int anInt90 = 4;
-    public static int clickX = 0;
-    public static int[] faceOffsetX3 = new int[]{-45, 45, 45, -45};
-    public static int currentPositionX;
-    public static int anInt96 = 0;
-    public static int cameraPosY;
-    public static int curveCosineX;
+    public static int hoveredTileY = -1;
+    public static int cameraPositionTileX;
     public static int cameraPositionTileY;
-    public static int[] cullingClusterPointer = new int[anInt90];
-    public static int[] faceOffsetY3 = new int[]{45, 45, -45, -45};
+    public static int currentPositionX;
+    public static int currentPositionY;
     public static int curveSineX;
+    public static int curveSineY;
+    public static int curveCosineX;
+    public static int curveCosineY;
+    public static int mapBoundsX;
+    public static int mapBoundsY;
+    public static int anInt85 = 0;
+    public static int anInt90 = 4;
+    public static int anInt96 = 0;
+
     public static InteractiveObject[] interactiveObjects = new InteractiveObject[100];
+    public static SceneCluster[][] cullingClusters = new SceneCluster[anInt90][500];
     public static SceneCluster[] processedCullingClusters = new SceneCluster[500];
+    public static int[] cullingClusterPointer = new int[anInt90];
     public static LinkedList tileList = new LinkedList();
     public static int anInt109 = 0;
-    public static int curveCosineY;
-    public static int mapBoundsY;
-    public static int[] faceOffsetY2 = new int[]{-53, -53, 53, 53};
-    public static SceneCluster[][] cullingClusters = new SceneCluster[anInt90][500];
     public static boolean clicked = false;
     public static int[] anIntArray117 = new int[]{160, 192, 80, 96, 0, 144, 80, 48, 160};
     public static int anInt118;
-    public static int[] anIntArray119 = new int[]{0, 0, 2, 0, 0, 2, 1, 1, 0};
+    public static int[] WALL_UNCULL_FLAGS_0 = new int[]{0, 0, 2, 0, 0, 2, 1, 1, 0};
     public static int[] anIntArray120 = new int[]{19, 55, 38, 155, 255, 110, 137, 205, 76};
     public static int anInt122;
     public static int anInt124;
     public static int[] anIntArray125 = new int[]{2, 0, 0, 2, 0, 0, 0, 4, 4};
     public static int anInt128;
-    public static int[] anIntArray130 = new int[]{76, 8, 137, 4, 0, 1, 38, 2, 19};
+    public static int[] TILE_WALL_DRAW_FLAGS_1 = new int[]{76, 8, 137, 4, 0, 1, 38, 2, 19};
     public static int[] anIntArray131 = new int[]{1, 1, 0, 0, 0, 8, 0, 0, 8};
     public static int[] anIntArray132 = new int[]{0, 4, 4, 8, 0, 0, 8, 0, 0};
     public static boolean[][] TILE_VISIBILITY_MAP;
@@ -64,16 +65,15 @@ public class Scene {
             (TILE_DRAW_DISTANCE * 2) + 1];
     public static int anInt135;
     public static int anInt136;
-
+    public int currentPositionZ = 0;
     public SceneTile[][][] tileArray;
     public int[][][] anIntArrayArrayArray83;
     public int sceneSpawnRequestsCacheCurrentPos;
     public InteractiveObject[] sceneSpawnRequestsCache = new InteractiveObject[5000];
-    public int mapSizeX;
-    public int currentPositionZ = 0;
     public int[][][] heightMap;
-    public int mapSizeZ;
+    public int mapSizeX;
     public int mapSizeY;
+    public int mapSizeZ;
     public int[][] anIntArrayArray121;
     public int[] anIntArray123;
     public int anInt126;
@@ -181,16 +181,6 @@ public class Scene {
         }
     }
 
-    public static int method108(int arg0, int arg1) {
-        arg1 = (127 - arg1) * (arg0 & 0x7f) >> 7;
-        if(arg1 < 2) {
-            arg1 = 2;
-        } else if(arg1 > 126) {
-            arg1 = 126;
-        }
-        return (arg0 & 0xff80) + arg1;
-    }
-
     public static boolean method113(int arg0, int arg1, int arg2) {
         int i = arg2 * curveSineX + arg0 * curveCosineX >> 16;
         int i_145_ = arg2 * curveCosineX - arg0 * curveSineX >> 16;
@@ -203,7 +193,6 @@ public class Scene {
         int i_149_ = anInt135 + (i_147_ << 9) / i_146_;
         return i_148_ >= anInt118 && i_148_ <= anInt136 && i_149_ >= anInt124 && i_149_ <= anInt128;
     }
-
 
     public static void method116(
             int z, int searchMask, int lowestX, int highestX, int lowestY, int highestY, int highestZ, int lowestZ
@@ -221,6 +210,17 @@ public class Scene {
         sceneCluster.worldEndZ = highestZ;
         sceneCluster.worldStartZ = lowestZ;
         cullingClusters[z][cullingClusterPointer[z]++] = sceneCluster;
+    }
+
+    private int mixColours(int colourA, int colourB) {
+        colourB = 127 - colourB;
+        colourB = (colourB * (colourA & 0x7f)) / 160;
+        if(colourB < 2) {
+            colourB = 2;
+        } else if(colourB > 126) {
+            colourB = 126;
+        }
+        return (colourA & 0xff80) + colourB;
     }
 
     public int method91(int arg0, int arg1, int arg2) {
@@ -801,9 +801,9 @@ public class Scene {
     }
 
     public void method106(SceneTile arg0, boolean arg1) {
-        tileList.pushBack(arg0, -69);
-        for(; ; ) {
-            SceneTile groundTile = (SceneTile) tileList.method913(25447);
+        tileList.pushBack(arg0);
+        while(true) {
+            SceneTile groundTile = (SceneTile) tileList.method913();
             if(groundTile == null) {
                 break;
             }
@@ -916,13 +916,13 @@ public class Scene {
                             i_86_ += 6;
                         }
                         i_87_ = anIntArray120[i_86_];
-                        groundTile.anInt2064 = anIntArray130[i_86_];
+                        groundTile.anInt2064 = TILE_WALL_DRAW_FLAGS_1[i_86_];
                     }
                     if(wall != null) {
                         if((wall.orientationA & anIntArray117[i_86_]) != 0) {
                             if(wall.orientationA == 16) {
                                 groundTile.wallCullDirection = 3;
-                                groundTile.wallUncullDirection = anIntArray119[i_86_];
+                                groundTile.wallUncullDirection = WALL_UNCULL_FLAGS_0[i_86_];
                                 groundTile.wallCullOppositeDirection = 3 - groundTile.wallUncullDirection;
                             } else if(wall.orientationA == 32) {
                                 groundTile.wallCullDirection = 6;
@@ -1025,25 +1025,25 @@ public class Scene {
                         if(i < cameraPositionTileX && (i_98_ & 0x4) != 0) {
                             SceneTile sceneTile_99_ = sceneTiles[i + 1][i_76_];
                             if(sceneTile_99_ != null && sceneTile_99_.visible) {
-                                tileList.pushBack(sceneTile_99_, -115);
+                                tileList.pushBack(sceneTile_99_);
                             }
                         }
                         if(i_76_ < cameraPositionTileY && (i_98_ & 0x2) != 0) {
                             SceneTile sceneTile_100_ = sceneTiles[i][i_76_ + 1];
                             if(sceneTile_100_ != null && sceneTile_100_.visible) {
-                                tileList.pushBack(sceneTile_100_, 127);
+                                tileList.pushBack(sceneTile_100_);
                             }
                         }
                         if(i > cameraPositionTileX && (i_98_ & 0x1) != 0) {
                             SceneTile sceneTile_101_ = sceneTiles[i - 1][i_76_];
                             if(sceneTile_101_ != null && sceneTile_101_.visible) {
-                                tileList.pushBack(sceneTile_101_, -106);
+                                tileList.pushBack(sceneTile_101_);
                             }
                         }
                         if(i_76_ > cameraPositionTileY && (i_98_ & 0x8) != 0) {
                             SceneTile tile = sceneTiles[i][i_76_ - 1];
                             if(tile != null && tile.visible) {
-                                tileList.pushBack(tile, -81);
+                                tileList.pushBack(tile);
                             }
                         }
                     }
@@ -1166,9 +1166,9 @@ public class Scene {
                                 ) {
                                     SceneTile sceneTile_124_ = sceneTiles[i_122_][i_123_];
                                     if(sceneTile_124_.wallCullDirection != 0) {
-                                        tileList.pushBack(sceneTile_124_, 108);
+                                        tileList.pushBack(sceneTile_124_);
                                     } else if((i_122_ != i || i_123_ != i_76_) && sceneTile_124_.visible) {
-                                        tileList.pushBack(sceneTile_124_, 92);
+                                        tileList.pushBack(sceneTile_124_);
                                     }
                                 }
                             }
@@ -1296,31 +1296,31 @@ public class Scene {
                         if(i_77_ < mapSizeZ - 1) {
                             SceneTile sceneTile_139_ = tileArray[i_77_ + 1][i][i_76_];
                             if(sceneTile_139_ != null && sceneTile_139_.visible) {
-                                tileList.pushBack(sceneTile_139_, -88);
+                                tileList.pushBack(sceneTile_139_);
                             }
                         }
                         if(i < cameraPositionTileX) {
                             SceneTile sceneTile_140_ = sceneTiles[i + 1][i_76_];
                             if(sceneTile_140_ != null && sceneTile_140_.visible) {
-                                tileList.pushBack(sceneTile_140_, 63);
+                                tileList.pushBack(sceneTile_140_);
                             }
                         }
                         if(i_76_ < cameraPositionTileY) {
                             SceneTile sceneTile_141_ = sceneTiles[i][i_76_ + 1];
                             if(sceneTile_141_ != null && sceneTile_141_.visible) {
-                                tileList.pushBack(sceneTile_141_, -81);
+                                tileList.pushBack(sceneTile_141_);
                             }
                         }
                         if(i > cameraPositionTileX) {
                             SceneTile sceneTile_142_ = sceneTiles[i - 1][i_76_];
                             if(sceneTile_142_ != null && sceneTile_142_.visible) {
-                                tileList.pushBack(sceneTile_142_, 89);
+                                tileList.pushBack(sceneTile_142_);
                             }
                         }
                         if(i_76_ > cameraPositionTileY) {
                             SceneTile sceneTile_143_ = sceneTiles[i][i_76_ - 1];
                             if(sceneTile_143_ != null && sceneTile_143_.visible) {
-                                tileList.pushBack(sceneTile_143_, -125);
+                                tileList.pushBack(sceneTile_143_);
                             }
                         }
                     }
@@ -1546,10 +1546,10 @@ public class Scene {
         return method103(i_159_, _z, i_160_);
     }
 
-    public void method120(int arg0, int arg1) {
+    public void click(int x, int y) {
         clicked = true;
-        clickX = arg0;
-        clickY = arg1;
+        clickX = x;
+        clickY = y;
         clickedTileX = -1;
         clickedTileY = -1;
     }
@@ -1863,8 +1863,8 @@ public class Scene {
             } else if(lowMemory) {
                 int rgb = Rasterizer3D.anInterface3_2939.method14(true, plainTile.texture);
                 Rasterizer3D.drawShadedTriangle(screenYD, screenYC, screenYB, screenXD, screenXC, screenXB,
-                        method108(rgb, plainTile.colourD), method108(rgb, plainTile.colourC),
-                        method108(rgb, plainTile.colourB)
+                        mixColours(rgb, plainTile.colourD), mixColours(rgb, plainTile.colourC),
+                        mixColours(rgb, plainTile.colourB)
                 );
             } else if(plainTile.flat) {
                 Rasterizer3D.drawTexturedTriangle(screenYD, screenYC, screenYB, screenXD, screenXC, screenXB,
@@ -1902,8 +1902,8 @@ public class Scene {
             } else if(lowMemory) {
                 int i_209_ = Rasterizer3D.anInterface3_2939.method14(true, plainTile.texture);
                 Rasterizer3D.drawShadedTriangle(screenYA, screenYB, screenYC, screenXA, screenXB, screenXC,
-                        method108(i_209_, plainTile.colourA), method108(i_209_, plainTile.colourB),
-                        method108(i_209_, plainTile.colourC)
+                        mixColours(i_209_, plainTile.colourA), mixColours(i_209_, plainTile.colourB),
+                        mixColours(i_209_, plainTile.colourC)
                 );
             } else {
                 Rasterizer3D.drawTexturedTriangle(screenYA, screenYB, screenYC, screenXA, screenXB, screenXC,
@@ -2133,8 +2133,9 @@ public class Scene {
                 Rasterizer3D.restrict_edges =
                         screenXA < 0 || screenXB < 0 || screenXC < 0 || screenXA > Rasterizer3D.viewportRx ||
                                 screenXB > Rasterizer3D.viewportRx || screenXC > Rasterizer3D.viewportRx;
-                if(clicked && isMouseWithinTriangle(
-                        clickX, clickY, screenYA, screenYB, screenYC, screenXA, screenXB, screenXC)) {
+                if(clicked && isMouseWithinTriangle(clickX, clickY, screenYA, screenYB, screenYC, screenXA, screenXB,
+                        screenXC
+                )) {
                     clickedTileX = tileX;
                     clickedTileY = tileY;
                 }
@@ -2155,9 +2156,9 @@ public class Scene {
                 } else if(lowMemory) {
                     int i_240_ = Rasterizer3D.anInterface3_2939.method14(true, shapedTile.triangleTexture[triangle]);
                     Rasterizer3D.drawShadedTriangle(screenYA, screenYB, screenYC, screenXA, screenXB, screenXC,
-                            method108(i_240_, shapedTile.triangleHSLA[triangle]),
-                            method108(i_240_, shapedTile.triangleHSLB[triangle]),
-                            method108(i_240_, shapedTile.triangleHSLC[triangle])
+                            mixColours(i_240_, shapedTile.triangleHSLA[triangle]),
+                            mixColours(i_240_, shapedTile.triangleHSLB[triangle]),
+                            mixColours(i_240_, shapedTile.triangleHSLC[triangle])
                     );
                 } else if(shapedTile.flat) {
                     Rasterizer3D.drawTexturedTriangle(screenYA, screenYB, screenYC, screenXA, screenXB, screenXC,

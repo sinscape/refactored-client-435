@@ -52,50 +52,49 @@ public class SceneTile extends Node {
 
     }
 
-    public static String method532(byte arg0, GameInterface gameInterface, String arg2) {
+    public static String method532(GameInterface gameInterface, String arg2) {
         if(arg2.contains(Native.percent)) {
-            for(; ; ) {
+            while(true) {
                 int i = arg2.indexOf(Native.percentOne);
                 if(i == -1) {
                     break;
                 }
-                arg2 = arg2.substring(0, i) + ClientScriptRunner.method872(
-                        999999999, ClientScript.parseClientScripts(0, false, gameInterface)) + arg2.substring(2 + i);
+                arg2 = arg2.substring(0, i) + ClientScriptRunner.parseNumber(
+                        ClientScript.parseClientScripts(0, false, gameInterface)) + arg2.substring(2 + i);
             }
-            for(; ; ) {
+            while(true) {
                 int i = arg2.indexOf(Native.percentTwo);
                 if(i == -1) {
                     break;
                 }
-                arg2 = arg2.substring(0, i) + ClientScriptRunner.method872(
-                        999999999, ClientScript.parseClientScripts(1, false, gameInterface)) + arg2.substring(i + 2);
+                arg2 = arg2.substring(0, i) + ClientScriptRunner.parseNumber(
+                        ClientScript.parseClientScripts(1, false, gameInterface)) + arg2.substring(i + 2);
             }
-            for(; ; ) {
+            while(true) {
                 int i = arg2.indexOf(Native.percentThree);
                 if(i == -1) {
                     break;
                 }
-                arg2 = arg2.substring(0, i) + ClientScriptRunner.method872(
-                        999999999, ClientScript.parseClientScripts(2, false, gameInterface)) + arg2.substring(2 + i);
+                arg2 = arg2.substring(0, i) + ClientScriptRunner.parseNumber(
+                        ClientScript.parseClientScripts(2, false, gameInterface)) + arg2.substring(2 + i);
             }
-            for(; ; ) {
+            while(true) {
                 int i = arg2.indexOf(Native.percentFour);
                 if(i == -1) {
                     break;
                 }
-                arg2 = arg2.substring(0, i) + ClientScriptRunner.method872(
-                        arg0 ^ 0x3b9ac9eb, ClientScript.parseClientScripts(3, false, gameInterface)) + arg2.substring(
-                        i + 2);
+                arg2 = arg2.substring(0, i) + ClientScriptRunner.parseNumber(
+                        ClientScript.parseClientScripts(3, false, gameInterface)) + arg2.substring(i + 2);
             }
-            for(; ; ) {
+            while(true) {
                 int i = arg2.indexOf(Native.percentFive);
                 if(i == -1) {
                     break;
                 }
-                arg2 = arg2.substring(0, i) + ClientScriptRunner.method872(
-                        999999999, ClientScript.parseClientScripts(4, false, gameInterface)) + arg2.substring(i + 2);
+                arg2 = arg2.substring(0, i) + ClientScriptRunner.parseNumber(
+                        ClientScript.parseClientScripts(4, false, gameInterface)) + arg2.substring(i + 2);
             }
-            for(; ; ) {
+            while(true) {
                 // check client script results for value
                 int i = arg2.indexOf(Native.percentDns);
                 if(i == -1) {
@@ -106,7 +105,7 @@ public class SceneTile extends Node {
                     str = MovedStatics.method204(Class12.aSignlinkNode_394.integerData);
                     if(Class12.aSignlinkNode_394.value != null) {
                         byte[] is = ((String) Class12.aSignlinkNode_394.value).getBytes(StandardCharsets.ISO_8859_1);
-                        str = InteractiveObject.method279(is, 0, is.length).toString();
+                        str = InteractiveObject.readBytesToRSString(is, 0, is.length).toString();
                     }
                 }
                 arg2 = arg2.substring(0, i) + str + arg2.substring(i + 4);

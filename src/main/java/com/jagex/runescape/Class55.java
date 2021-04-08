@@ -37,7 +37,7 @@ public class Class55 {
             return null;
         }
         String string_1_ = bufferedreader.readLine();
-        for(; ; ) {
+        while(true) {
             String string_2_ = bufferedreader.readLine();
             if(string_2_ == null) {
                 break;
@@ -64,14 +64,15 @@ public class Class55 {
     }
 
     public static Class40_Sub5_Sub15 method960(int arg1) {
-        Class40_Sub5_Sub15 class40_sub5_sub15 = (Class40_Sub5_Sub15) Class42.aClass9_998.get((long) arg1);
+        Class40_Sub5_Sub15 class40_sub5_sub15 = (Class40_Sub5_Sub15) Class42.aClass9_998.get(arg1);
         if(class40_sub5_sub15 != null) {
             return class40_sub5_sub15;
         }
-        class40_sub5_sub15 = Class35.method421(
-                VarbitDefinition.aCacheArchive_2364, (byte) 79, arg1, ClientScriptRunner.aCacheArchive_2162, false);
+        class40_sub5_sub15 = Class35.method421(VarbitDefinition.aCacheArchive_2364, (byte) 79, arg1,
+                ClientScriptRunner.aCacheArchive_2162, false
+        );
         if(class40_sub5_sub15 != null) {
-            Class42.aClass9_998.put((long) arg1, class40_sub5_sub15);
+            Class42.aClass9_998.put(arg1, class40_sub5_sub15);
         }
         return class40_sub5_sub15;
     }
@@ -103,17 +104,14 @@ public class Class55 {
         }
     }
 
-    public static void method965(int arg0, Component arg1) {
-        if(arg0 == 32) {
-            arg1.removeMouseListener(GameObject.frame);
-            arg1.removeMouseMotionListener(GameObject.frame);
-            arg1.removeFocusListener(GameObject.frame);
-        }
+    public static void removeMouseListeners(Component mouseCanvas) {
+        mouseCanvas.removeMouseListener(GameObject.frame);
+        mouseCanvas.removeMouseMotionListener(GameObject.frame);
+        mouseCanvas.removeFocusListener(GameObject.frame);
     }
 
-    public static void method966(int arg0, CacheArchive arg1, CacheArchive arg2) {
+    public static void method966(CacheArchive arg1, CacheArchive arg2) {
         UnderlayDefinition.aCacheArchive_2582 = arg1;
-        int i = -87 / ((-20 - arg0) / 56);
         InteractiveObject.aCacheArchive_488 = arg2;
     }
 }

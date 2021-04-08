@@ -315,7 +315,7 @@ public class Class40_Sub9_Sub2 extends Class40_Sub9 {
                     anInt2888 = i + i - 1 - anInt2888;
                     anInt2882 = -anInt2882;
                 }
-                for(; ; ) {
+                while(true) {
                     i_3_ = method866(arg0, i_3_, i_0_, arg2, class40_sub12_sub1.aByteArray2889[anInt2886 - 1]);
                     if(anInt2888 < i_0_) {
                         return 1;
@@ -331,7 +331,7 @@ public class Class40_Sub9_Sub2 extends Class40_Sub9 {
                 }
             }
             if(anInt2882 < 0) {
-                for(; ; ) {
+                while(true) {
                     i_3_ = method854(arg0, i_3_, i, arg2, class40_sub12_sub1.aByteArray2889[anInt2886 - 1]);
                     if(anInt2888 >= i) {
                         return 1;
@@ -339,7 +339,7 @@ public class Class40_Sub9_Sub2 extends Class40_Sub9 {
                     anInt2888 = i_0_ - 1 - (i_0_ - 1 - anInt2888) % i_2_;
                 }
             }
-            for(; ; ) {
+            while(true) {
                 i_3_ = method866(arg0, i_3_, i_0_, arg2, class40_sub12_sub1.aByteArray2889[anInt2880]);
                 if(anInt2888 < i_0_) {
                     return 1;
@@ -379,7 +379,7 @@ public class Class40_Sub9_Sub2 extends Class40_Sub9 {
                         anInt2882 = -anInt2882;
                     } while(--anInt2884 != 0);
                 } else if(anInt2882 < 0) {
-                    for(; ; ) {
+                    while(true) {
                         i_3_ = method854(arg0, i_3_, i, arg2, class40_sub12_sub1.aByteArray2889[anInt2886 - 1]);
                         if(anInt2888 >= i) {
                             return 1;
@@ -394,7 +394,7 @@ public class Class40_Sub9_Sub2 extends Class40_Sub9 {
                         anInt2884 -= i_4_;
                     }
                 } else {
-                    for(; ; ) {
+                    while(true) {
                         i_3_ = method866(arg0, i_3_, i_0_, arg2, class40_sub12_sub1.aByteArray2889[anInt2880]);
                         if(anInt2888 < i_0_) {
                             return 1;

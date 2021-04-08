@@ -148,7 +148,7 @@ public class WallDecoration {
                             -i_30_ + Class37.getFloorDrawHeight(Player.worldLevel, i_27_, i_28_), i_31_,
                             MovedStatics.pulseCycle
                     );
-                    Class57.aLinkedList_1332.pushBack(class40_sub5_sub17_sub6, -111);
+                    Class57.aLinkedList_1332.pushBack(class40_sub5_sub17_sub6);
                 }
             } else if(IncomingPackets.incomingPacket == 99) {
                 int i = IncomingPackets.incomingPacketBuffer.getUnsignedByte();
@@ -161,8 +161,8 @@ public class WallDecoration {
                     LinkedList linkedList = Wall.groundItems[Player.worldLevel][i_32_][i_33_];
                     if(linkedList != null) {
                         for(
-                                Item item = (Item) linkedList.method902((byte) -90); item != null;
-                                item = (Item) linkedList.method909(-4)
+                                Item item = (Item) linkedList.method902(); item != null;
+                                item = (Item) linkedList.method909()
                         ) {
                             if(item.itemId == (i_34_ & 0x7fff) && i_35_ == item.itemCount) {
                                 item.itemCount = i_36_;
@@ -181,8 +181,9 @@ public class WallDecoration {
                 int typeIndex = objectInfo >> 2;
                 int objectType = Npc.anIntArray3304[typeIndex];
                 if(positionX >= 0 && positionY >= 0 && positionX < 104 && positionY < 104) {
-                    GameObjectDefinition.method609(
-                            -1, positionX, orientation, -1, Player.worldLevel, positionY, objectType, typeIndex, 0);
+                    GameObjectDefinition.method609(-1, positionX, orientation, -1, Player.worldLevel, positionY,
+                            objectType, typeIndex, 0
+                    );
                 }
             } else {
                 if(IncomingPackets.incomingPacket == 229) {
@@ -258,15 +259,15 @@ public class WallDecoration {
                         LinkedList linkedList = Wall.groundItems[Player.worldLevel][i_65_][i_66_];
                         if(linkedList != null) {
                             for(
-                                    Item item = (Item) linkedList.method902((byte) -90); item != null;
-                                    item = (Item) linkedList.method909(-4)
+                                    Item item = (Item) linkedList.method902(); item != null;
+                                    item = (Item) linkedList.method909()
                             ) {
                                 if((0x7fff & i_67_) == item.itemId) {
                                     item.remove();
                                     break;
                                 }
                             }
-                            if(linkedList.method902((byte) -90) == null) {
+                            if(linkedList.method902() == null) {
                                 Wall.groundItems[Player.worldLevel][i_65_][i_66_] = null;
                             }
                             FramemapDefinition.spawnGroundItem(i_66_, i_65_);
@@ -301,7 +302,7 @@ public class WallDecoration {
                         class40_sub5_sub17_sub1.method766(i_76_ + MovedStatics.pulseCycle, 0, i_71_,
                                 -i_75_ + Class37.getFloorDrawHeight(Player.worldLevel, i_70_, i_71_), i_70_
                         );
-                        Class43.aLinkedList_1022.pushBack(class40_sub5_sub17_sub1, -73);
+                        Class43.aLinkedList_1022.pushBack(class40_sub5_sub17_sub1);
                     }
                 } else {
                     if(IncomingPackets.incomingPacket == 19) { // update world item amount
@@ -319,7 +320,7 @@ public class WallDecoration {
                             if(Wall.groundItems[Player.worldLevel][i_83_][i_84_] == null) {
                                 Wall.groundItems[Player.worldLevel][i_83_][i_84_] = new LinkedList();
                             }
-                            Wall.groundItems[Player.worldLevel][i_83_][i_84_].pushBack(item, 64);
+                            Wall.groundItems[Player.worldLevel][i_83_][i_84_].pushBack(item);
                             FramemapDefinition.spawnGroundItem(i_84_, i_83_);
                         }
                     } else if(IncomingPackets.incomingPacket == 175) { // add world item
@@ -335,7 +336,7 @@ public class WallDecoration {
                             if(Wall.groundItems[Player.worldLevel][i_88_][i_87_] == null) {
                                 Wall.groundItems[Player.worldLevel][i_88_][i_87_] = new LinkedList();
                             }
-                            Wall.groundItems[Player.worldLevel][i_88_][i_87_].pushBack(item, -118);
+                            Wall.groundItems[Player.worldLevel][i_88_][i_87_].pushBack(item);
                             FramemapDefinition.spawnGroundItem(i_87_, i_88_);
                         }
                     }
@@ -355,7 +356,7 @@ public class WallDecoration {
         }
     }
 
-    public static void drawLoadingScreen(int arg0, TypeFace fontBold, TypeFace fontSmall) {
+    public static void drawLoadingScreen(TypeFace fontBold, TypeFace fontSmall) {
         do {
             MovedStatics.loginBoxGraphics.prepareRasterizer();
             //            Rasterizer.drawFilledRectangle(0,0, ScreenController.frameWidth, ScreenController.frameHeight, 0);
@@ -366,8 +367,9 @@ public class WallDecoration {
                 Rasterizer.drawUnfilledRectangle(28, i_89_, 304, 34, 9179409);
                 Rasterizer.drawUnfilledRectangle(29, 1 + i_89_, 302, 32, 0);
                 Rasterizer.drawFilledRectangle(30, 2 + i_89_, MovedStatics.anInt1607 * 3, 30, 9179409);
-                Rasterizer.drawFilledRectangle(
-                        3 * MovedStatics.anInt1607 + 30, i_89_ + 2, -(MovedStatics.anInt1607 * 3) + 300, 30, 0);
+                Rasterizer.drawFilledRectangle(3 * MovedStatics.anInt1607 + 30, i_89_ + 2,
+                        -(MovedStatics.anInt1607 * 3) + 300, 30, 0
+                );
                 fontBold.drawStringLeft(Native.currentLoadingText, 180, -i + 105, 16777215);
             }
             if(Class51.currentAction == 20) {
@@ -446,9 +448,6 @@ public class WallDecoration {
                 Graphics graphics = MouseHandler.gameCanvas.getGraphics();
 
                 MovedStatics.loginBoxGraphics.drawGraphics(202, 171, graphics);
-                if(arg0 != -19010) {
-                    method949();
-                }
                 Class8.flameLeftBackground.drawGraphics(0, 0, graphics);
                 GameObject.flameRightBackground.drawGraphics(637, 0, graphics);
                 if(!Class40_Sub5_Sub11.clearScreen) {

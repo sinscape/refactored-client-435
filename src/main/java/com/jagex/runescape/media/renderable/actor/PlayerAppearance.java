@@ -192,7 +192,7 @@ public class PlayerAppearance {
                     finalModel = animation1.method599(unknown2, cachedModel, false);
                 }
             } else {
-                finalModel = animation1.method590(cachedModel, animation2, unknown2, unknown1, (byte) 63);
+                finalModel = animation1.method590(cachedModel, animation2, unknown2, unknown1);
             }
         } else {
             return cachedModel;
@@ -281,8 +281,9 @@ public class PlayerAppearance {
         Model finalModel = new Model(models, i);
         for(int colorIndex = 0; colorIndex < 5; colorIndex++) {
             if(appearanceColors[colorIndex] != 0) {
-                finalModel.replaceColor(
-                        playerColours[colorIndex][0], playerColours[colorIndex][appearanceColors[colorIndex]]);
+                finalModel.replaceColor(playerColours[colorIndex][0],
+                        playerColours[colorIndex][appearanceColors[colorIndex]]
+                );
                 if(colorIndex == 1) {
                     finalModel.replaceColor(playerSkinColors[0], playerSkinColors[appearanceColors[colorIndex]]);
                 }

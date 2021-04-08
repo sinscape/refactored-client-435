@@ -133,8 +133,9 @@ public class Class64 implements Runnable {
 
 
                         }
-                        OverlayDefinition.addActionRow(
-                                English.examine, gameObjectDefinition.id << 14, x, y, 1004, examineText.toString());
+                        OverlayDefinition.addActionRow(English.examine, gameObjectDefinition.id << 14, x, y, 1004,
+                                examineText.toString()
+                        );
                     } else if((ItemDefinition.selectedMask & 0x4) == 4) {
                         OverlayDefinition.addActionRow(Native.aClass1_1918, hash, x, y, 32,
                                 Native.aClass1_611 + Native.toCyan + gameObjectDefinition.name
@@ -185,8 +186,7 @@ public class Class64 implements Runnable {
                     LinkedList itemList = Wall.groundItems[Player.worldLevel][x][y];
                     if(itemList != null) {
                         for(
-                                Item item = (Item) itemList.last((byte) -95); item != null;
-                                item = (Item) itemList.previous(4)
+                                Item item = (Item) itemList.last(); item != null; item = (Item) itemList.previous()
                         ) {
                             ItemDefinition itemDefinition = ItemDefinition.forId(item.itemId, 10);
                             if(Class8.itemSelected == 1) {
@@ -292,7 +292,7 @@ public class Class64 implements Runnable {
         }
     }
 
-    public void method1010(int arg0, byte arg1, int arg2, byte[] arg3) throws IOException {
+    public void method1010(int arg0, int arg2, byte[] arg3) throws IOException {
         if(!aBoolean1513) {
             if(aBoolean1510) {
                 aBoolean1510 = false;
@@ -310,12 +310,9 @@ public class Class64 implements Runnable {
                     }
                 }
                 if(aSignlinkNode_1512 == null) {
-                    aSignlinkNode_1512 = aClass31_1515.method394(3, 0, this);
+                    aSignlinkNode_1512 = aClass31_1515.method394(3, this);
                 }
                 this.notifyAll();
-                if(arg1 != -19) {
-                    run();
-                }
             }
         }
     }
@@ -326,7 +323,7 @@ public class Class64 implements Runnable {
 
     public void run() {
         try {
-            for(; ; ) {
+            while(true) {
                 int i;
                 int i_0_;
                 synchronized(this) {
@@ -385,10 +382,7 @@ public class Class64 implements Runnable {
         }
     }
 
-    public int method1014(int arg0) throws IOException {
-        if(arg0 >= -120) {
-            aClass31_1515 = null;
-        }
+    public int method1014() throws IOException {
         if(aBoolean1513) {
             return 0;
         }

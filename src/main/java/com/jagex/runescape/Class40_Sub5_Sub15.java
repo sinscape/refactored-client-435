@@ -26,12 +26,12 @@ public class Class40_Sub5_Sub15 extends CachedNode {
         aFrameDefinitionArray2794 = new FrameDefinition[i];
         int[] is = arg0.method192(arg2, true);
         for(int i_0_ = 0; is.length > i_0_; i_0_++) {
-            byte[] is_1_ = arg0.getFile(arg2, is[i_0_]);
+            byte[] is_1_ = arg0.getFile(is[i_0_], arg2);
             FramemapDefinition framemapDefinition = null;
             int i_2_ = is_1_[1] & 0xff | is_1_[0] << 8 & 0xff00;
             for(
-                    FramemapDefinition framemapDefinition_3_ = (FramemapDefinition) linkedList.method902((byte) -90);
-                    framemapDefinition_3_ != null; framemapDefinition_3_ = (FramemapDefinition) linkedList.method909(-4)
+                    FramemapDefinition framemapDefinition_3_ = (FramemapDefinition) linkedList.method902();
+                    framemapDefinition_3_ != null; framemapDefinition_3_ = (FramemapDefinition) linkedList.method909()
             ) {
                 if(i_2_ == framemapDefinition_3_.id) {
                     framemapDefinition = framemapDefinition_3_;
@@ -46,7 +46,7 @@ public class Class40_Sub5_Sub15 extends CachedNode {
                     is_4_ = arg1.method182(i_2_, 0);
                 }
                 framemapDefinition = new FramemapDefinition(i_2_, is_4_);
-                linkedList.pushBack(framemapDefinition, 60);
+                linkedList.pushBack(framemapDefinition);
             }
             aFrameDefinitionArray2794[is[i_0_]] = new FrameDefinition(is_1_, framemapDefinition);
         }
@@ -60,10 +60,7 @@ public class Class40_Sub5_Sub15 extends CachedNode {
         if(arg1 >= 65 && arg1 <= 90) {
             return true;
         }
-        if(arg1 >= 48 && arg1 <= 57) {
-            return true;
-        }
-        return false;
+        return arg1 >= 48 && arg1 <= 57;
     }
 
     public static void method736(boolean arg0, Actor arg1) {
@@ -89,7 +86,7 @@ public class Class40_Sub5_Sub15 extends CachedNode {
             if(arg1.anInt3140 < 0) {
                 arg1.anInt3140 = 0;
             }
-            int i = SpotAnimDefinition.forId(arg1.graphicId, 13).animationId;
+            int i = SpotAnimDefinition.forId(arg1.graphicId).animationId;
             if(i == -1) {
                 arg1.graphicId = -1;
             } else {

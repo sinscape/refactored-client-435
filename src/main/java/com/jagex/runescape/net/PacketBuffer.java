@@ -37,14 +37,14 @@ public class PacketBuffer extends Buffer {
     public static void method513(int arg0, CacheArchive arg1, CacheIndex arg2, byte arg3) {
         Class40_Sub6 class40_sub6 = new Class40_Sub6();
         class40_sub6.anInt2112 = 1;
-        class40_sub6.key = (long) arg0;
+        class40_sub6.key = arg0;
         class40_sub6.cacheIndex = arg2;
         class40_sub6.cacheArchive = arg1;
         synchronized(RSCanvas.aLinkedList_53) {
             if(arg3 != -28) {
                 method521(false, -84, -120);
             }
-            RSCanvas.aLinkedList_53.pushBack(class40_sub6, -72);
+            RSCanvas.aLinkedList_53.pushBack(class40_sub6);
         }
         MovedStatics.method332(600);
     }

@@ -76,7 +76,7 @@ public class SearchCommand extends Command {
                         for(int y = 0; gameInterfaces.length > y; y++) {
                             GameInterface gameInterface = gameInterfaces[y];
                             if(gameInterface.disabledText != null) {
-                                String text = gameInterface.disabledText.toString().toLowerCase();
+                                String text = gameInterface.disabledText.toLowerCase();
                                 for(int indx = 2; indx < cmdInput.length; indx++) {
                                     if(text.contains(cmdInput[indx].toLowerCase())) {
                                         console.log("<col=FFFF00>" + text + " - " + qq + ":" + y + "</col>");

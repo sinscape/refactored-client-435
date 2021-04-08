@@ -2,11 +2,11 @@ package com.jagex.runescape.util;
 
 public class TextUtils {
 
-    public static final char VALID_CHARACTERS[] = {
+    public static final char[] VALID_CHARACTERS = {
             '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
             'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     };
-    private static char[] message = new char[100];
+    private static final char[] message = new char[100];
 
     public static long nameToLong(String name) {
         long longName = 0L;
@@ -23,7 +23,6 @@ public class TextUtils {
         }
 
         for(; longName % 37L == 0L && longName != 0L; longName /= 37L) {
-            ;
         }
         return longName;
     }
@@ -36,7 +35,7 @@ public class TextUtils {
             return "invalid_name";
         }
         int length = 0;
-        char name[] = new char[12];
+        char[] name = new char[12];
         while(longName != 0L) {
             long tmp = longName;
             longName /= 37L;
@@ -62,7 +61,7 @@ public class TextUtils {
 
     public static String formatName(String name) {
         if(name.length() > 0) {
-            char formatedName[] = name.toCharArray();
+            char[] formatedName = name.toCharArray();
             for(int pos = 0; pos < formatedName.length; pos++) {
                 if(formatedName[pos] == '_') {
                     formatedName[pos] = ' ';

@@ -23,16 +23,16 @@ import com.jagex.runescape.scene.SceneCluster;
 import com.jagex.runescape.scene.util.CollisionMap;
 
 public class Class40_Sub5_Sub6 extends CachedNode {
+    private static final char[] VALID_CHARACTERS = {
+            ' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
+            'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ', '!', '?', '.', ',',
+            ':', ';', '(', ')', '-', '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', ']'
+    };
     public static int currentCameraPositionH;
     public static NodeCache aClass9_2439 = new NodeCache(64);
     public static int cameraY;
     public static int loadingPercent = 0;
     public static int anInt2452 = 0;
-    private static char VALID_CHARACTERS[] = {
-            ' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
-            'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ', '!', '?', '.', ',',
-            ':', ';', '(', ')', '-', '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', ']'
-    };
     public byte[] aByteArray2441;
 
     public Class40_Sub5_Sub6(byte[] arg0) {
@@ -40,7 +40,7 @@ public class Class40_Sub5_Sub6 extends CachedNode {
     }
 
     public static int method585(int arg0, int arg1) {
-        VarbitDefinition varbitDefinition = MovedStatics.method417(0, arg0);
+        VarbitDefinition varbitDefinition = MovedStatics.method417(arg0);
         if(arg1 != 1369) {
             return 27;
         }
@@ -198,8 +198,8 @@ public class Class40_Sub5_Sub6 extends CachedNode {
                                     for(int y = 0; gameInterfaces.length > y; y++) {
                                         GameInterface gameInterface = gameInterfaces[y];
                                         if(gameInterface.disabledText != null) {
-                                            String text = gameInterface.disabledText.toString().toLowerCase();
-                                            if(gameInterface.disabledText.toString().toLowerCase().contains("bank")) {
+                                            String text = gameInterface.disabledText.toLowerCase();
+                                            if(gameInterface.disabledText.toLowerCase().contains("bank")) {
                                                 System.out.println(qq + " contains " + text);
                                             }
                                         }

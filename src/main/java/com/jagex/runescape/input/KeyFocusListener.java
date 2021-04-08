@@ -219,17 +219,17 @@ public class KeyFocusListener implements KeyListener, FocusListener {
         if(arg0 < 62) {
             aLinkedList_1278 = null;
         }
-        return Class22.method307(arg1, -1, 32767);
+        return Class22.method307(arg1, 32767);
     }
 
-    public void keyTyped(KeyEvent arg0) {
-        arg0.consume();
+    public void keyTyped(KeyEvent event) {
+        event.consume();
     }
 
-    public void focusGained(FocusEvent arg0) {
+    public void focusGained(FocusEvent event) {
     }
 
-    public synchronized void focusLost(FocusEvent arg0) {
+    public synchronized void focusLost(FocusEvent event) {
         if(Class59.keyFocusListener != null) {
             GameObjectDefinition.anInt2543 = -1;
         }
@@ -282,10 +282,10 @@ public class KeyFocusListener implements KeyListener, FocusListener {
         keyEvent.consume();
     }
 
-    public synchronized void keyReleased(KeyEvent arg0) {
+    public synchronized void keyReleased(KeyEvent event) {
         if(Class59.keyFocusListener != null) {
             Class49.anInt1147 = 0;
-            int i = arg0.getKeyCode();
+            int i = event.getKeyCode();
 
             if(i < 0 || HuffmanEncoding.anIntArray1564.length <= i) {
                 i = -1;
@@ -300,6 +300,6 @@ public class KeyFocusListener implements KeyListener, FocusListener {
                 }
             }
         }
-        arg0.consume();
+        event.consume();
     }
 }

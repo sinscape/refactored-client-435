@@ -17,10 +17,10 @@ public class Class40_Sub12_Sub1 extends Class40_Sub12 {
         aByteArray2889 = arg0.method926(aByteArray2889, false);
         anInt2892 = arg0.method923(anInt2892, 4);
         if(anInt2890 == anInt2891) {
-            anInt2890 = anInt2891 = arg0.method921(anInt2890, 54);
+            anInt2890 = anInt2891 = arg0.method921(anInt2890);
         } else {
-            anInt2890 = arg0.method921(anInt2890, 54);
-            anInt2891 = arg0.method921(anInt2891, 54);
+            anInt2890 = arg0.method921(anInt2890);
+            anInt2891 = arg0.method921(anInt2891);
             if(anInt2890 == anInt2891) {
                 anInt2890--;
             }

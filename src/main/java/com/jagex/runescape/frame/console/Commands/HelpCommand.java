@@ -6,7 +6,7 @@ import com.jagex.runescape.frame.console.Console;
 import java.util.List;
 
 public class HelpCommand extends Command {
-    private List<Command> commands;
+    private final List<Command> commands;
 
     public HelpCommand(List<Command> commands) {
         super(new String[]{"help", "commands"}, "Search for item/npc/object names");

@@ -24,17 +24,17 @@ import java.util.List;
 public class Console {
     private static final String CONSOLE_VERSION = "RuneJS #435";
     public static Console console; // TODO: Temp until finding a better spot to store this
+    private final String[] consoleMessages;
+    private final List<Command> commands;
     public String consoleInput;
     public boolean consoleOpen;
     public int currentScroll = 0;
-    private String[] consoleMessages;
     private int messageCount;
     private String[] previousCommands;
     private int previousCommandIndex;
     private int previousCommandCount;
     private int currentChatIndex;
     private boolean alpha = true;
-    private List<Command> commands;
     private int versionWidth = -1;
     private int tabCount = 0;
     private CommandList autoCompleteList;

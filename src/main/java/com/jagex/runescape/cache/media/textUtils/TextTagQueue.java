@@ -2,9 +2,9 @@ package com.jagex.runescape.cache.media.textUtils;
 
 
 public class TextTagQueue {
+    private final int size = 0;
     private TextTagNode head;
     private TextTagNode tail;
-    private int size = 0;
 
     public TextTagNode peek() {
         return this.tail;

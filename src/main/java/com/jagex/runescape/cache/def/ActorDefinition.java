@@ -131,7 +131,7 @@ public class ActorDefinition extends CachedNode implements EntityDefinition {
         if(definition != null) {
             return definition;
         }
-        byte[] data = GroundItemTile.aCacheArchive_1375.getFile(9, id);
+        byte[] data = GroundItemTile.aCacheArchive_1375.getFile(id, 9);
         definition = new ActorDefinition();
         definition.id = id;
         if(data != null) {
@@ -162,7 +162,7 @@ public class ActorDefinition extends CachedNode implements EntityDefinition {
             }
             Model[] class40_sub5_sub17_sub5s = new Model[models.length];
             for(int i = 0; models.length > i; i++) {
-                class40_sub5_sub17_sub5s[i] = Model.getModel(MovedStatics.aCacheArchive_1577, models[i]);
+                class40_sub5_sub17_sub5s[i] = Model.getModel(MovedStatics.aCacheArchive_1577, models[i], 0);
             }
             if(class40_sub5_sub17_sub5s.length == 1) {
                 model1 = class40_sub5_sub17_sub5s[0];
@@ -182,7 +182,7 @@ public class ActorDefinition extends CachedNode implements EntityDefinition {
         }
         Model class40_sub5_sub17_sub5_0_;
         if(animation1 != null && animation2 != null) {
-            class40_sub5_sub17_sub5_0_ = animation1.method590(model1, animation2, arg4, arg3, (byte) 63);
+            class40_sub5_sub17_sub5_0_ = animation1.method590(model1, animation2, arg4, arg3);
         } else if(animation1 != null) {
             class40_sub5_sub17_sub5_0_ = animation1.method599(arg4, model1, false);
         } else if(animation2 == null) {
@@ -325,7 +325,7 @@ public class ActorDefinition extends CachedNode implements EntityDefinition {
         }
         Model[] models = new Model[headModelIndexes.length];
         for(int i = 0; i < headModelIndexes.length; i++) {
-            models[i] = Model.getModel(MovedStatics.aCacheArchive_1577, headModelIndexes[i]);
+            models[i] = Model.getModel(MovedStatics.aCacheArchive_1577, headModelIndexes[i], 0);
         }
         Model headModel;
         if(models.length == 1) {

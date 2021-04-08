@@ -274,7 +274,7 @@ public class ImageRGB extends Rasterizer {
     }
 
     public static boolean spriteExists(int arg0, int arg1, CacheArchive cacheArchive) {
-        byte[] is = cacheArchive.getFile(arg1, arg0);
+        byte[] is = cacheArchive.getFile(arg0, arg1);
         if(is == null) {
             return false;
         }

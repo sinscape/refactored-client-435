@@ -84,9 +84,6 @@ public class Class22_Sub2_Sub1 extends Class22_Sub2 implements Receiver {
     public void method300(byte[] arg0, boolean arg1, int arg2, int arg3) {
         if(aSequencer2220 != null) {
             try {
-                if(arg2 != -15910) {
-                    aSequencer2220 = null;
-                }
                 Sequence sequence = MidiSystem.getSequence(new ByteArrayInputStream(arg0));
                 aSequencer2220.setSequence(sequence);
                 aSequencer2220.setLoopCount(!arg1 ? 0 : -1);

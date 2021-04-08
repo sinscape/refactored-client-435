@@ -42,7 +42,6 @@ public class Class24 {
 
     public static boolean method340() {
         return MovedStatics.aClass22_189 != null;
-
     }
 
     public static void method341(
@@ -52,14 +51,14 @@ public class Class24 {
         do {
             Buffer class40_sub1 = new Buffer(arg6);
             int i = -1;
-            for(; ; ) {
+            while(true) {
                 int i_0_ = class40_sub1.getSmart();
                 if(i_0_ == 0) {
                     break;
                 }
                 int i_1_ = 0;
                 i += i_0_;
-                for(; ; ) {
+                while(true) {
                     int i_2_ = class40_sub1.getSmart();
                     if(i_2_ == 0) {
                         break;

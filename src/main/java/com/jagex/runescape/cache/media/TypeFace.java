@@ -22,34 +22,34 @@ import static com.jagex.runescape.Class40_Sub5_Sub13.moderatorIcon;
 
 public class TypeFace extends Rasterizer {
 
+    private static final String greaterThan = "gt";
+    private static final String lessThan = "lt";
+    private static final String euroSymbol = "euro";
+    private static final String startShadow = "shad=";
+    private static final String softHyphen = "shy";
+    private static final String startTrans = "trans=";
+    private static final String startUnderline = "u=";
+    private static final String startStrikethrough = "str=";
+    private static final String endColor = "/col";
+    private static final String endShadow = "/shad";
+    private static final String endTrans = "/trans";
+    private static final String endUnderline = "/u";
+    private static final String endStrikeThrough = "/str";
+    private static final String startDefaultUnderline = "u";
+    private static final String startDefaultStrikeThrough = "str";
+    private static final String startDefaultShadow = "shad";
+    private static final String startColor = "col=";
+    private static final String multiplicationSymbol = "times";
+    private static final String nonBreakingSpace = "nbsp";
+    private static final String image = "img=";
+    private static final String copyright = "copy";
+    private static final String lineBreak = "br";
+    private static final String italicsStart = "i";
+    private static final String italicsEnd = "/i";
+    private static final String registeredTrademark = "reg";
     public static TypeFace fontBold;
     public static TypeFace fontSmall;
     public static NodeCache typeFaceCache = new NodeCache(20);
-    private static String greaterThan = "gt";
-    private static String lessThan = "lt";
-    private static String euroSymbol = "euro";
-    private static String startShadow = "shad=";
-    private static String softHyphen = "shy";
-    private static String startTrans = "trans=";
-    private static String startUnderline = "u=";
-    private static String startStrikethrough = "str=";
-    private static String endColor = "/col";
-    private static String endShadow = "/shad";
-    private static String endTrans = "/trans";
-    private static String endUnderline = "/u";
-    private static String endStrikeThrough = "/str";
-    private static String startDefaultUnderline = "u";
-    private static String startDefaultStrikeThrough = "str";
-    private static String startDefaultShadow = "shad";
-    private static String startColor = "col=";
-    private static String multiplicationSymbol = "times";
-    private static String nonBreakingSpace = "nbsp";
-    private static String image = "img=";
-    private static String copyright = "copy";
-    private static String lineBreak = "br";
-    private static String italicsStart = "i";
-    private static String italicsEnd = "/i";
-    private static String registeredTrademark = "reg";
     private static int strikethroughColor = -1;
     private static boolean italics = false;
     private static int underlineColor = -1;
@@ -60,16 +60,16 @@ public class TypeFace extends Rasterizer {
     private static int shadowColor = -1;
     private static int textColor = 0xff00ff;
     private static int whiteSpace = 0;
+    private final String[] aClass1Array2897 = new String[100];
+    private final Random random;
+    private final int[] characterScreenWidths;
+    private final int[] characterYOffsets;
+    private final byte[][] characterPixels;
+    private final int[] characterHeights;
+    private final boolean strikethrough;
+    private final int anInt2919;
+    private final int anInt2920;
     public int characterDefaultHeight;
-    private String[] aClass1Array2897 = new String[100];
-    private Random random;
-    private int[] characterScreenWidths;
-    private int[] characterYOffsets;
-    private byte[][] characterPixels;
-    private int[] characterHeights;
-    private boolean strikethrough;
-    private int anInt2919;
-    private int anInt2920;
     private TextColourQueue textcolour;
 
     public TypeFace(int[] arg0, int[] arg1, int[] arg2, int[] arg3, byte[][] arg4) {
@@ -180,18 +180,18 @@ public class TypeFace extends Rasterizer {
                         character = 169;
                     } else {
                         if(!effect.equals(registeredTrademark)) {
-                            if(effect.startsWith(image, 0)) {
+                            if(effect.startsWith(image)) {
                                 int icon = Integer.parseInt(effect.substring(4));
                                 destinationWidth += moderatorIcon[icon].maxWidth;
                             }
-                            if(effect.startsWith(startColor, 0)) {
+                            if(effect.startsWith(startColor)) {
                                 TextTagNode stylingNode = new TextTagNode(text.substring(oldindex, idx + 1));
                                 //                                resultText = stylingNode.applyTo(resultText);
                                 resultText = resultText + stylingNode.tag;
 
                                 stylingQueue.push(stylingNode);
                             }
-                            if(effect.startsWith(endColor, 0)) {
+                            if(effect.startsWith(endColor)) {
                                 stylingTag = text.substring(oldindex, idx + 1);
                                 //                                resultText.add(stylingTag);
                                 //                                resultText = stylingTag + resultText;
@@ -200,22 +200,17 @@ public class TypeFace extends Rasterizer {
                                 stylingQueue.pop();
                                 stylingTag = null;
                             }
-                            if(effect.startsWith(italicsStart, 0)) {
+                            if(effect.startsWith(italicsStart)) {
                                 TextTagNode stylingNode = new TextTagNode(text.substring(oldindex, idx + 1));
                                 resultText = resultText + stylingNode.tag;
                                 fontStyle.push(stylingNode);
                             }
-                            if(effect.startsWith(startStrikethrough, 0)) {
+                            if(effect.startsWith(startStrikethrough)) {
                                 TextTagNode stylingNode = new TextTagNode(text.substring(oldindex, idx + 1));
                                 resultText = resultText + stylingNode.tag;
                                 fontStyle.push(stylingNode);
                             }
-                            if(effect.startsWith(startDefaultStrikeThrough, 0)) {
-                                TextTagNode stylingNode = new TextTagNode(text.substring(oldindex, idx + 1));
-                                resultText = resultText + stylingNode.tag;
-                                fontStyle.push(stylingNode);
-                            }
-                            if(effect.startsWith(italicsEnd, 0)) {
+                            if(effect.startsWith(italicsEnd)) {
                                 fontStyleTag = text.substring(oldindex, idx + 1);
                                 //                                resultText.add(stylingTag);
                                 //                                resultText = stylingTag + resultText;
@@ -224,7 +219,7 @@ public class TypeFace extends Rasterizer {
                                 fontStyle.pop();
                                 fontStyleTag = null;
                             }
-                            if(effect.startsWith(endStrikeThrough, 0)) {
+                            if(effect.startsWith(endStrikeThrough)) {
                                 fontStyleTag = text.substring(oldindex, idx + 1);
                                 //                                resultText.add(stylingTag);
                                 //                                resultText = stylingTag + resultText;
@@ -279,7 +274,7 @@ public class TypeFace extends Rasterizer {
             int strlenght = this.getStringTextWidth(resultText);
 
             if(strlenght > i_3_) {
-                aClass1Array2897[i_7_++] = resultText.substring(i_3_, resultText.length()).trim();
+                aClass1Array2897[i_7_++] = resultText.substring(i_3_).trim();
             }
             if(yAlignment == 3 && i_7_ == 1) {
                 yAlignment = 1;
@@ -410,7 +405,7 @@ public class TypeFace extends Rasterizer {
                         character = 169;
                     } else {
                         if(!effect.equals(registeredTrademark)) {
-                            if(effect.startsWith(image, 0)) {
+                            if(effect.startsWith(image)) {
                                 try {
                                     int icon = Integer.parseInt(effect.substring(4));
                                     width += moderatorIcon[icon].maxWidth;
@@ -474,7 +469,7 @@ public class TypeFace extends Rasterizer {
                         character = 169;
                     } else {
                         if(!effect.equals(registeredTrademark)) {
-                            if(effect.startsWith(image, 0)) {
+                            if(effect.startsWith(image)) {
                                 try {
                                     int icon = Integer.parseInt(effect.substring(4));
                                     width += moderatorIcon[icon].maxWidth;
@@ -973,7 +968,7 @@ public class TypeFace extends Rasterizer {
                         character = 169;
                     } else {
                         if(!symbol.equals(registeredTrademark)) {
-                            if(symbol.startsWith(image, 0)) {
+                            if(symbol.startsWith(image)) {
                                 try {
                                     if(xmodifiers == null) {
                                         xOff = 0;
@@ -1000,7 +995,7 @@ public class TypeFace extends Rasterizer {
                                         );
                                     }
 
-                                    drawX += image.destinationWidth;
+                                    drawX += destinationWidth;
                                     var7 = 0;
                                 } catch(Exception var18) {
                                 }
@@ -1083,13 +1078,15 @@ public class TypeFace extends Rasterizer {
 
                     if(underlineColor != -1) {
                         if(opacity > 255) {
-                            Rasterizer.drawHorizontalLine(
-                                    drawX, drawY + characterDefaultHeight, charWidth, underlineColor);
+                            Rasterizer.drawHorizontalLine(drawX, drawY + characterDefaultHeight, charWidth,
+                                    underlineColor
+                            );
 
                         } else {
 
-                            Rasterizer.drawHorizontalLineAlpha(
-                                    drawX, drawY + characterDefaultHeight, charWidth, underlineColor, opacity);
+                            Rasterizer.drawHorizontalLineAlpha(drawX, drawY + characterDefaultHeight, charWidth,
+                                    underlineColor, opacity
+                            );
                         }
                     }
 
@@ -1142,7 +1139,7 @@ public class TypeFace extends Rasterizer {
                 vertWaveOffset[whichChar] = (int) (Math.sin((double) whichChar / 2.0D + (double) tick / 5.0D) * 5.0D);
             }
 
-            drawBasicStringXYMods(string, x - getStringWidth(string) / 2, y, (int[]) null, vertWaveOffset);
+            drawBasicStringXYMods(string, x - getStringWidth(string) / 2, y, null, vertWaveOffset);
         }
     }
 
@@ -1162,7 +1159,7 @@ public class TypeFace extends Rasterizer {
                 xmod[pos] = (int) (Math.sin((double) pos / 1.5D + (double) var6 / 1.0D) * amplitude);
             }
 
-            drawBasicStringXYMods(var1, var2 - getStringWidth(var1) / 2, var3, (int[]) null, xmod);
+            drawBasicStringXYMods(var1, var2 - getStringWidth(var1) / 2, var3, null, xmod);
         }
     }
 
@@ -1218,7 +1215,7 @@ public class TypeFace extends Rasterizer {
                         c = 169;
                     } else {
                         if(!effectString.equals(registeredTrademark)) {
-                            if(effectString.startsWith(image, 0)) {
+                            if(effectString.startsWith(image)) {
                                 try {
                                     int icon = Integer.valueOf(effectString.substring(4));
                                     IndexedImage nameIcon = moderatorIcon[icon];
@@ -1298,8 +1295,9 @@ public class TypeFace extends Rasterizer {
 
                     int charWidth = characterScreenWidths[c];
                     if(strikethroughColor != -1) {
-                        Rasterizer.drawHorizontalLine(
-                                x, y + (int) ((double) characterDefaultHeight * 0.7D), charWidth, strikethroughColor);
+                        Rasterizer.drawHorizontalLine(x, y + (int) ((double) characterDefaultHeight * 0.7D), charWidth,
+                                strikethroughColor
+                        );
                     }
                     if(underlineColor != -1) {
                         Rasterizer.drawHorizontalLine(x, y + characterDefaultHeight + 1, charWidth, underlineColor);
@@ -1384,8 +1382,9 @@ public class TypeFace extends Rasterizer {
 
             int charWidth = characterScreenWidths[c];
             if(strikethroughColor != -1) {
-                Rasterizer.drawHorizontalLine(
-                        x, y + (int) ((double) characterDefaultHeight * 0.7D), charWidth, strikethroughColor);
+                Rasterizer.drawHorizontalLine(x, y + (int) ((double) characterDefaultHeight * 0.7D), charWidth,
+                        strikethroughColor
+                );
             }
             if(underlineColor != -1) {
                 Rasterizer.drawHorizontalLine(x, y + characterDefaultHeight + 1, charWidth, underlineColor);

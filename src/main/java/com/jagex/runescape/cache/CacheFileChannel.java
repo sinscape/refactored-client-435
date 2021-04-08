@@ -54,7 +54,7 @@ public class CacheFileChannel {
                 int i = (int) (aLong1593 - (readIndex - (long) aByteArray1592.length));
                 arg2 -= i;
                 Class18.method278(arg3, arg0, aByteArray1592, (int) (-aLong1593 + readIndex), i);
-                readIndex += (long) i;
+                readIndex += i;
                 anInt1595 = aByteArray1592.length;
                 arg0 += i;
                 save();
@@ -66,7 +66,7 @@ public class CacheFileChannel {
                     dataRead = readIndex;
                 }
                 accessFile.write(arg3, arg0, arg2);
-                dataRead += (long) arg2;
+                dataRead += arg2;
                 if(dataRead > writeIndex) {
                     writeIndex = dataRead;
                 }
@@ -88,13 +88,13 @@ public class CacheFileChannel {
                     Class18.method278(
                             arg3, (int) ((long) arg0 + l_0_ - readIndex), aByteArray1583, (int) (l_0_ + -aLong1596), i);
                 }
-                readIndex += (long) arg2;
+                readIndex += arg2;
             } else if(arg2 > 0) {
                 if(aLong1593 == -1) {
                     aLong1593 = readIndex;
                 }
                 Class18.method278(arg3, arg0, aByteArray1592, (int) (readIndex + -aLong1593), arg2);
-                readIndex += (long) arg2;
+                readIndex += arg2;
                 if((long) anInt1595 < -aLong1593 + readIndex) {
                     anInt1595 = (int) (-aLong1593 + readIndex);
                 }
@@ -112,7 +112,7 @@ public class CacheFileChannel {
             }
             if(aLong1593 != -1 && aLong1593 <= readIndex && (long) length + readIndex <= (long) anInt1595 + aLong1593) {
                 Class18.method278(aByteArray1592, (int) (readIndex - aLong1593), b, offset, length);
-                readIndex += (long) length;
+                readIndex += length;
                 return;
             }
             int i = length;
@@ -125,7 +125,7 @@ public class CacheFileChannel {
                 }
                 Class18.method278(aByteArray1583, (int) (-aLong1596 + readIndex), b, offset, i_3_);
                 offset += i_3_;
-                readIndex += (long) i_3_;
+                readIndex += i_3_;
                 length -= i_3_;
             }
             if(length <= aByteArray1583.length) {
@@ -136,7 +136,7 @@ public class CacheFileChannel {
                         i_4_ = anInt1589;
                     }
                     Class18.method278(aByteArray1583, 0, b, offset, i_4_);
-                    readIndex += (long) i_4_;
+                    readIndex += i_4_;
                     offset += i_4_;
                     length -= i_4_;
                 }
@@ -149,8 +149,8 @@ public class CacheFileChannel {
                     if(i_5_ == -1) {
                         break;
                     }
-                    readIndex += (long) i_5_;
-                    dataRead += (long) i_5_;
+                    readIndex += i_5_;
+                    dataRead += i_5_;
                     offset += i_5_;
                 }
             }

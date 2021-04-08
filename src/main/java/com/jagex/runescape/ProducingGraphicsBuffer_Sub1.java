@@ -36,19 +36,18 @@ public class ProducingGraphicsBuffer_Sub1 extends ProducingGraphicsBuffer implem
 
 
     public static AnimationSequence getAnimationSequence(int animationId) {
-        AnimationSequence animationSequence = (AnimationSequence) Class40_Sub5_Sub6.aClass9_2439.get(
-                (long) animationId);
+        AnimationSequence animationSequence = (AnimationSequence) Class40_Sub5_Sub6.aClass9_2439.get(animationId);
 
         if(animationSequence != null) {
             return animationSequence;
         }
-        byte[] is = AnimationSequence.aCacheArchive_2484.getFile(12, animationId);
+        byte[] is = AnimationSequence.aCacheArchive_2484.getFile(animationId, 12);
         animationSequence = new AnimationSequence();
         if(is != null) {
             animationSequence.decodeAllAnimationSequences(new Buffer(is));
         }
         animationSequence.method591();
-        Class40_Sub5_Sub6.aClass9_2439.put((long) animationId, animationSequence);
+        Class40_Sub5_Sub6.aClass9_2439.put(animationId, animationSequence);
         return animationSequence;
     }
 
@@ -83,7 +82,7 @@ public class ProducingGraphicsBuffer_Sub1 extends ProducingGraphicsBuffer implem
         byte[] strBytes = arg1.getBytes(StandardCharsets.UTF_8);
         arg2.putSmart(strBytes.length);
         arg2.currentPosition += IdentityKit.aHuffmanEncoding_2590.encrypt(
-                0, arg2.currentPosition, strBytes.length, strBytes, arg2.buffer);
+                arg2.currentPosition, strBytes.length, strBytes, arg2.buffer);
         return -i + arg2.currentPosition;
 
     }

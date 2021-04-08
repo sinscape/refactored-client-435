@@ -69,8 +69,9 @@ public class Item extends Renderable {
         if(Class65.cameraVertical > 383) {
             Class65.cameraVertical = 383;
         }
-        int i_4_ = Class37.getFloorDrawHeight(
-                Player.worldLevel, Class40_Sub5_Sub6.currentCameraPositionH, MovedStatics.currentCameraPositionV);
+        int i_4_ = Class37.getFloorDrawHeight(Player.worldLevel, Class40_Sub5_Sub6.currentCameraPositionH,
+                MovedStatics.currentCameraPositionV
+        );
         if(i_2_ > 3 && i_1_ > 3 && i_2_ < 100 && i_1_ < 100) {
             for(int i_5_ = -4 + i_2_; i_5_ <= 4 + i_2_; i_5_++) {
                 for(int i_6_ = -4 + i_1_; 4 + i_1_ >= i_6_; i_6_++) {
@@ -172,7 +173,7 @@ public class Item extends Renderable {
             class40_sub5_sub14_sub4.drawInverse(254, -171);
             ProducingGraphicsBuffer.aProducingGraphicsBuffer_1631.prepareRasterizer();
             class40_sub5_sub14_sub4.drawInverse(-180, -171);
-            class40_sub5_sub14_sub4 = HuffmanEncoding.method1028(arg3, Native.logo, (byte) 21, "");
+            class40_sub5_sub14_sub4 = HuffmanEncoding.method1028(arg3, Native.logo, "");
             Class39.aProducingGraphicsBuffer_907.prepareRasterizer();
             class40_sub5_sub14_sub4.drawImage(-128 + 382 + -(class40_sub5_sub14_sub4.imageWidth / 2), 18);
             Class40_Sub5_Sub15.loginScreenBox = Main.method359(Native.titleBox, "", arg3);
@@ -242,9 +243,9 @@ public class Item extends Renderable {
                         RSCanvas.anInt60
                 );
             } else {
-                Class33.method405(16969, 10);
+                Class33.method405(10);
             }
-            GameShell.method19(false, 24041);
+            GameShell.method19(false);
             Class40_Sub5_Sub11.clearScreen = true;
             ISAAC.aBoolean512 = true;
         }

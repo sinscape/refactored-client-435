@@ -24,13 +24,13 @@ public abstract class Class22 {
     public static boolean membersWorld = false;
     public static boolean accountFlagged = false;
     public static int anInt545;
-    public static int anInt547 = 0;
+    public static int retryTimer = 0;
     public static boolean[] aBooleanArray548 = new boolean[]{
             true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true,
             true, true, true, false, true, false, false
     };
 
-    public static void method299(byte arg0, int arg1) {
+    public static void method299(int arg1) {
         int[] is = Class40_Sub5_Sub13.minimapImage.pixels;
         int i = is.length;
         for(int i_0_ = 0; i > i_0_; i_0_++) {
@@ -63,9 +63,6 @@ public abstract class Class22 {
             }
         }
         GameObject.minimapHintCount = 0;
-        if(arg0 < 24) {
-            Player.trackedPlayerAppearanceCache = null;
-        }
         for(int i_8_ = 0; i_8_ < 104; i_8_++) {
             for(int i_9_ = 0; i_9_ < 104; i_9_++) {
                 int i_10_ = Npc.currentScene.getFloorDecorationHash(Player.worldLevel, i_8_, i_9_);
@@ -117,18 +114,15 @@ public abstract class Class22 {
         MovedStatics.chatboxLineOffsets = Rasterizer3D.setLineOffsets(MovedStatics.chatboxLineOffsets);
     }
 
-    public static String method307(Buffer arg0, int arg1, int arg2) {
+    public static String method307(Buffer arg0, int arg2) {
         try {
-            if(arg1 != -1) {
-                aBooleanArray548 = null;
-            }
             int length = arg0.getSmart();
             if(length > arg2) {
                 length = arg2;
             }
             byte[] chars = new byte[length];
-            arg0.currentPosition += IdentityKit.aHuffmanEncoding_2590.method1023(
-                    arg0.buffer, length, 0, chars, arg0.currentPosition, -1);
+            arg0.currentPosition += IdentityKit.aHuffmanEncoding_2590.decrypt(
+                    arg0.buffer, length, chars, arg0.currentPosition);
             return new String(chars);
         } catch(Exception exception) {
             return English.cabbage;
@@ -139,11 +133,11 @@ public abstract class Class22 {
         RSString.method56(false, null, 0);
     }
 
-    public static void method309(int arg0, int arg1) {
+    public static void method309(int arg1) {
         do {
             AnimationSequence.anInt2480 = MovedStatics.pulseCycle;
-            HuffmanEncoding.method1030((byte) 127);
-            int i = Npc.method795((byte) -70, arg1).anInt2633;
+            HuffmanEncoding.method1030();
+            int i = Npc.method795(arg1).anInt2633;
             if(i != 0) {
                 int i_21_ = GroundItemTile.varbitMasks[arg1];
                 if(i == 1) {
@@ -242,9 +236,6 @@ public abstract class Class22 {
                 }
                 if(i == 6) {
                     MovedStatics.anInt2280 = i_21_;
-                }
-                if(arg0 != -1) {
-                    method309(74, -85);
                 }
                 if(i != 5) {
                     break;

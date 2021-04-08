@@ -30,10 +30,10 @@ public class GenericTile {
     public static int anInt1233 = 0;
 
     public int texture;
-    public int colourB;
     public int rgbColor;
     public boolean flat;
     public int colourA;
+    public int colourB;
     public int colourC;
     public int colourD;
 
@@ -102,10 +102,7 @@ public class GenericTile {
         return Class22_Sub2.method319((byte) -62);
     }
 
-    public static void method945(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
-        if(arg5 != 103) {
-            anInt1214 = -81;
-        }
+    public static void method945(int arg0, int arg1, int arg2, int arg3, int arg4, int arg6, int arg7) {
         if(arg2 >= 1 && arg0 >= 1 && arg2 <= 102 && arg0 <= 102) {
             if(!VertexNormal.lowMemory || Player.worldLevel == arg7) {
                 int i = -1;
@@ -176,9 +173,9 @@ public class GenericTile {
     }
 
 
-    public static void method947(int arg0) {
+    public static void method947() {
         synchronized(CollisionMap.anObject162) {
-            if((Buffer.anInt1987 ^ 0xffffffff) != arg0) {
+            if((Buffer.anInt1987 ^ 0xffffffff) != -1) {
                 Buffer.anInt1987 = 1;
                 try {
                     CollisionMap.anObject162.wait();

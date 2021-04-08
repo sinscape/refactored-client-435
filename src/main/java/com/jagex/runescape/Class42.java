@@ -54,8 +54,8 @@ public class Class42 {
         ItemDefinition.count = Class26.aCacheArchive_632.fileLength(10);
     }
 
-    public static void method886(int arg0, int arg1, boolean arg2, byte[] arg3, int arg4) {
-        if(arg0 == 0 && MovedStatics.aClass22_189 != null) {
+    public static void method886(int arg1, boolean arg2, byte[] arg3, int arg4) {
+        if(MovedStatics.aClass22_189 != null) {
             if(MouseHandler.anInt1450 < 0) {
                 if(RSCanvas.anInt54 != 0) {
                     PacketBuffer.anInt2258 = arg1;
@@ -67,7 +67,7 @@ public class Class42 {
             } else {
                 Buffer.anInt1982 = arg4;
                 if(MouseHandler.anInt1450 != 0) {
-                    int i = Class29.method372(arg0 ^ 0x60, MouseHandler.anInt1450);
+                    int i = Class29.method372(MouseHandler.anInt1450);
                     i -= Class39.anInt909;
                     RSCanvas.anInt54 = (i + 3600) / arg4;
                     if(RSCanvas.anInt54 < 1) {
@@ -105,7 +105,7 @@ public class Class42 {
     public int method882(int arg0) {
         int i = -2 + anIntArray996.length;
         int i_0_ = arg0 << 1 & i;
-        for(; ; ) {
+        while(true) {
             int i_1_ = anIntArray996[i_0_];
             if(i_1_ == arg0) {
                 return anIntArray996[i_0_ + 1];

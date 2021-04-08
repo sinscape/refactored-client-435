@@ -52,17 +52,15 @@ public class ClientScriptRunner extends Node {
     public int[] values;
     public int scriptId;
 
-    public static String method872(int arg0, int arg1) {
-        if(arg0 > arg1) {
-            return Integer.toString(arg1);
+    public static String parseNumber(int number) {
+        // TODO can probably remove this, number might be a fake gate.
+        if(999999999 > number) {
+            return Integer.toString(number);
         }
-        return Native.aClass1_478;
+        return Native.asterisk;
     }
 
-    public static void method873(int arg1, int arg2) {
-        if(arg2 != 45) {
-            runEnergy = 53;
-        }
+    public static void method873(int arg1) {
         int i = 0;
         for(int i_0_ = 0; i_0_ < 100; i_0_++) {
             if(ChatBox.chatMessages[i_0_] != null) {
@@ -195,13 +193,12 @@ public class ClientScriptRunner extends Node {
             }
         }
 
-        KeyFocusListener.aLinkedList_1278.pushBack(clientScriptRunner, 92);
+        KeyFocusListener.aLinkedList_1278.pushBack(clientScriptRunner);
     }
 
     public static void createClientScriptCheckPacket(int packetId, PacketBuffer buffer) {
-        for(; ; ) {
-            ClientScriptRunner clientScriptRunner = (ClientScriptRunner) KeyFocusListener.aLinkedList_1278.method902(
-                    (byte) -90);
+        while(true) {
+            ClientScriptRunner clientScriptRunner = (ClientScriptRunner) KeyFocusListener.aLinkedList_1278.method902();
             if(clientScriptRunner == null) {
                 break;
             }
@@ -356,7 +353,7 @@ public class ClientScriptRunner extends Node {
                 }
             }
 
-            for(; ; ) {
+            while(true) {
                 scriptOpcode = scriptOpcodes[++scriptIndex];
                 if(scriptOpcode < 100) {
                     if(scriptOpcode == 0) {
@@ -903,8 +900,7 @@ public class ClientScriptRunner extends Node {
                                                 if(i_71_ == 0) {
                                                     scriptIntValues[intValueIndex++] = 0;
                                                 } else {
-                                                    scriptIntValues[intValueIndex++] = (int) Math.pow(
-                                                            (double) i_71_, (double) i_72_);
+                                                    scriptIntValues[intValueIndex++] = (int) Math.pow(i_71_, i_72_);
                                                 }
                                             } else {
                                                 if(scriptOpcode != 4013) {
@@ -919,7 +915,7 @@ public class ClientScriptRunner extends Node {
                                                     scriptIntValues[intValueIndex++] = Integer.MAX_VALUE;
                                                 } else {
                                                     scriptIntValues[intValueIndex++] = (int) Math.pow(
-                                                            (double) i_73_, 1.0 / (double) i_74_);
+                                                            i_73_, 1.0 / (double) i_74_);
                                                 }
                                             }
                                         } else {
@@ -965,8 +961,7 @@ public class ClientScriptRunner extends Node {
                                                 }
                                             } else if(scriptOpcode == 4106) {
                                                 int i_83_ = scriptIntValues[--intValueIndex];
-                                                scriptStringValues[stringValueIndex++] = Integer.toString(i_83_)
-                                                        .toString();
+                                                scriptStringValues[stringValueIndex++] = Integer.toString(i_83_);
                                             } else {
                                                 if(scriptOpcode != 4107) {
                                                     break;

@@ -63,7 +63,7 @@ public class SpotAnimDefinition extends CachedNode {
             }
             if(Class40_Sub3.anInt2032 == 1) {
                 if(FloorDecoration.aSignlinkNode_607 == null) {
-                    FloorDecoration.aSignlinkNode_607 = Main.signlink.method395(3, Wall.anInt350);
+                    FloorDecoration.aSignlinkNode_607 = Main.signlink.method395(Wall.anInt350);
                 }
                 if(FloorDecoration.aSignlinkNode_607.anInt434 == 2) {
                     throw new IOException();
@@ -79,13 +79,12 @@ public class SpotAnimDefinition extends CachedNode {
                 English.loadedInputHandler = null;
             }
             if(Class40_Sub3.anInt2032 == 2) {
-
                 long l = MovedStatics.aLong853 = RSString.nameToLong(Native.username.toString());
                 SceneCluster.packetBuffer.currentPosition = 0;
                 SceneCluster.packetBuffer.putByte(14);
                 int i = (int) (0x1fL & l >> 16);
                 SceneCluster.packetBuffer.putByte(i);
-                MovedStatics.gameConnection.method1010(2, (byte) -19, 0, SceneCluster.packetBuffer.buffer);
+                MovedStatics.gameConnection.method1010(2, 0, SceneCluster.packetBuffer.buffer);
                 Class40_Sub3.anInt2032 = 3;
                 IncomingPackets.incomingPacketBuffer.currentPosition = 0;
             }
@@ -99,9 +98,8 @@ public class SpotAnimDefinition extends CachedNode {
                 Class40_Sub3.anInt2032 = 4;
             }
             if(Class40_Sub3.anInt2032 == 4) {
-
                 if(IncomingPackets.incomingPacketBuffer.currentPosition < 8) {
-                    int i = MovedStatics.gameConnection.method1014(-127);
+                    int i = MovedStatics.gameConnection.method1014();
                     if(i > -IncomingPackets.incomingPacketBuffer.currentPosition + 8) {
                         i = -IncomingPackets.incomingPacketBuffer.currentPosition + 8;
                     }
@@ -130,7 +128,7 @@ public class SpotAnimDefinition extends CachedNode {
                 SceneCluster.packetBuffer.putIntBE(seeds[1]);
                 SceneCluster.packetBuffer.putIntBE(seeds[2]);
                 SceneCluster.packetBuffer.putIntBE(seeds[3]);
-                SceneCluster.packetBuffer.putIntBE(Main.signlink.uid);
+                SceneCluster.packetBuffer.putIntBE(Main.signlink.UID);
                 SceneCluster.packetBuffer.putLongBE(RSString.nameToLong(Native.username.toString()));
                 SceneCluster.packetBuffer.method505(Native.password);
                 if(Configuration.RSA_ENABLED) {
@@ -160,8 +158,9 @@ public class SpotAnimDefinition extends CachedNode {
                 MovedStatics.packetBuffer.putIntBE(CacheArchive.clientScriptCacheArchive.anInt216);
                 MovedStatics.packetBuffer.putBytes(
                         0, SceneCluster.packetBuffer.currentPosition, SceneCluster.packetBuffer.buffer);
-                MovedStatics.gameConnection.method1010(
-                        MovedStatics.packetBuffer.currentPosition, (byte) -19, 0, MovedStatics.packetBuffer.buffer);
+                MovedStatics.gameConnection.method1010(MovedStatics.packetBuffer.currentPosition, 0,
+                        MovedStatics.packetBuffer.buffer
+                );
                 SceneCluster.packetBuffer.initOutCipher(seeds);
                 for(int i = 0; i < 4; i++) {
                     seeds[i] += 50;
@@ -171,7 +170,7 @@ public class SpotAnimDefinition extends CachedNode {
             }
 
 
-            if(Class40_Sub3.anInt2032 == 6 && MovedStatics.gameConnection.method1014(-126) > 0) {
+            if(Class40_Sub3.anInt2032 == 6 && MovedStatics.gameConnection.method1014() > 0) {
                 int i = MovedStatics.gameConnection.read();
                 if(i != 21 || Class51.currentAction != 20) {
                     if(i == 2) {
@@ -193,10 +192,9 @@ public class SpotAnimDefinition extends CachedNode {
                     Class40_Sub3.anInt2032 = 7;
                 }
             }
-            if(Class40_Sub3.anInt2032 == 7 && MovedStatics.gameConnection.method1014(-128) > 0) {
+            if(Class40_Sub3.anInt2032 == 7 && MovedStatics.gameConnection.method1014() > 0) {
                 Class33.anInt784 = 180 + MovedStatics.gameConnection.read() * 60;
                 Class40_Sub3.anInt2032 = 8;
-
             }
             if(Class40_Sub3.anInt2032 == 8) {
                 Main.anInt1756 = 0;
@@ -207,10 +205,8 @@ public class SpotAnimDefinition extends CachedNode {
                     Class40_Sub3.anInt2032 = 0;
                 }
             } else {
+                if(Class40_Sub3.anInt2032 == 9 && MovedStatics.gameConnection.method1014() >= 8) {
 
-                if(Class40_Sub3.anInt2032 == 9 && MovedStatics.gameConnection.method1014(-121) >= 8) {
-                    Configuration.USERNAME = Native.username.toString();
-                    Configuration.PASSWORD = Native.password.toString();
                     InteractiveObject.playerRights = MovedStatics.gameConnection.read();
                     Class22.accountFlagged = MovedStatics.gameConnection.read() == 1;
                     PlayerAppearance.anInt708 = MovedStatics.gameConnection.read();
@@ -226,7 +222,7 @@ public class SpotAnimDefinition extends CachedNode {
                     Class40_Sub3.anInt2032 = 10;
                 }
                 if(Class40_Sub3.anInt2032 == 10) {
-                    if(MovedStatics.gameConnection.method1014(-124) >= IncomingPackets.incomingPacketSize) {
+                    if(MovedStatics.gameConnection.method1014() >= IncomingPackets.incomingPacketSize) {
                         IncomingPackets.incomingPacketBuffer.currentPosition = 0;
                         MovedStatics.gameConnection.method1008(0, IncomingPackets.incomingPacketSize, -128,
                                 IncomingPackets.incomingPacketBuffer.buffer
@@ -268,21 +264,18 @@ public class SpotAnimDefinition extends CachedNode {
         }
     }
 
-    public static SpotAnimDefinition forId(int arg0, int arg1) {
-        if(arg1 != 13) {
-            Class37.method436(-34);
-        }
-        SpotAnimDefinition spotAnimDefinition = (SpotAnimDefinition) Class43.aClass9_1014.get((long) arg0);
+    public static SpotAnimDefinition forId(int arg0) {
+        SpotAnimDefinition spotAnimDefinition = (SpotAnimDefinition) Class43.aClass9_1014.get(arg0);
         if(spotAnimDefinition != null) {
             return spotAnimDefinition;
         }
-        byte[] is = InteractiveObject.aCacheArchive_488.getFile(13, arg0);
+        byte[] is = InteractiveObject.aCacheArchive_488.getFile(arg0, 13);
         spotAnimDefinition = new SpotAnimDefinition();
         spotAnimDefinition.id = arg0;
         if(is != null) {
             spotAnimDefinition.readValues(new Buffer(is));
         }
-        Class43.aClass9_1014.put((long) arg0, spotAnimDefinition);
+        Class43.aClass9_1014.put(arg0, spotAnimDefinition);
         return spotAnimDefinition;
     }
 
@@ -312,9 +305,9 @@ public class SpotAnimDefinition extends CachedNode {
     }
 
     public Model method549(int arg0, int arg1) {
-        Model class40_sub5_sub17_sub5 = (Model) MovedStatics.aClass9_851.get((long) id);
+        Model class40_sub5_sub17_sub5 = (Model) MovedStatics.aClass9_851.get(id);
         if(class40_sub5_sub17_sub5 == null) {
-            class40_sub5_sub17_sub5 = Model.getModel(UnderlayDefinition.aCacheArchive_2582, modelId);
+            class40_sub5_sub17_sub5 = Model.getModel(UnderlayDefinition.aCacheArchive_2582, modelId, 0);
             if(class40_sub5_sub17_sub5 == null) {
                 return null;
             }
@@ -325,7 +318,7 @@ public class SpotAnimDefinition extends CachedNode {
             }
             class40_sub5_sub17_sub5.createBones();
             class40_sub5_sub17_sub5.applyLighting(64 + ambient, contrast + 850, -30, -50, -30, true);
-            MovedStatics.aClass9_851.put((long) id, class40_sub5_sub17_sub5);
+            MovedStatics.aClass9_851.put(id, class40_sub5_sub17_sub5);
         }
         Model class40_sub5_sub17_sub5_0_;
         if(animationId == -1 || arg0 == -1) {
@@ -359,7 +352,7 @@ public class SpotAnimDefinition extends CachedNode {
     }
 
     public void readValues(Buffer buffer) {
-        for(; ; ) {
+        while(true) {
             int i = buffer.getUnsignedByte();
             if(i == 0) {
                 break;

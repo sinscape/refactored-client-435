@@ -96,7 +96,7 @@ public class Native {
     public static String mapFunction = "mapfunction";
     public static String aClass1_3295 = null;
     public static String aClass1_1374 = "backvmid1";
-    public static String aClass1_478 = "*";
+    public static String asterisk = "*";
     public static String aClass1_611 = null;
     public static String huffman = "huffman";
     public static String backright2 = "backright2";

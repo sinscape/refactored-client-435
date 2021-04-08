@@ -111,8 +111,8 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
         byte[] is = null;
         synchronized(RSCanvas.aLinkedList_53) {
             for(
-                    Class40_Sub6 class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method902((byte) -90);
-                    class40_sub6 != null; class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method909(-4)
+                    Class40_Sub6 class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method902();
+                    class40_sub6 != null; class40_sub6 = (Class40_Sub6) RSCanvas.aLinkedList_53.method909()
             ) {
                 if((long) arg1 == class40_sub6.key && arg2 == class40_sub6.cacheIndex && class40_sub6.anInt2112 == 0) {
                     is = class40_sub6.aByteArray2102;
@@ -134,8 +134,8 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
     ) {
         Class40_Sub3 class40_sub3 = null;
         for(
-                Class40_Sub3 class40_sub3_24_ = (Class40_Sub3) LinkedList.aLinkedList_1064.method902((byte) -90);
-                class40_sub3_24_ != null; class40_sub3_24_ = (Class40_Sub3) LinkedList.aLinkedList_1064.method909(-4)
+                Class40_Sub3 class40_sub3_24_ = (Class40_Sub3) LinkedList.aLinkedList_1064.method902();
+                class40_sub3_24_ != null; class40_sub3_24_ = (Class40_Sub3) LinkedList.aLinkedList_1064.method909()
         ) {
             if(class40_sub3_24_.anInt2018 == arg5 && arg2 == class40_sub3_24_.anInt2039 &&
                     class40_sub3_24_.anInt2038 == arg6 && class40_sub3_24_.anInt2027 == arg7) {
@@ -150,7 +150,7 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
             class40_sub3.anInt2018 = arg5;
             class40_sub3.anInt2038 = arg6;
             Class39.method451(class40_sub3, 19813);
-            LinkedList.aLinkedList_1064.pushBack(class40_sub3, 97);
+            LinkedList.aLinkedList_1064.pushBack(class40_sub3);
         }
         class40_sub3.anInt2017 = arg0;
         class40_sub3.anInt2031 = arg4;
@@ -164,7 +164,7 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
         if(gameObjectDefinition != null) {
             return gameObjectDefinition;
         }
-        byte[] is = CacheArchive.definitionCache.getFile(6, objectId);
+        byte[] is = CacheArchive.definitionCache.getFile(objectId, 6);
         gameObjectDefinition = new GameObjectDefinition();
         gameObjectDefinition.id = objectId;
         if(is == null) {
@@ -244,7 +244,7 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
     }
 
     public void readValues(Buffer gameObjectDefinitionBuffer) {
-        for(; ; ) {
+        while(true) {
             int opcode = gameObjectDefinitionBuffer.getUnsignedByte();
             if(opcode == 0) {
                 break;
@@ -289,7 +289,7 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
                 }
                 model = (Model) objectModelCache.get(modelId);
                 if(model == null) {
-                    model = Model.getModel(RSString.aCacheArchive_1705, modelId & 0xffff);
+                    model = Model.getModel(RSString.aCacheArchive_1705, modelId & 0xffff, 0);
                     if(model == null) {
                         return null;
                     }
@@ -323,7 +323,7 @@ public class GameObjectDefinition extends CachedNode implements EntityDefinition
             }
             model = (Model) objectModelCache.get(modelId);
             if(model == null) {
-                model = Model.getModel(RSString.aCacheArchive_1705, 0xffff & modelId);
+                model = Model.getModel(RSString.aCacheArchive_1705, 0xffff & modelId, 0);
                 if(model == null) {
                     return null;
                 }

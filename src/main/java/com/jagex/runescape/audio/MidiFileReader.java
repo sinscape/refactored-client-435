@@ -3,15 +3,15 @@ package com.jagex.runescape.audio;
 import com.jagex.runescape.io.Buffer;
 
 public class MidiFileReader {
-    private static byte[] aByteArray429 = {
+    private static final byte[] aByteArray429 = {
             2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
             2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1,
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
             2, 2, 2, 2, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
+    private final Buffer buffer = new Buffer(null);
     public int[] trackLengths;
     public int division;
-    private Buffer buffer = new Buffer(null);
     private long aLong424;
     private int[] trackPositions;
     private int[] trackStarts;

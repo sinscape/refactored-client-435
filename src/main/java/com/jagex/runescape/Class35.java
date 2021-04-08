@@ -9,7 +9,7 @@ import java.awt.*;
 public class Class35 implements Interface3 {
     public static int anInt1728 = 0;
     public static int anInt1730 = 0;
-    public static Frame aFrame1732;
+    public static Frame gameFrame;
     public static int songTimeout = 0;
     public static boolean aBoolean1734 = false;
     public static boolean aBoolean1735 = true;
@@ -36,7 +36,7 @@ public class Class35 implements Interface3 {
         int i = is.length;
         aClass40_Sub10Array1740 = new EntryTable[arg0.fileLength(0)];
         for(int i_4_ = 0; i > i_4_; i_4_++) {
-            Buffer class40_sub1 = new Buffer(arg0.getFile(0, is[i_4_]));
+            Buffer class40_sub1 = new Buffer(arg0.getFile(is[i_4_], 0));
             aClass40_Sub10Array1740[is[i_4_]] = new EntryTable(class40_sub1);
         }
 
@@ -92,19 +92,19 @@ public class Class35 implements Interface3 {
         EntryTable class40_sub10 = aClass40_Sub10Array1740[arg1];
         if(class40_sub10 != null) {
             if(class40_sub10.anIntArray2139 != null) {
-                aLinkedList_1727.method905(0, class40_sub10);
+                aLinkedList_1727.removeNode(class40_sub10);
                 class40_sub10.aBoolean2146 = true;
                 return class40_sub10.anIntArray2139;
             }
             boolean bool = class40_sub10.method869(aDouble1750, anInt1748, aCacheArchive_1749);
             if(bool) {
                 if(anInt1753 == 0) {
-                    EntryTable class40_sub10_3_ = (EntryTable) aLinkedList_1727.method899((byte) 87);
+                    EntryTable class40_sub10_3_ = (EntryTable) aLinkedList_1727.method899();
                     class40_sub10_3_.method870();
                 } else {
                     anInt1753--;
                 }
-                aLinkedList_1727.method905(0, class40_sub10);
+                aLinkedList_1727.removeNode(class40_sub10);
                 class40_sub10.aBoolean2146 = true;
                 return class40_sub10.anIntArray2139;
             }

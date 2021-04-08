@@ -3,9 +3,9 @@ package com.jagex.runescape.cache.media.textUtils;
 
 public class TextColourQueue {
     private final int defaultColour;
+    private final int size = 0;
     private TextColourNode head;
     private TextColourNode tail;
-    private int size = 0;
 
     public TextColourQueue(int defaultColour) {
         this.defaultColour = defaultColour;

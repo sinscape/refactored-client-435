@@ -1,10 +1,10 @@
 package com.jagex.runescape.frame.console;
 
 public abstract class Command {
+    private final String description;
     private String command;
-    private String commands[];
+    private String[] commands;
     private boolean hasMultiple = false;
-    private String description;
 
     public Command(String command, String description) {
         this.command = command;

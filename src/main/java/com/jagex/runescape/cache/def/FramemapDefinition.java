@@ -106,8 +106,8 @@ public class FramemapDefinition extends Node {
             int i = -99999999;
             Item item = null;
             for(
-                    Item item_32_ = (Item) linkedList.method902((byte) -90); item_32_ != null;
-                    item_32_ = (Item) linkedList.method909(-4)
+                    Item item_32_ = (Item) linkedList.method902(); item_32_ != null;
+                    item_32_ = (Item) linkedList.method909()
             ) {
                 ItemDefinition class40_sub5_sub16 = ItemDefinition.forId(item_32_.itemId, 10);
                 int i_33_ = class40_sub5_sub16.cost;
@@ -124,10 +124,10 @@ public class FramemapDefinition extends Node {
             } else {
                 Item item_34_ = null;
                 Item item_35_ = null;
-                linkedList.method905(0, item);
+                linkedList.removeNode(item);
                 for(
-                        Item item_36_ = (Item) linkedList.method902((byte) -90); item_36_ != null;
-                        item_36_ = (Item) linkedList.method909(-4)
+                        Item item_36_ = (Item) linkedList.method902(); item_36_ != null;
+                        item_36_ = (Item) linkedList.method909()
                 ) {
                     if(item.itemId != item_36_.itemId) {
                         if(item_35_ == null) {

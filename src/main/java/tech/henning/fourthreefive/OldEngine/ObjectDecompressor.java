@@ -21,6 +21,7 @@ import java.util.zip.GZIPInputStream;
 
 public class ObjectDecompressor {
 
+    private static final boolean loaded = false;
     public static List<Integer> mapIndices = null;
     public static Map<Integer, byte[]> mapBuffer = new HashMap<Integer, byte[]>();
     public static File f_cache;
@@ -28,7 +29,6 @@ public class ObjectDecompressor {
     public static int definitionCount;
     public static Buffer buffer;
     private static int[] bufferOffsets;
-    private static boolean loaded = false;
 
     public static Buffer grabObjectDef(int id) throws IOException {
         if(!loaded) {

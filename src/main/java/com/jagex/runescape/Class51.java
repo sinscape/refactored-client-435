@@ -25,14 +25,13 @@ public class Class51 {
     public static int anInt1205 = -1;
     public static ProducingGraphicsBuffer aProducingGraphicsBuffer_1206;
 
-    public static int getKeyChar(KeyEvent arg1) {
-        int keyChar = arg1.getKeyChar();
+    public static int getKeyChar(KeyEvent event) {
+        int keyChar = event.getKeyChar();
         if(keyChar <= 0 || keyChar >= 256) {
             keyChar = -1;
         }
         return keyChar;
     }
-
 
     public static void method940(int arg0, String arg1, boolean arg2, String arg3) {
         if(Class40_Sub5_Sub11.clearScreen) {
@@ -41,10 +40,12 @@ public class Class51 {
             LinkedList.drawChatBoxGraphics();
             Class55.drawTabGraphics();
             ActorDefinition.drawMapBack();
-            GenericTile.method943(
-                    ChatBox.tradeMode, WallDecoration.fontNormal, ChatBox.privateChatMode, ChatBox.publicChatMode);
-            MovedStatics.method527(
-                    Player.currentTabId, arg0 + 4, Player.tabWidgetIds, GameInterface.tabAreaInterfaceId == -1, -1);
+            GenericTile.method943(ChatBox.tradeMode, WallDecoration.fontNormal, ChatBox.privateChatMode,
+                    ChatBox.publicChatMode
+            );
+            MovedStatics.method527(Player.currentTabId, arg0 + 4, Player.tabWidgetIds,
+                    GameInterface.tabAreaInterfaceId == -1, -1
+            );
             MovedStatics.aBoolean893 = true;
             Class40_Sub3.aBoolean2026 = true;
             MovedStatics.aBoolean260 = true;

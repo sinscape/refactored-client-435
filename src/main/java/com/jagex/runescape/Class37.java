@@ -53,7 +53,7 @@ public class Class37 {
         return (128 + -_y) * i2 + j2 * _y >> 7;
     }
 
-    public static void method432() {
+    public static void printUsage() {
         System.out.println("Usage: worldid, [live/office/local], [live/rc/wip], [lowmem/highmem], [free/members]");
         System.exit(1);
     }
@@ -128,7 +128,7 @@ public class Class37 {
         }
         for(int i = 0; Player.npcCount > i; i++) {
             Npc npc = Player.npcs[Player.npcIds[i]];
-            if(npc != null && npc.isVisible(1)) {
+            if(npc != null && npc.isVisible()) {
                 ActorDefinition definition = npc.actorDefinition;
                 if(definition.childrenIds != null) {
                     definition = definition.getChildDefinition(-1);
@@ -142,7 +142,7 @@ public class Class37 {
         }
         for(int i = 0; Player.localPlayerCount > i; i++) {
             Player player = Player.trackedPlayers[Player.trackedPlayerIndices[i]];
-            if(player != null && player.isVisible(1)) {
+            if(player != null && player.isVisible()) {
                 int playerX = player.worldX / 32 + -(Player.localPlayer.worldX / 32);
                 int playerY = -(Player.localPlayer.worldY / 32) + player.worldY / 32;
                 boolean isFriend = false;
@@ -212,13 +212,10 @@ public class Class37 {
 
     }
 
-    public static void method436(int arg0) {
-        if(arg0 < 95) {
-            method436(25);
-        }
+    public static void method436() {
         for(
-                Class40_Sub2 class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method902((byte) -90);
-                class40_sub2 != null; class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method909(-4)
+                Class40_Sub2 class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method902();
+                class40_sub2 != null; class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method909()
         ) {
             if(class40_sub2.aClass40_Sub9_Sub2_2001 != null) {
                 Class49.aClass40_Sub9_Sub1_1152.method853(class40_sub2.aClass40_Sub9_Sub2_2001);
@@ -229,15 +226,12 @@ public class Class37 {
                 class40_sub2.aClass40_Sub9_Sub2_2010 = null;
             }
         }
-        MovedStatics.aLinkedList_2268.method906(0);
+        MovedStatics.aLinkedList_2268.method906();
     }
 
-    public static void method437(int arg0, boolean arg1, int arg2, int arg3, int arg4, GameObjectDefinition arg5) {
+    public static void method437(int arg0, int arg2, int arg3, int arg4, GameObjectDefinition arg5) {
         Class40_Sub2 class40_sub2 = new Class40_Sub2();
         class40_sub2.anInt2000 = 128 * arg5.anInt2502;
-        if(!arg1) {
-            method438(119, -54);
-        }
         class40_sub2.anInt2002 = arg5.anInt2542;
         class40_sub2.anIntArray2005 = arg5.anIntArray2523;
         class40_sub2.anInt2012 = arg5.anInt2499;
@@ -257,7 +251,7 @@ public class Class37 {
             class40_sub2.gameObjectDefinition = arg5;
             class40_sub2.method528();
         }
-        MovedStatics.aLinkedList_2268.pushBack(class40_sub2, -126);
+        MovedStatics.aLinkedList_2268.pushBack(class40_sub2);
         if(class40_sub2.anIntArray2005 != null) {
             class40_sub2.anInt2014 =
                     (int) ((double) (class40_sub2.anInt2002 - class40_sub2.anInt2012) * Math.random()) +
@@ -272,9 +266,6 @@ public class Class37 {
         if(areaId == 1 && FloorDecoration.anInt614 == arg1) {
             return true;
         }
-        if((areaId == 2 || areaId == 3) && MovedStatics.anInt1586 == arg1) {
-            return true;
-        }
-        return false;
+        return (areaId == 2 || areaId == 3) && MovedStatics.anInt1586 == arg1;
     }
 }

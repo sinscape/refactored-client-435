@@ -36,23 +36,20 @@ public class Npc extends Actor {
     public static int[] anIntArray3312;
     public ActorDefinition actorDefinition;
 
-    public static Class40_Sub5_Sub11 method795(byte arg0, int arg1) {
-        Class40_Sub5_Sub11 class40_sub5_sub11 = (Class40_Sub5_Sub11) Class13.aClass9_406.get((long) arg1);
-        if(arg0 >= -66) {
-            Native.aClass1_3295 = null;
-        }
+    public static Class40_Sub5_Sub11 method795(int arg1) {
+        Class40_Sub5_Sub11 class40_sub5_sub11 = (Class40_Sub5_Sub11) Class13.aClass9_406.get(arg1);
         if(class40_sub5_sub11 != null) {
             return class40_sub5_sub11;
         }
         if(Class64.aCacheArchive_1521 == null) {
             System.out.println("ISA NULL");
         }
-        byte[] is = Class64.aCacheArchive_1521.getFile(16, arg1);
+        byte[] is = Class64.aCacheArchive_1521.getFile(arg1, 16);
         class40_sub5_sub11 = new Class40_Sub5_Sub11();
         if(is != null) {
             class40_sub5_sub11.method634(new Buffer(is));
         }
-        Class13.aClass9_406.put((long) arg1, class40_sub5_sub11);
+        Class13.aClass9_406.put(arg1, class40_sub5_sub11);
         return class40_sub5_sub11;
     }
 
@@ -216,7 +213,7 @@ public class Npc extends Actor {
                     SceneCluster.packetBuffer.putPacket(160);
                     SceneCluster.packetBuffer.putByte(0);
                 }
-                LinkedList.method910(-32322);
+                LinkedList.method910();
                 if(Class51.currentAction == 30 || Class51.currentAction == 35) {
                     Class40_Sub5_Sub13.method652();
                     MusicSystem.processAudio();
@@ -310,8 +307,7 @@ public class Npc extends Actor {
                                     }
                                 } else {
                                     if((ProducingGraphicsBuffer.oneMouseButton == 1 || Class33.menuHasAddFriend(
-                                            (byte) 63, ActorDefinition.menuActionRow - 1)) &&
-                                            ActorDefinition.menuActionRow > 2) {
+                                            ActorDefinition.menuActionRow - 1)) && ActorDefinition.menuActionRow > 2) {
                                         Class60.determineMenuSize();
                                     } else if(ActorDefinition.menuActionRow > 0) {
                                         GameInterface.processMenuActions(123, -1 + ActorDefinition.menuActionRow);
@@ -361,8 +357,9 @@ public class Npc extends Actor {
 
                         if(GameInterface.tabAreaInterfaceId == -1) {
                             if(Player.tabWidgetIds[Player.currentTabId] != -1) {
-                                GameInterface.method360(
-                                        (byte) 125, 743, i, 466, Player.tabWidgetIds[Player.currentTabId], 205, 553);
+                                GameInterface.method360((byte) 125, 743, i, 466,
+                                        Player.tabWidgetIds[Player.currentTabId], 205, 553
+                                );
                             }
                         } else {
                             GameInterface.method360(
@@ -376,13 +373,15 @@ public class Npc extends Actor {
                         }
 
                         if(GameInterface.gameScreenInterfaceId != -1) {
-                            GameInterface.method360(
-                                    (byte) 125, 516, i ^ 0xffffffff, 338, GameInterface.gameScreenInterfaceId, 4, 4);
+                            GameInterface.method360((byte) 125, 516, i ^ 0xffffffff, 338,
+                                    GameInterface.gameScreenInterfaceId, 4, 4
+                            );
                         }
 
                         if(GameInterface.tabAreaInterfaceId != -1) {
-                            GameInterface.method360(
-                                    (byte) 125, 743, i ^ 0xffffffff, 466, GameInterface.tabAreaInterfaceId, 205, 553);
+                            GameInterface.method360((byte) 125, 743, i ^ 0xffffffff, 466,
+                                    GameInterface.tabAreaInterfaceId, 205, 553
+                            );
                         } else if(Player.tabWidgetIds[Player.currentTabId] != -1) {
                             GameInterface.method360((byte) 125, 743, i ^ 0xffffffff, 466,
                                     Player.tabWidgetIds[Player.currentTabId], 205, 553
@@ -390,8 +389,9 @@ public class Npc extends Actor {
                         }
 
                         if(GameInterface.chatboxInterfaceId != -1) {
-                            GameInterface.method360(
-                                    (byte) 125, 496, i ^ 0xffffffff, 453, GameInterface.chatboxInterfaceId, 357, 17);
+                            GameInterface.method360((byte) 125, 496, i ^ 0xffffffff, 453,
+                                    GameInterface.chatboxInterfaceId, 357, 17
+                            );
                         } else if(ChatBox.dialogueId != -1) {
                             GameInterface.method360((byte) 125, 496, i ^ 0xffffffff, 453, ChatBox.dialogueId, 357, 17);
                         }
@@ -487,23 +487,17 @@ public class Npc extends Actor {
                         if(Class22.anInt537 > 50) {
                             SceneCluster.packetBuffer.putPacket(13);
                         }
-                        do {
+                        if(MovedStatics.gameConnection != null || SceneCluster.packetBuffer.currentPosition > 0) {
                             try {
-                                if(MovedStatics.gameConnection == null ||
-                                        SceneCluster.packetBuffer.currentPosition <= 0) {
-                                    break;
-                                }
-                                MovedStatics.gameConnection.method1010(SceneCluster.packetBuffer.currentPosition,
-                                        (byte) -19, 0, SceneCluster.packetBuffer.buffer
+                                MovedStatics.gameConnection.method1010(SceneCluster.packetBuffer.currentPosition, 0,
+                                        SceneCluster.packetBuffer.buffer
                                 );
                                 Class22.anInt537 = 0;
                                 SceneCluster.packetBuffer.currentPosition = 0;
                             } catch(java.io.IOException ioexception) {
                                 Class59.dropClient();
-                                break;
                             }
-                            break;
-                        } while(false);
+                        }
                     }
                 }
             }
@@ -512,17 +506,17 @@ public class Npc extends Actor {
 
 
     public static OverlayDefinition loadFloor(int arg0, int arg1) {
-        OverlayDefinition overlayDefinition = (OverlayDefinition) Class33.aClass9_778.get((long) arg0);
+        OverlayDefinition overlayDefinition = (OverlayDefinition) Class33.aClass9_778.get(arg0);
         if(overlayDefinition != null) {
             return overlayDefinition;
         }
-        byte[] is = Actor.aCacheArchive_3144.getFile(arg1, arg0);
+        byte[] is = Actor.aCacheArchive_3144.getFile(arg0, arg1);
         overlayDefinition = new OverlayDefinition();
         if(is != null) {
             overlayDefinition.method553(new Buffer(is));
         }
         overlayDefinition.method555();
-        Class33.aClass9_778.put((long) arg0, overlayDefinition);
+        Class33.aClass9_778.put(arg0, overlayDefinition);
         return overlayDefinition;
     }
 
@@ -755,7 +749,7 @@ public class Npc extends Actor {
         model.method799();
         anInt3117 = model.modelHeight;
         if(graphicId != -1 && anInt3140 != -1) {
-            Model model1 = SpotAnimDefinition.forId(graphicId, 13).method549(anInt3140, 2);
+            Model model1 = SpotAnimDefinition.forId(graphicId).method549(anInt3140, 2);
             if(model1 != null) {
                 model1.translate(0, -graphicHeight, 0);
                 Model[] models = {model, model1};
@@ -768,11 +762,7 @@ public class Npc extends Actor {
         return model;
     }
 
-    public boolean isVisible(int arg0) {
-        if(actorDefinition == null) {
-            return false;
-        }
-        return arg0 == 1;
-
+    public boolean isVisible() {
+        return actorDefinition == null;
     }
 }

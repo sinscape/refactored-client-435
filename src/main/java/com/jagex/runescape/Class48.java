@@ -68,7 +68,7 @@ public class Class48 {
     public static void method922(int arg0, int arg1, Buffer arg2, int arg4, int arg5, int arg6, int arg7) {
         if(arg0 >= 0 && arg0 < 104 && arg4 >= 0 && arg4 < 104) {
             OverlayDefinition.tile_flags[arg7][arg0][arg4] = (byte) 0;
-            for(; ; ) {
+            while(true) {
                 int i = arg2.getUnsignedByte();
                 if(i == 0) {
                     if(arg7 == 0) {
@@ -105,7 +105,7 @@ public class Class48 {
                 }
             }
         } else {
-            for(; ; ) {
+            while(true) {
                 int i = arg2.getUnsignedByte();
                 if(i == 0) {
                     break;
@@ -444,7 +444,7 @@ public class Class48 {
         return ActorDefinition.method578();
     }
 
-    public static void logout(int arg0) {
+    public static void logout() {
         if(MovedStatics.gameConnection != null) {
             MovedStatics.gameConnection.method1009();
             MovedStatics.gameConnection = null;
@@ -452,27 +452,21 @@ public class Class48 {
         RSCanvas.method46(0);
         Npc.currentScene.initToNull();
         int i = 0;
-        if(arg0 != -7225) {
-            aClass40_Sub1_1132 = null;
-        }
         for(/**/; i < 4; i++) {
             Landscape.currentCollisionMap[i].reset();
         }
         System.gc();
-        Class33.method405(arg0 ^ ~0x5e71, 10);
+        Class33.method405(10);
         Class35.songTimeout = 0;
         MouseHandler.anInt1457 = -1;
-        Class37.method436(arg0 + 7352);
+        Class37.method436();
         OverlayDefinition.updateOverlay(10);
         ScreenController.frameMode(ScreenMode.FIXED);
     }
 
-    public int method921(int arg0, int arg1) {
+    public int method921(int arg0) {
         if(anIntArrayArray1128 != null) {
             arg0 = 7 + anInt1133 * arg0 / anInt1131;
-        }
-        if(arg1 != 54) {
-            return 55;
         }
         return arg0;
     }

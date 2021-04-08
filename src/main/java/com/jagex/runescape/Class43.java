@@ -30,17 +30,17 @@ public class Class43 {
     public static void sleep(long arg0) {
         if(arg0 > 0L) {
             if(arg0 % 10L == 0L) {
-                ISAAC.method283(-1L + arg0, -110);
-                ISAAC.method283(1L, -110);
+                ISAAC.method283(-1L + arg0);
+                ISAAC.method283(1L);
             } else {
-                ISAAC.method283(arg0, -103);
+                ISAAC.method283(arg0);
             }
         }
     }
 
     public static void drawTabArea(int arg0) {
         MovedStatics.aBoolean893 = true;
-        MovedStatics.method996(19655);
+        MovedStatics.method996();
         if(GameInterface.tabAreaInterfaceId != -1) {
             boolean bool = Main.drawParentInterface(1, 0, 0, 190, 261, GameInterface.tabAreaInterfaceId);
             if(!bool) {
@@ -75,7 +75,7 @@ public class Class43 {
             MovedStatics.menuActionTypes[0] = 1005;
             ActorDefinition.menuActionRow = 1;
             if(GameInterface.fullscreenInterfaceId == -1) {
-                MovedStatics.method445(9767);
+                MovedStatics.method445();
                 Item.anInt3065 = -1;
                 OverlayDefinition.anInt2328 = -1;
                 boolean bool = false;

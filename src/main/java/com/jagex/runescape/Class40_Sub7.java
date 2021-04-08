@@ -19,7 +19,7 @@ public class Class40_Sub7 extends Node {
         if(arg0 > -40) {
             return false;
         }
-        for(; ; ) {
+        while(true) {
             int i_0_ = class40_sub1.getSmart();
             if(i_0_ == 0) {
                 break;
@@ -27,7 +27,7 @@ public class Class40_Sub7 extends Node {
             i += i_0_;
             int i_1_ = 0;
             boolean bool_2_ = false;
-            for(; ; ) {
+            while(true) {
                 if(bool_2_) {
                     int i_3_ = class40_sub1.getSmart();
                     if(i_3_ == 0) {

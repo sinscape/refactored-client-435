@@ -5,7 +5,7 @@ import com.jagex.runescape.media.renderable.actor.Npc;
 import com.jagex.runescape.util.Signlink;
 
 public class Class39 implements Runnable {
-    public static int anInt901;
+    public static int clientVersion;
     public static ProducingGraphicsBuffer aProducingGraphicsBuffer_907;
     public static ProducingGraphicsBuffer mapbackLeft;
     public static int anInt909 = 0;
@@ -60,11 +60,6 @@ public class Class39 implements Runnable {
             MovedStatics.aClass22_189 = new Class22_Sub2_Sub1(); // Java Midi Based
             return true;
         } catch(Throwable throwable) {
-            Runnable_Impl1 runnable_impl1 = arg0.method391(1048576);
-            if(runnable_impl1 != null) {
-                MovedStatics.aClass22_189 = new Class22_Sub2_Sub2(arg0, runnable_impl1); // ???
-                return true;
-            }
             if(arg2) {
                 MovedStatics.aClass22_189 = new Class22_Sub1(arg0); // JS based
                 return true;

@@ -3,7 +3,6 @@ package com.jagex.runescape;
 import com.jagex.runescape.cache.CacheArchive;
 import com.jagex.runescape.frame.ScreenController;
 import com.jagex.runescape.frame.ScreenMode;
-import com.jagex.runescape.language.English;
 import com.jagex.runescape.language.Native;
 import com.jagex.runescape.media.renderable.Model;
 import com.jagex.runescape.media.renderable.actor.Npc;
@@ -38,7 +37,7 @@ public class Class22_Sub1 extends Class22 {
         arg1.removeFocusListener(Class59.keyFocusListener);
     }
 
-    public static void method312(int arg0, int arg1, int arg2, int arg3) {
+    public static void method312(int arg0, int arg1, int arg2) {
         if(arg2 < 128 || arg1 < 128 || arg2 > 13056 || arg1 > 13056) {
             Class44.anInt1048 = -1;
             ISAAC.anInt522 = -1;
@@ -53,9 +52,6 @@ public class Class22_Sub1 extends Class22 {
             int i_4_ = Model.COSINE[ProducingGraphicsBuffer_Sub1.anInt2210];
             int i_5_ = arg1 * i_3_ + arg2 * i_4_ >> 16;
             arg1 = i_4_ * arg1 - arg2 * i_3_ >> 16;
-            if(arg3 != 4976905) {
-                English.password = null;
-            }
             arg2 = i_5_;
             i_5_ = i * i_1_ - arg1 * i_2_ >> 16;
             arg1 = arg1 * i_1_ + i * i_2_ >> 16;
@@ -162,7 +158,7 @@ public class Class22_Sub1 extends Class22 {
         if(arg0 > -82) {
             method306((byte) 27);
         }
-        int i = Class29.method372(120, arg1) + -arg2;
+        int i = Class29.method372(arg1) + -arg2;
         if(aSignlinkNode_1836 == null) {
             do {
                 if(aBoolean1835) {
@@ -180,12 +176,11 @@ public class Class22_Sub1 extends Class22 {
     }
 
     public void method300(byte[] arg0, boolean arg1, int arg2, int arg3) {
-        aSignlinkNode_1836 = aClass31_1872.method396(86);
-        if(arg2 == -15910 && aSignlinkNode_1836 != null) {
+        if(aSignlinkNode_1836 != null) {
             if(arg3 == 0) {
                 arg3 = 1;
             }
-            anInt1860 = Class29.method372(arg2 ^ ~0x3e59, arg3);
+            anInt1860 = Class29.method372(arg3);
             aByteArray1866 = arg0;
             aBoolean1852 = arg1;
         }

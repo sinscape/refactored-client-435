@@ -32,7 +32,7 @@ public abstract class Class8_Sub1 extends Class8 implements Runnable {
 
     public void method219(long arg0) throws Exception {
         method226(anInt1831);
-        for(; ; ) {
+        while(true) {
             int i = method224();
             if(i < anInt1827) {
                 break;
@@ -47,7 +47,7 @@ public abstract class Class8_Sub1 extends Class8 implements Runnable {
 
     public void method221(long arg0) {
         if(aLong1821 != 0L) {
-            for(/**/; aLong1832 < arg0; aLong1832 += (long) (256000 / CollisionMap.anInt141)) {
+            for(/**/; aLong1832 < arg0; aLong1832 += 256000 / CollisionMap.anInt141) {
                 Class8.method217(256);
             }
             if(arg0 < aLong1821) {
@@ -63,7 +63,7 @@ public abstract class Class8_Sub1 extends Class8 implements Runnable {
             aLong1821 = 0L;
         }
         while(aLong1832 < arg0) {
-            aLong1832 += (long) (250880 / CollisionMap.anInt141);
+            aLong1832 += 250880 / CollisionMap.anInt141;
             int i;
             try {
                 i = method224();
@@ -124,14 +124,14 @@ public abstract class Class8_Sub1 extends Class8 implements Runnable {
     public void method222(Signlink arg0, int arg1) throws Exception {
         anInt1831 = arg1;
         method219(System.currentTimeMillis());
-        arg0.method394(10, 0, this);
+        arg0.method394(10, this);
     }
 
     public void method213() {
         synchronized(this) {
             aBoolean1820 = true;
         }
-        for(; ; ) {
+        while(true) {
             synchronized(this) {
                 if(!aBoolean1820) {
                     break;
@@ -145,7 +145,7 @@ public abstract class Class8_Sub1 extends Class8 implements Runnable {
 
     public void run() {
 
-        for(; ; ) {
+        while(true) {
             synchronized(this) {
                 if(aBoolean1820) {
                     if(aLong1821 == 0L) {

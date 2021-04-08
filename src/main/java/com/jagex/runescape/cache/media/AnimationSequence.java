@@ -108,7 +108,7 @@ public class AnimationSequence extends CachedNode {
         return true;
     }
 
-    public Model method590(Model arg0, AnimationSequence animationSequence, int arg2, int arg3, byte arg4) {
+    public Model method590(Model arg0, AnimationSequence animationSequence, int arg2, int arg3) {
         arg2 = frameIds[arg2];
         Class40_Sub5_Sub15 class40_sub5_sub15 = Class55.method960(arg2 >> 16);
         arg2 &= 0xffff;
@@ -122,9 +122,6 @@ public class AnimationSequence extends CachedNode {
             Model model = arg0.method817(!class40_sub5_sub15.method737(arg2));
             model.method825(class40_sub5_sub15, arg2);
             return model;
-        }
-        if(arg4 != 63) {
-            return null;
         }
         Model model = arg0.method817(!class40_sub5_sub15.method737(arg2) & !class40_sub5_sub15_0_.method737(arg3));
         model.method809(class40_sub5_sub15, arg2, class40_sub5_sub15_0_, arg3, interleaveLeave);
@@ -183,7 +180,7 @@ public class AnimationSequence extends CachedNode {
     }
 
     public void decodeAllAnimationSequences(Buffer buffer) {
-        for(; ; ) {
+        while(true) {
             int i = buffer.getUnsignedByte();
             if(i == 0) {
                 break;

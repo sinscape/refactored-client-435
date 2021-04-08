@@ -41,7 +41,7 @@ public class RSCanvas extends Canvas {
         Class8.method211();
         MovedStatics.method188();
         Class22_Sub2.method316(-11965);
-        LinkedList.method907(-99);
+        LinkedList.method907();
         MovedStatics.method167(1023);
         Class51.method941();
         Actor.method783();

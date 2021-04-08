@@ -31,7 +31,7 @@ public class Class59 {
 
     public static void dropClient() {
         if(SceneCluster.idleLogout > 0) {
-            Class48.logout(-7225);
+            Class48.logout();
         } else {
             OverlayDefinition.updateOverlay(40);
             PlayerAppearance.aClass64_717 = MovedStatics.gameConnection;

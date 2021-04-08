@@ -74,8 +74,9 @@ public class Wall {
                         }
                         class40_sub5_sub14_sub1.drawString(
                                 class1 + Native.aClass1_515 + ChatBox.chatMessages[i_0_], i_4_, i_3_, 0);
-                        class40_sub5_sub14_sub1.drawString(
-                                class1 + Native.aClass1_515 + ChatBox.chatMessages[i_0_], i_4_, -1 + i_3_, 65535);
+                        class40_sub5_sub14_sub1.drawString(class1 + Native.aClass1_515 + ChatBox.chatMessages[i_0_],
+                                i_4_, -1 + i_3_, 65535
+                        );
                         if(i >= 5) {
                             return;
                         }

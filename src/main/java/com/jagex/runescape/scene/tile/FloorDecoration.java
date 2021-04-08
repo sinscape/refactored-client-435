@@ -40,8 +40,8 @@ public class FloorDecoration {
     public int y;
     public int z;
 
-    public static void method342(int arg1, Actor arg2) {
-        Class22_Sub1.method312(arg1, arg2.worldY, arg2.worldX, 4976905);
+    public static void method342(int arg1, Actor actor) {
+        Class22_Sub1.method312(arg1, actor.worldY, actor.worldX);
     }
 
     public static void method343(boolean arg0, int arg1) {
@@ -112,7 +112,7 @@ public class FloorDecoration {
                     }
                 }
             }
-            Actor.method789(i_0_, arg1 + -6688, currentPlane, chunkX, chunkY, i_2_);
+            Actor.method789(i_0_, currentPlane, chunkX, chunkY, i_2_);
         } else {
             int i = IncomingPackets.incomingPacketBuffer.getUnsignedShortBE();
             int chunkX = IncomingPackets.incomingPacketBuffer.getUnsignedShortLE();
@@ -154,17 +154,14 @@ public class FloorDecoration {
                     }
                 }
             }
-            Actor.method789(i_22_, -1000, chunkY, chunkX, i, i_24_);
-        }
-        if(arg1 != 5688) {
-            aClass40_Sub5_Sub14_Sub4Array603 = null;
+            Actor.method789(i_22_, chunkY, chunkX, i, i_24_);
         }
     }
 
-    public static void method344(int arg0) {
+    public static void destroy() {
         if(MovedStatics.aBoolean2083) {
-            MovedStatics.chatboxLineOffsets = null;
             MovedStatics.aBoolean2083 = false;
+            MovedStatics.chatboxLineOffsets = null;
             RSCanvas.anIntArray66 = null;
             MovedStatics.minimapBackgroundImage = null;
             Landscape.anIntArray1186 = null;
@@ -195,31 +192,26 @@ public class FloorDecoration {
             RSCanvas.chatBoxImageProducer = null;
             Class40_Sub7.mapBackRight = null;
             InteractiveObject.tabTop = null;
-            if(arg0 < -28) {
-                MovedStatics.chatboxRight = null;
-                MovedStatics.tabPieceUpperRight = null;
-                Class35.aClass40_Sub5_Sub14_Sub2_1744 = null;
-                MovedStatics.aClass40_Sub5_Sub14_Sub2_549 = null;
-                Renderable.aClass40_Sub5_Sub14_Sub2_2860 = null;
-                Class24.fullScreenTextureArray = null;
-                PlayerAppearance.tabPieveLowerRight = null;
-                Class40_Sub5_Sub17_Sub6.framePieceTop = null;
-                Class44.chatboxBackgroundImage = null;
-            }
+            MovedStatics.chatboxRight = null;
+            MovedStatics.tabPieceUpperRight = null;
+            Class35.aClass40_Sub5_Sub14_Sub2_1744 = null;
+            MovedStatics.aClass40_Sub5_Sub14_Sub2_549 = null;
+            Renderable.aClass40_Sub5_Sub14_Sub2_2860 = null;
+            Class24.fullScreenTextureArray = null;
+            PlayerAppearance.tabPieveLowerRight = null;
+            Class40_Sub5_Sub17_Sub6.framePieceTop = null;
+            Class44.chatboxBackgroundImage = null;
         }
     }
 
-    public static boolean method346(byte arg0) {
+    public static boolean loadFloorDecorations() {
         long l = System.currentTimeMillis();
         int i = (int) (l - LinkedList.aLong1051);
         LinkedList.aLong1051 = l;
         if(i > 200) {
             i = 200;
         }
-        if(arg0 != 48) {
-            return false;
-        }
-        Class22.anInt547 += i;
+        Class22.retryTimer += i;
         if(Class42.anInt1006 == 0 && Class17.anInt464 == 0 && MovedStatics.anInt554 == 0 &&
                 ProducingGraphicsBuffer.anInt1618 == 0) {
             return true;
@@ -228,7 +220,7 @@ public class FloorDecoration {
             return false;
         }
         try {
-            if(Class22.anInt547 > 30000) {
+            if(Class22.retryTimer > 30000) {
                 throw new IOException();
             }
             for(/**/; Class17.anInt464 < 20; Class17.anInt464++) {
@@ -239,7 +231,7 @@ public class FloorDecoration {
                 Buffer class40_sub1 = new Buffer(4);
                 class40_sub1.putByte(1);
                 class40_sub1.putMediumBE((int) class40_sub5_sub13.key);
-                Class57.aClass64_1345.method1010(4, (byte) -19, 0, class40_sub1.buffer);
+                Class57.aClass64_1345.method1010(4, 0, class40_sub1.buffer);
                 Class37.aClass23_869.put(class40_sub5_sub13.key, class40_sub5_sub13);
                 ProducingGraphicsBuffer.anInt1618--;
             }
@@ -248,20 +240,20 @@ public class FloorDecoration {
                 Buffer class40_sub1 = new Buffer(4);
                 class40_sub1.putByte(0);
                 class40_sub1.putMediumBE((int) class40_sub5_sub13.key);
-                Class57.aClass64_1345.method1010(4, (byte) -19, 0, class40_sub1.buffer);
+                Class57.aClass64_1345.method1010(4, 0, class40_sub1.buffer);
                 class40_sub5_sub13.clear();
                 MovedStatics.aClass23_841.put(class40_sub5_sub13.key, class40_sub5_sub13);
                 Class42.anInt1006++;
             }
             for(int i_33_ = 0; i_33_ < 100; i_33_++) {
-                int i_34_ = Class57.aClass64_1345.method1014(-122);
+                int i_34_ = Class57.aClass64_1345.method1014();
                 if(i_34_ < 0) {
                     throw new IOException();
                 }
                 if(i_34_ == 0) {
                     break;
                 }
-                Class22.anInt547 = 0;
+                Class22.retryTimer = 0;
                 int i_35_ = 0;
                 if(PacketBuffer.aClass40_Sub5_Sub13_2250 == null) {
                     i_35_ = 8;
@@ -368,12 +360,12 @@ public class FloorDecoration {
                         int i_45_ = LinkedList.aClass40_Sub1_1081.getUnsignedShortBE();
                         int i_46_ = LinkedList.aClass40_Sub1_1081.getUnsignedByte();
                         int i_47_ = LinkedList.aClass40_Sub1_1081.getIntBE();
-                        long l_48_ = (long) ((i_44_ << 16) + i_45_);
+                        long l_48_ = (i_44_ << 16) + i_45_;
                         Class40_Sub5_Sub13 class40_sub5_sub13 = (Class40_Sub5_Sub13) Class37.aClass23_869.method331(
-                                l_48_, 6120);
+                                l_48_);
                         Npc.aBoolean3298 = true;
                         if(class40_sub5_sub13 == null) {
-                            class40_sub5_sub13 = (Class40_Sub5_Sub13) MovedStatics.aClass23_841.method331(l_48_, 6120);
+                            class40_sub5_sub13 = (Class40_Sub5_Sub13) MovedStatics.aClass23_841.method331(l_48_);
                             Npc.aBoolean3298 = false;
                         }
                         if(class40_sub5_sub13 == null) {

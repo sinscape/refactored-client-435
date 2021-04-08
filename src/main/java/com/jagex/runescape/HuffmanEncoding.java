@@ -7,7 +7,6 @@ import com.jagex.runescape.cache.def.OverlayDefinition;
 import com.jagex.runescape.cache.def.UnderlayDefinition;
 import com.jagex.runescape.cache.media.ImageRGB;
 import com.jagex.runescape.cache.media.SpotAnimDefinition;
-import com.jagex.runescape.frame.ChatBox;
 import com.jagex.runescape.language.English;
 import com.jagex.runescape.language.Native;
 import com.jagex.runescape.media.renderable.actor.Player;
@@ -50,7 +49,6 @@ public class HuffmanEncoding {
     public byte[] chatBitSizes;
 
     public HuffmanEncoding(byte[] arg0) {
-
         int i = arg0.length;
         chatBitSizes = arg0;
         chatMask = new int[i];
@@ -101,9 +99,7 @@ public class HuffmanEncoding {
                     }
                     if(chatDecryptKeys.length <= i_39_) {
                         int[] is_42_ = new int[chatDecryptKeys.length * 2];
-                        for(int i_43_ = 0; chatDecryptKeys.length > i_43_; i_43_++) {
-                            is_42_[i_43_] = chatDecryptKeys[i_43_];
-                        }
+                        System.arraycopy(chatDecryptKeys, 0, is_42_, 0, chatDecryptKeys.length);
                         chatDecryptKeys = is_42_;
                     }
                     i_41_ >>>= 1;
@@ -111,7 +107,7 @@ public class HuffmanEncoding {
                 if(i_39_ >= i_29_) {
                     i_29_ = i_39_ + 1;
                 }
-                chatDecryptKeys[i_39_] = i_30_ ^ 0xffffffff;
+                chatDecryptKeys[i_39_] = ~i_30_;
             }
         }
 
@@ -148,8 +144,9 @@ public class HuffmanEncoding {
                             English.use, index, x, y, 49, Native.aClass1_3295 + Native.toYellow + class1);
                 } else if(Main.widgetSelected == 1) {
                     if((0x2 & ItemDefinition.selectedMask) == 2) {
-                        OverlayDefinition.addActionRow(
-                                Native.aClass1_1918, index, x, y, 21, Native.aClass1_611 + Native.toYellow + class1);
+                        OverlayDefinition.addActionRow(Native.aClass1_1918, index, x, y, 21,
+                                Native.aClass1_611 + Native.toYellow + class1
+                        );
                     }
                 } else {
                     String[] class1s = actorDefinition.options;
@@ -231,22 +228,16 @@ public class HuffmanEncoding {
         return arg0 >= 48 && arg0 <= 57;
     }
 
-    public static ImageRGB method1028(CacheArchive arg0, String arg1, byte arg2, String arg3) {
+    public static ImageRGB method1028(CacheArchive arg0, String arg1, String arg3) {
         int i = arg0.getHash(arg1);
         int i_13_ = arg0.method179(i, arg3);
-        if(arg2 != 21) {
-            ChatBox.chatTypes = null;
-        }
         return Class48.method927(i_13_, arg0, true, i);
     }
 
-    public static void method1030(byte arg0) {
-        if(arg0 < 123) {
-            method1030((byte) -24);
-        }
+    public static void method1030() {
         for(
-                Class40_Sub2 class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method902((byte) -90);
-                class40_sub2 != null; class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method909(-4)
+                Class40_Sub2 class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method902();
+                class40_sub2 != null; class40_sub2 = (Class40_Sub2) MovedStatics.aLinkedList_2268.method909()
         ) {
             if(class40_sub2.gameObjectDefinition != null) {
                 class40_sub2.method528();
@@ -254,125 +245,97 @@ public class HuffmanEncoding {
         }
     }
 
-    public int method1023(byte[] arg0, int arg1, int arg2, byte[] arg3, int arg4, int arg5) {
-        if(arg1 == 0) {
+    public int decrypt(byte[] readBuffer, int length, byte[] writeBuffer, int bufferPos) {
+        if(length == 0) {
             return 0;
         }
-        arg1 += arg2;
         int i = 0;
-        int i_0_ = arg4;
-        for(; ; ) {
-            byte i_1_ = arg0[i_0_];
-            if(i_1_ >= 0) {
+        int idx = bufferPos;
+        for(int j = 0; j < length; j++) {
+            byte readByte = readBuffer[idx];
+            if(readByte >= 0) {
                 i++;
             } else {
                 i = chatDecryptKeys[i];
             }
             int i_2_;
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg1 <= arg2) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((0x40 & i_1_) != 0) {
+            if((0x40 & readByte) != 0) {
                 i = chatDecryptKeys[i];
             } else {
                 i++;
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg2 >= arg1) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((0x20 & i_1_) == 0) {
+            if((0x20 & readByte) == 0) {
                 i++;
             } else {
                 i = chatDecryptKeys[i];
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg1 <= arg2) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((0x10 & i_1_) != 0) {
+            if((0x10 & readByte) != 0) {
                 i = chatDecryptKeys[i];
             } else {
                 i++;
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg1 <= arg2) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((i_1_ & 0x8) != 0) {
+            if((readByte & 0x8) != 0) {
                 i = chatDecryptKeys[i];
             } else {
                 i++;
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg2 >= arg1) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((0x4 & i_1_) != 0) {
+            if((0x4 & readByte) != 0) {
                 i = chatDecryptKeys[i];
             } else {
                 i++;
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg1 <= arg2) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((0x2 & i_1_) == 0) {
+            if((0x2 & readByte) == 0) {
                 i++;
             } else {
                 i = chatDecryptKeys[i];
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg2 >= arg1) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            if((i_1_ & 0x1) == 0) {
+            if((readByte & 0x1) == 0) {
                 i++;
             } else {
                 i = chatDecryptKeys[i];
             }
             if((i_2_ = chatDecryptKeys[i]) < 0) {
-                arg3[arg2++] = (byte) (i_2_ ^ 0xffffffff);
-                if(arg2 >= arg1) {
-                    break;
-                }
+                writeBuffer[j] = (byte) (~i_2_);
                 i = 0;
             }
-            i_0_++;
+            idx++;
         }
-
-        return -arg4 + i_0_ + 1;
+        return idx - bufferPos + 1;
     }
 
-    public int encrypt(int arg1, int bufferPos, int sourceLength, byte[] source, byte[] dest) {
-        sourceLength += arg1;
+    public int encrypt(int bufferPos, int sourceLength, byte[] source, byte[] dest) {
         int i = 0;
         int i_6_ = bufferPos << 3;
-        ;
-        for(/**/; arg1 < sourceLength; arg1++) {
-            int textByte = 0xff & source[arg1];
+        for(int index = 0; index < sourceLength; index++) {
+            int textByte = 0xff & source[index];
             int mask = chatMask[textByte];
             int size = chatBitSizes[textByte];
             if(size == 0) {

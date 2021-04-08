@@ -15,12 +15,12 @@ import java.net.URL;
 public class Signlink implements Runnable {
     public static Method aMethod724;
     public static Method aMethod729;
-    public static String aString735;
+    public static String javaVendor;
     public static int anInt737 = 3;
-    public static String aString739;
+    public static String javaVersion;
     private static String homeDirectory;
     public boolean aBoolean721;
-    public int uid = 0;
+    public int UID = 0;
     public SizedAccessFile[] dataIndexAccessFiles;
     public SignlinkNode current = null;
     public Runnable_Impl1 aRunnable_Impl1_727;
@@ -29,7 +29,7 @@ public class Signlink implements Runnable {
     public SignlinkNode next = null;
     public Interface2 anInterface2_732;
     public Thread aThread733;
-    public String aString734 = null;
+    public String cachePath = null;
     public SizedAccessFile cacheDataAccessFile;
     public GameShell anApplet740;
 
@@ -41,11 +41,11 @@ public class Signlink implements Runnable {
         anApplet740 = null;
         anApplet740 = arg1;
         anInetAddress730 = inetAddress;
-        aString739 = "1.1";
-        aString735 = "Unknown";
+        javaVersion = "1.1";
+        javaVendor = "Unknown";
         try {
-            aString735 = System.getProperty("java.vendor");
-            aString739 = System.getProperty("java.version");
+            javaVendor = System.getProperty("java.vendor");
+            javaVersion = System.getProperty("java.version");
             homeDirectory = System.getProperty("user.home");
             if(homeDirectory != null) {
                 homeDirectory += "/";
@@ -73,15 +73,15 @@ public class Signlink implements Runnable {
             /* empty */
         }
         if(arg0) {
-            method397(-3849);
-            cacheDataAccessFile = new SizedAccessFile(new File(aString734 + "main_file_cache.dat2"), "rw", 52428800L);
+            validateCachePathExists(false);
+            cacheDataAccessFile = new SizedAccessFile(new File(cachePath + "main_file_cache.dat2"), "rw", 52428800L);
             dataIndexAccessFiles = new SizedAccessFile[cacheIndexes];
             for(int i = 0; i < cacheIndexes; i++) {
                 dataIndexAccessFiles[i] = new SizedAccessFile(
-                        new File(aString734 + "main_file_cache.idx" + i), "rw", 1048576L);
+                        new File(cachePath + "main_file_cache.idx" + i), "rw", 1048576L);
             }
-            metaIndexAccessFile = new SizedAccessFile(new File(aString734 + "main_file_cache.idx255"), "rw", 1048576L);
-            method390(6);
+            metaIndexAccessFile = new SizedAccessFile(new File(cachePath + "main_file_cache.idx255"), "rw", 1048576L);
+            int UID = getUID();
         }
         aBoolean721 = false;
         aThread733 = new Thread(this);
@@ -98,9 +98,6 @@ public class Signlink implements Runnable {
         }
         try {
             aThread733.join();
-            if(arg0 != 0) {
-                method396(-55);
-            }
         } catch(InterruptedException interruptedexception) {
             /* empty */
         }
@@ -148,11 +145,8 @@ public class Signlink implements Runnable {
 
     }
 
-    public SignlinkNode method388(boolean arg0, URL arg1) {
-        if(arg0) {
-            method397(-42);
-        }
-        return putNode(0, 4, arg1);
+    public SignlinkNode putUrl(URL url) {
+        return putNode(0, 4, url);
     }
 
     public SignlinkNode putNode(int integerData, int type, Object objectData) {
@@ -172,46 +166,32 @@ public class Signlink implements Runnable {
         return signlinkNode;
     }
 
-    public void method390(int arg0) {
-
+    public int getUID() {
         try {
-            File file = new File(aString734 + "uid.dat");
+            File file = new File(cachePath + "uid.dat");
             if(!file.exists() || file.length() < 4) {
-                DataOutputStream dataoutputstream = new DataOutputStream(new FileOutputStream(aString734 + "uid.dat"));
-                dataoutputstream.writeInt((int) (9.9999999E7 * Math.random()));
-                dataoutputstream.close();
+                DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(cachePath + "uid.dat"));
+                UID = (int) (10 * Math.random());
+                dataOutputStream.writeInt(UID);
+                dataOutputStream.close();
+            } else {
+                DataInputStream dataInputStream = new DataInputStream(new FileInputStream(cachePath + "uid.dat"));
+                UID = 1 + dataInputStream.readInt();
+                dataInputStream.close();
             }
+            return UID;
         } catch(Exception exception) {
-            /* empty */
+            return 0;
         }
-        if(arg0 != 6) {
-            uid = 116;
-        }
-        try {
-            DataInputStream datainputstream = new DataInputStream(new FileInputStream(aString734 + "uid.dat"));
-            uid = 1 + datainputstream.readInt();
-            datainputstream.close();
-        } catch(Exception exception) {
-            /* empty */
-        }
-
-    }
-
-    public Runnable_Impl1 method391(int arg0) {
-
-        if(arg0 != 1048576) {
-            method396(-47);
-        }
-        return aRunnable_Impl1_727;
 
     }
 
     public void run() {
 
-        for(; ; ) {
+        while(true) {
             SignlinkNode currentNode;
             synchronized(this) {
-                for(; ; ) {
+                while(true) {
                     if(aBoolean721) {
                         return;
                     }
@@ -264,52 +244,32 @@ public class Signlink implements Runnable {
         return putNode(0, 10, new Object[]{variableType, variableName});
     }
 
-    public SignlinkNode method393(int arg1) {
-        return putNode(arg1, 3, null);
-
+    public SignlinkNode method395(int arg0) {
+        validateCachePathExists(true);
+        return putNode(arg0, 1, null);
     }
 
-    public SignlinkNode method394(int arg0, int arg1, Runnable arg2) {
-
-        if(arg1 != 0) {
-            method392(null, null);
-        }
+    public SignlinkNode method394(int arg0, Runnable arg2) {
         return putNode(arg0, 2, arg2);
-
     }
 
-    public SignlinkNode method395(int arg0, int arg1) {
-
-        if(arg0 != 3) {
-            method397(-29);
-        }
-        return putNode(arg1, 1, null);
-
+    public SignlinkNode method393(int arg0) {
+        return putNode(arg0, 3, null);
     }
 
-    public SignlinkNode method396(int arg0) {
-
-        if(arg0 < 81) {
-            return null;
-        }
-        return null;
-
-    }
-
-    public void method397(int arg0) {
-
+    public void validateCachePathExists(boolean addNullNode) {
         if(homeDirectory == null) {
             homeDirectory = "~/";
         }
         String[] cacheLocations = {
-                "c:/rsrcache/", "/rsrcache/", "c:/windows/", "c:/winnt/", "d:/windows/", "d:/winnt/", "e:/windows/",
-                "e:/winnt/", "f:/windows/", "f:/winnt/", "c:/", homeDirectory, "/tmp/", ""
+                homeDirectory, "c:/rsrcache/", "/rsrcache/", "c:/windows/", "c:/winnt/", "d:/windows/", "d:/winnt/",
+                "e:/windows/", "e:/winnt/", "f:/windows/", "f:/winnt/", "c:/", "/tmp/", ""
         };
-        if(arg0 != -3849) {
+        if(addNullNode) {
             method392(null, null); // TODO: Does this even ever run?
         }
-        for(String cacheLocation : cacheLocations) {
-            try {
+        try {
+            for(String cacheLocation : cacheLocations) {
                 if(cacheLocation.length() > 0) {
                     File file = new File(cacheLocation);
                     if(!file.exists()) {
@@ -318,13 +278,13 @@ public class Signlink implements Runnable {
                 }
                 File file = new File(cacheLocation + Configuration.CACHE_NAME);
                 if(file.exists() || file.mkdir()) {
-                    aString734 = file.getPath() + "/";
+                    cachePath = file.getPath() + "/";
                     return;
                 }
-            } catch(Exception exception) {
             }
+        } catch(Exception exception) {
+            throw new RuntimeException("File handling error when accessing possible cache location.");
         }
-        throw new RuntimeException();
-
+        throw new RuntimeException("Cache has nowhere to go.");
     }
 }

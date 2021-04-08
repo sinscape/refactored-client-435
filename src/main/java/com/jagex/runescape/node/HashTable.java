@@ -38,11 +38,8 @@ public class HashTable {
         node.next.previous = node;
     }
 
-    public Node method331(long key, int arg1) {
+    public Node method331(long key) {
         aLong550 = key;
-        if(arg1 != 6120) {
-            return null;
-        }
         Node class40 = nodes[(int) ((long) (size + -1) & key)];
         for(aClass40_566 = class40.next; class40 != aClass40_566; aClass40_566 = aClass40_566.next) {
             if(aClass40_566.key == key) {

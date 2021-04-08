@@ -14,10 +14,10 @@ import com.jagex.runescape.media.renderable.actor.Player;
 
 // TODO: DONT RUN NORMAL TAB RENDERER WHEN THIS IS RUNNING
 public class TabProducer extends FramePieceRenderer {
+    private static final int workingWidth = 232;
+    private static final int workingHeight = 334;
     private static ProducingGraphicsBuffer resizableSideBarImage;
-    private static int workingWidth = 232;
-    private static int workingHeight = 334;
-    private ProducingGraphicsBuffer tempResizableSideBar;
+    private final ProducingGraphicsBuffer tempResizableSideBar;
     private ImageRGB edgeLeft;
     private ImageRGB edgeRight;
     private ImageRGB combat;

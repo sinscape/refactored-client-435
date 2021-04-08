@@ -143,79 +143,79 @@ public class Model extends Renderable {
         Buffer zDataOffsetBuffer = new Buffer(arg0);
         Buffer vertexSkinOffsetBuffer = new Buffer(arg0);
         vertexDirectionOffsetBuffer.currentPosition = arg0.length - 18;
-        int vertexCount = vertexDirectionOffsetBuffer.getUnsignedShortBE();
+        int i = vertexDirectionOffsetBuffer.getUnsignedShortBE();
         int triangleCount = vertexDirectionOffsetBuffer.getUnsignedShortBE();
-        int texturedTriangleCount = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int hasFaceTypes = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int modelPriority = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int hasFaceAlphas = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int hasFaceSkins = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int hasVertexSkins = vertexDirectionOffsetBuffer.getUnsignedByte();
-        int verticesXSubOffset = vertexDirectionOffsetBuffer.getUnsignedShortBE();
-        int verticesYSubOffset = vertexDirectionOffsetBuffer.getUnsignedShortBE();
-        int verticesZSubOffset = vertexDirectionOffsetBuffer.getUnsignedShortBE();
-        int faceIndicesSubOffset = vertexDirectionOffsetBuffer.getUnsignedShortBE();
-        int offset = 0;
-        int vertexFlagsOffset = offset;
-        offset += vertexCount;
-        int triangleTypeOffset = offset;
-        offset += triangleCount;
-        int trianglePriorityOffset = offset;
-        if(modelPriority == 255) {
-            offset += triangleCount;
+        int i_260_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_261_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_262_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_263_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_264_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_265_ = vertexDirectionOffsetBuffer.getUnsignedByte();
+        int i_266_ = vertexDirectionOffsetBuffer.getUnsignedShortBE();
+        int i_267_ = vertexDirectionOffsetBuffer.getUnsignedShortBE();
+        int i_268_ = vertexDirectionOffsetBuffer.getUnsignedShortBE();
+        int i_269_ = vertexDirectionOffsetBuffer.getUnsignedShortBE();
+        int i_270_ = 0;
+        int i_271_ = i_270_;
+        i_270_ += i;
+        int triangleTypeOffset = i_270_;
+        i_270_ += triangleCount;
+        int trianglePriorityOffset = i_270_;
+        if(i_262_ == 255) {
+            i_270_ += triangleCount;
         } else {
-            trianglePriorityOffset = -modelPriority - 1;
+            trianglePriorityOffset = -i_262_ - 1;
         }
-        int triangleSkinOffset = offset;
-        if(hasFaceSkins == 1) {
-            offset += triangleCount;
+        int triangleSkinOffset = i_270_;
+        if(i_264_ == 1) {
+            i_270_ += triangleCount;
         } else {
             triangleSkinOffset = -1;
         }
-        int texturePointerOffset = offset;
-        if(hasFaceTypes == 1) {
-            offset += triangleCount;
+        int texturePointerOffset = i_270_;
+        if(i_261_ == 1) {
+            i_270_ += triangleCount;
         } else {
             texturePointerOffset = -1;
         }
-        int vertexSkinsOffset = offset;
-        if(hasVertexSkins == 1) {
-            offset += vertexCount;
+        int i_276_ = i_270_;
+        if(i_265_ == 1) {
+            i_270_ += i;
         } else {
-            vertexSkinsOffset = -1;
+            i_276_ = -1;
         }
-        int triangleAlphaOffset = offset;
-        if(hasFaceAlphas == 1) {
-            offset += triangleCount;
+        int triangleAlphaOffset = i_270_;
+        if(i_263_ == 1) {
+            i_270_ += triangleCount;
         } else {
             triangleAlphaOffset = -1;
         }
-        int faceIndicesOffset = offset;
-        offset += faceIndicesSubOffset;
-        int faceColorsOffset = offset;
-        offset += triangleCount * 2;
-        int faceMappingsOffset = offset;
-        offset += texturedTriangleCount * 6;
-        int verticesXOffset = offset;
-        offset += verticesXSubOffset;
-        int verticesYOffset = offset;
-        offset += verticesYSubOffset;
-        int verticesZOffset = offset;
-        offset += verticesZSubOffset;
-        this.vertexCount = vertexCount;
+        int triangleDataOffset = i_270_;
+        i_270_ += i_269_;
+        int colorDataOffset = i_270_;
+        i_270_ += triangleCount * 2;
+        int i_280_ = i_270_;
+        i_270_ += i_260_ * 6;
+        int i_281_ = i_270_;
+        i_270_ += i_266_;
+        int i_282_ = i_270_;
+        i_270_ += i_267_;
+        int i_283_ = i_270_;
+        i_270_ += i_268_;
+        vertexCount = i;
         this.triangleCount = triangleCount;
-        this.texturedTriangleCount = texturedTriangleCount;
-        verticesX = new int[vertexCount];
-        verticesY = new int[vertexCount];
-        verticesZ = new int[vertexCount];
+        texturedTriangleCount = i_260_;
+        verticesX = new int[i];
+        verticesY = new int[i];
+        verticesZ = new int[i];
         trianglePointsX = new int[triangleCount];
         trianglePointsY = new int[triangleCount];
         trianglePointsZ = new int[triangleCount];
-        texturedTrianglePointsX = new int[texturedTriangleCount];
-        texturedTrianglePointsY = new int[texturedTriangleCount];
-        texturedTrianglePointsZ = new int[texturedTriangleCount];
-        if(vertexSkinsOffset >= 0) {
-            vertexSkins = new int[vertexCount];
+        texturedTrianglePointsX = new int[i_260_];
+        texturedTrianglePointsY = new int[i_260_];
+        texturedTrianglePointsZ = new int[i_260_];
+        if(i_276_ >= 0) {
+            vertexSkins = new int[i];
         }
         if(texturePointerOffset >= 0) {
             triangleDrawType = new int[triangleCount];
@@ -232,39 +232,39 @@ public class Model extends Renderable {
             triangleSkinValues = new int[triangleCount];
         }
         triangleColorValues = new int[triangleCount];
-        vertexDirectionOffsetBuffer.currentPosition = vertexFlagsOffset;
-        xDataOffsetBuffer.currentPosition = verticesXOffset;
-        yDataOffsetBuffer.currentPosition = verticesYOffset;
-        zDataOffsetBuffer.currentPosition = verticesZOffset;
-        vertexSkinOffsetBuffer.currentPosition = vertexSkinsOffset;
+        vertexDirectionOffsetBuffer.currentPosition = i_271_;
+        xDataOffsetBuffer.currentPosition = i_281_;
+        yDataOffsetBuffer.currentPosition = i_282_;
+        zDataOffsetBuffer.currentPosition = i_283_;
+        vertexSkinOffsetBuffer.currentPosition = i_276_;
         int baseOffsetX = 0;
         int baseOffsetY = 0;
         int baseOffsetZ = 0;
-        for(int currentVertex = 0; currentVertex < vertexCount; currentVertex++) {
+        for(int i_287_ = 0; i_287_ < i; i_287_++) {
             int flag = vertexDirectionOffsetBuffer.getUnsignedByte();
-            int xOffset = 0;
+            int i_289_ = 0;
             if((flag & 0x1) != 0) {
-                xOffset = xDataOffsetBuffer.getUnsignedSmart();
+                i_289_ = xDataOffsetBuffer.getUnsignedSmart();
             }
-            int yOffset = 0;
+            int i_290_ = 0;
             if((flag & 0x2) != 0) {
-                yOffset = yDataOffsetBuffer.getUnsignedSmart();
+                i_290_ = yDataOffsetBuffer.getUnsignedSmart();
             }
-            int zOffset = 0;
+            int currentOffsetZ = 0;
             if((flag & 0x4) != 0) {
-                zOffset = zDataOffsetBuffer.getUnsignedSmart();
+                currentOffsetZ = zDataOffsetBuffer.getUnsignedSmart();
             }
-            verticesX[currentVertex] = baseOffsetX + xOffset;
-            verticesY[currentVertex] = baseOffsetY + yOffset;
-            verticesZ[currentVertex] = baseOffsetZ + zOffset;
-            baseOffsetX = verticesX[currentVertex];
-            baseOffsetY = verticesY[currentVertex];
-            baseOffsetZ = verticesZ[currentVertex];
+            verticesX[i_287_] = baseOffsetX + i_289_;
+            verticesY[i_287_] = baseOffsetY + i_290_;
+            verticesZ[i_287_] = baseOffsetZ + currentOffsetZ;
+            baseOffsetX = verticesX[i_287_];
+            baseOffsetY = verticesY[i_287_];
+            baseOffsetZ = verticesZ[i_287_];
             if(vertexSkins != null) {
-                vertexSkins[currentVertex] = vertexSkinOffsetBuffer.getUnsignedByte();
+                vertexSkins[i_287_] = vertexSkinOffsetBuffer.getUnsignedByte();
             }
         }
-        vertexDirectionOffsetBuffer.currentPosition = faceColorsOffset;
+        vertexDirectionOffsetBuffer.currentPosition = colorDataOffset;
         xDataOffsetBuffer.currentPosition = texturePointerOffset;
         yDataOffsetBuffer.currentPosition = trianglePriorityOffset;
         zDataOffsetBuffer.currentPosition = triangleAlphaOffset;
@@ -284,37 +284,37 @@ public class Model extends Renderable {
                 triangleSkinValues[i_292_] = vertexSkinOffsetBuffer.getUnsignedByte();
             }
         }
-        vertexDirectionOffsetBuffer.currentPosition = faceIndicesOffset;
+        vertexDirectionOffsetBuffer.currentPosition = triangleDataOffset;
         xDataOffsetBuffer.currentPosition = triangleTypeOffset;
         int trianglePointOffsetX = 0;
         int trianglePointOffsetY = 0;
         int trianglePointOffsetZ = 0;
-        int posOffset = 0;
+        int offset = 0;
         for(int triangle = 0; triangle < triangleCount; triangle++) {
             int type = xDataOffsetBuffer.getUnsignedByte();
             if(type == 1) {
-                trianglePointOffsetX = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetX;
-                trianglePointOffsetY = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetY;
-                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetZ;
+                trianglePointOffsetX = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetX;
+                trianglePointOffsetY = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetY;
+                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetZ;
                 trianglePointsX[triangle] = trianglePointOffsetX;
                 trianglePointsY[triangle] = trianglePointOffsetY;
                 trianglePointsZ[triangle] = trianglePointOffsetZ;
             }
             if(type == 2) {
                 trianglePointOffsetY = trianglePointOffsetZ;
-                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetZ;
+                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetZ;
                 trianglePointsX[triangle] = trianglePointOffsetX;
                 trianglePointsY[triangle] = trianglePointOffsetY;
                 trianglePointsZ[triangle] = trianglePointOffsetZ;
             }
             if(type == 3) {
                 trianglePointOffsetX = trianglePointOffsetZ;
-                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetZ;
+                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetZ;
                 trianglePointsX[triangle] = trianglePointOffsetX;
                 trianglePointsY[triangle] = trianglePointOffsetY;
                 trianglePointsZ[triangle] = trianglePointOffsetZ;
@@ -323,15 +323,15 @@ public class Model extends Renderable {
                 int oldTrianglePointOffsetX = trianglePointOffsetX;
                 trianglePointOffsetX = trianglePointOffsetY;
                 trianglePointOffsetY = oldTrianglePointOffsetX;
-                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + posOffset;
-                posOffset = trianglePointOffsetZ;
+                trianglePointOffsetZ = vertexDirectionOffsetBuffer.getUnsignedSmart() + offset;
+                offset = trianglePointOffsetZ;
                 trianglePointsX[triangle] = trianglePointOffsetX;
                 trianglePointsY[triangle] = trianglePointOffsetY;
                 trianglePointsZ[triangle] = trianglePointOffsetZ;
             }
         }
-        vertexDirectionOffsetBuffer.currentPosition = faceMappingsOffset;
-        for(int triangle = 0; triangle < texturedTriangleCount; triangle++) {
+        vertexDirectionOffsetBuffer.currentPosition = i_280_;
+        for(int triangle = 0; triangle < i_260_; triangle++) {
             texturedTrianglePointsX[triangle] = vertexDirectionOffsetBuffer.getUnsignedShortBE();
             texturedTrianglePointsY[triangle] = vertexDirectionOffsetBuffer.getUnsignedShortBE();
             texturedTrianglePointsZ[triangle] = vertexDirectionOffsetBuffer.getUnsignedShortBE();
@@ -730,29 +730,29 @@ public class Model extends Renderable {
         return (arg0 & 0xff80) + arg1;
     }
 
-    public static Model getModel(CacheArchive cache, int modelId) {
+    public static Model getModel(CacheArchive arg0, int arg1, int arg2) {
         try {
             if(ModelLoader.models == null) {
                 new ModelLoader();
             }
 
-            byte[] modelData = cache.getFile(modelId, 0);
-            if(modelData == null) {
+            byte[] is = arg0.getFile(arg2, arg1);
+            if(is == null) {
                 for(int modelStored : ModelLoader.models) {
-                    if(modelStored == modelId) {
+                    if(modelStored == arg1) {
                         return new Model(ModelLoader.loadNewModel(modelStored));
                     }
                 }
                 return null;
             }
-            return new Model(modelData);
+            return new Model(is);
         } catch(Exception e) {
             e.printStackTrace();
         }
         return null;
 
         // 435 model loading:
-        //        byte[] is = cache.getFile(arg2, 117, arg1);
+        //        byte[] is = arg0.getFile(arg2, 117, arg1);
         //        if(is == null)
         //            return null;
         //        return new com.jagex.runescape.media.renderable.Model(is);
@@ -779,11 +779,11 @@ public class Model extends Renderable {
                     diagonal2DAboveOrigin = i_3_;
                 }
             }
-            diagonal2DAboveOrigin = (int) (Math.sqrt((double) diagonal2DAboveOrigin) + 0.99);
-            anInt3189 = (int) (Math.sqrt(
-                    (double) (diagonal2DAboveOrigin * diagonal2DAboveOrigin + modelHeight * modelHeight)) + 0.99);
-            diagonal3D = anInt3189 + (int) (Math.sqrt(
-                    (double) (diagonal2DAboveOrigin * diagonal2DAboveOrigin + maxY * maxY)) + 0.99);
+            diagonal2DAboveOrigin = (int) (Math.sqrt(diagonal2DAboveOrigin) + 0.99);
+            anInt3189 = (int) (Math.sqrt(diagonal2DAboveOrigin * diagonal2DAboveOrigin + modelHeight * modelHeight) +
+                    0.99);
+            diagonal3D = anInt3189 + (int) (Math.sqrt(diagonal2DAboveOrigin * diagonal2DAboveOrigin + maxY * maxY) +
+                    0.99);
         }
     }
 
@@ -961,7 +961,7 @@ public class Model extends Renderable {
     }
 
     public void applyLighting(int arg0, int arg1, int arg2, int arg3, int arg4, boolean arg5) {
-        int i = (int) Math.sqrt((double) (arg2 * arg2 + arg3 * arg3 + arg4 * arg4));
+        int i = (int) Math.sqrt(arg2 * arg2 + arg3 * arg3 + arg4 * arg4);
         int i_50_ = arg1 * i >> 8;
         if(triangleHSLA == null) {
             triangleHSLA = new int[triangleCount];
@@ -995,7 +995,7 @@ public class Model extends Renderable {
                 i_62_ >>= 1;
                 i_63_ >>= 1;
             }
-            int i_65_ = (int) Math.sqrt((double) (i_62_ * i_62_ + i_63_ * i_63_ + i_64_ * i_64_));
+            int i_65_ = (int) Math.sqrt(i_62_ * i_62_ + i_63_ * i_63_ + i_64_ * i_64_);
             if(i_65_ <= 0) {
                 i_65_ = 1;
             }
@@ -1534,8 +1534,9 @@ public class Model extends Renderable {
                         anIntArray3222[1], anIntArray3222[2]
                 );
             } else if(i_177_ == 1) {
-                Rasterizer3D.drawFlatTriangle(
-                        i_171_, i_174_, i_172_, i_175_, i_173_, i_176_, anIntArray3202[triangleHSLA[arg0]]);
+                Rasterizer3D.drawFlatTriangle(i_171_, i_174_, i_172_, i_175_, i_173_, i_176_,
+                        anIntArray3202[triangleHSLA[arg0]]
+                );
             } else if(i_177_ == 2) {
                 int i_178_ = triangleDrawType[arg0] >> 2;
                 int i_179_ = texturedTrianglePointsX[i_178_];
@@ -2042,7 +2043,7 @@ public class Model extends Renderable {
                     diagonal2DAboveOrigin = i_254_;
                 }
             }
-            diagonal2DAboveOrigin = (int) (Math.sqrt((double) diagonal2DAboveOrigin) + 0.99);
+            diagonal2DAboveOrigin = (int) (Math.sqrt(diagonal2DAboveOrigin) + 0.99);
             anInt3189 = diagonal2DAboveOrigin;
             diagonal3D = diagonal2DAboveOrigin + diagonal2DAboveOrigin;
         }

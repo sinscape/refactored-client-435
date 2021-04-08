@@ -55,7 +55,7 @@ public class VarbitDefinition extends CachedNode {
                 if(MouseHandler.anInt1450 == 0) {
                     Buffer.anInt1982 = 0;
                 } else {
-                    int i = Class29.method372(113, MouseHandler.anInt1450);
+                    int i = Class29.method372(MouseHandler.anInt1450);
                     i -= Class39.anInt909;
                     Buffer.anInt1982 = (-1 + arg2 + 3600 + i) / arg2;
                 }

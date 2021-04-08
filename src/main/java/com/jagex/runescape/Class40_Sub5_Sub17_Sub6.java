@@ -8,7 +8,6 @@ import com.jagex.runescape.media.renderable.Model;
 import com.jagex.runescape.media.renderable.Renderable;
 import com.jagex.runescape.media.renderable.actor.Npc;
 import com.jagex.runescape.media.renderable.actor.Player;
-import com.jagex.runescape.media.renderable.actor.PlayerAppearance;
 
 public class Class40_Sub5_Sub17_Sub6 extends Renderable {
     public static ProducingGraphicsBuffer framePieceTop;
@@ -37,7 +36,7 @@ public class Class40_Sub5_Sub17_Sub6 extends Renderable {
         anInt3231 = arg4;
         anInt3249 = arg0;
         anInt3239 = arg1;
-        int i = SpotAnimDefinition.forId(anInt3249, 13).animationId;
+        int i = SpotAnimDefinition.forId(anInt3249).animationId;
         if(i != -1) {
             aBoolean3237 = false;
             aAnimationSequence_3242 = ProducingGraphicsBuffer_Sub1.getAnimationSequence(i);
@@ -47,12 +46,9 @@ public class Class40_Sub5_Sub17_Sub6 extends Renderable {
 
     }
 
-    public static int method831(int arg0, int arg1, byte arg2) {
+    public static int method831(int arg0, int arg1) {
         if(arg0 == -1) {
             return 12345678;
-        }
-        if(arg2 != 73) {
-            PlayerAppearance.playerColours = null;
         }
         arg1 = (0x7f & arg0) * arg1 / 128;
         if(arg1 < 2) {
@@ -83,7 +79,7 @@ public class Class40_Sub5_Sub17_Sub6 extends Renderable {
                 i_1_ = Player.trackedPlayerIndices[i_0_] << 14;
                 player = Player.trackedPlayers[Player.trackedPlayerIndices[i_0_]];
             }
-            if(player != null && player.isVisible(1)) {
+            if(player != null && player.isVisible()) {
                 player.aBoolean3287 = false;
                 int i_2_ = player.worldX >> 7;
                 int i_3_ = player.worldY >> 7;
@@ -120,15 +116,12 @@ public class Class40_Sub5_Sub17_Sub6 extends Renderable {
 
 
     public Model getRotatedModel() {
-        SpotAnimDefinition spotAnimDefinition = SpotAnimDefinition.forId(anInt3249, 13);
+        SpotAnimDefinition spotAnimDefinition = SpotAnimDefinition.forId(anInt3249);
         Model class40_sub5_sub17_sub5;
         if(aBoolean3237) {
             class40_sub5_sub17_sub5 = spotAnimDefinition.method549(-1, 2);
         } else {
             class40_sub5_sub17_sub5 = spotAnimDefinition.method549(anInt3240, 2);
-        }
-        if(class40_sub5_sub17_sub5 == null) {
-            return null;
         }
         return class40_sub5_sub17_sub5;
     }

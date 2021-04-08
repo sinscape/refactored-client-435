@@ -20,7 +20,6 @@ import com.jagex.runescape.media.renderable.Item;
 import com.jagex.runescape.media.renderable.actor.Actor;
 import com.jagex.runescape.media.renderable.actor.Npc;
 import com.jagex.runescape.media.renderable.actor.PlayerAppearance;
-import com.jagex.runescape.net.ISAAC;
 import com.jagex.runescape.node.Node;
 import com.jagex.runescape.scene.Scene;
 import com.jagex.runescape.scene.tile.FloorDecoration;
@@ -48,7 +47,7 @@ public class Class40_Sub3 extends Node {
     public int anInt2039;
 
 
-    public static void startup(int arg0) {
+    public static void startup() {
         if(Class40_Sub5_Sub6.loadingPercent == 0) {
             Npc.currentScene = new Scene(MovedStatics.tile_height);
             for(int i = 0; i < 4; i++) {
@@ -114,9 +113,8 @@ public class Class40_Sub3 extends Node {
                 MovedStatics.anInt1607 = 30;
             }
         } else if(Class40_Sub5_Sub6.loadingPercent == 45) {
-            MovedStatics.method446(Main.signlink, 0, !VertexNormal.lowMemory, (byte) 30);
-            Class49.aClass40_Sub9_Sub1_1152 = MouseHandler.method1003(
-                    Main.signlink, MouseHandler.gameCanvas, arg0 ^ 0x74be);
+            MovedStatics.method446(Main.signlink, 0, !VertexNormal.lowMemory);
+            Class49.aClass40_Sub9_Sub1_1152 = MouseHandler.method1003(Main.signlink, MouseHandler.gameCanvas);
             Class55.aClass48_1289 = new Class48(22050, CollisionMap.anInt141);
             Class40_Sub5_Sub6.loadingPercent = 50;
             Native.currentLoadingText = English.preparedSoundEngine;
@@ -149,7 +147,7 @@ public class Class40_Sub3 extends Node {
             }
         } else if(Class40_Sub5_Sub6.loadingPercent == 60) {
             int i = Class60.method988(CacheArchive.huffmanCacheArchive, CacheArchive.gameImageCacheArchive);
-            int i_3_ = ISAAC.method288((byte) 119);
+            int i_3_ = 5;
             if(i < i_3_) {
                 Native.currentLoadingText = English.loadingTitleScreen + (100 * i / i_3_) + Native.percent;
                 MovedStatics.anInt1607 = 50;
@@ -164,19 +162,17 @@ public class Class40_Sub3 extends Node {
             if(CacheArchive.gameDefinitionsCacheArchive.method185((byte) 98)) {
                 MovedStatics.method441(CacheArchive.gameDefinitionsCacheArchive);
                 UnderlayDefinition.method616(CacheArchive.gameDefinitionsCacheArchive);
-                method977(3, CacheArchive.gameDefinitionsCacheArchive, CacheArchive.modelCacheArchive);
-                method980(28987, CacheArchive.modelCacheArchive, VertexNormal.lowMemory,
+                method977(CacheArchive.gameDefinitionsCacheArchive, CacheArchive.modelCacheArchive);
+                method980(CacheArchive.modelCacheArchive, VertexNormal.lowMemory,
                         CacheArchive.gameDefinitionsCacheArchive
                 );
-                Main.method357(
-                        CacheArchive.modelCacheArchive, arg0 ^ ~0x2a85, CacheArchive.gameDefinitionsCacheArchive);
+                Main.method357(CacheArchive.modelCacheArchive, CacheArchive.gameDefinitionsCacheArchive);
                 Class42.method885(
                         CacheArchive.gameDefinitionsCacheArchive, Class22.membersWorld, CacheArchive.modelCacheArchive);
                 MovedStatics.method236(CacheArchive.skinDefinitionCacheArchive,
                         CacheArchive.gameDefinitionsCacheArchive, CacheArchive.skeletonCacheArchive
                 );
-                Class55.method966(
-                        arg0 ^ 0x38, CacheArchive.modelCacheArchive, CacheArchive.gameDefinitionsCacheArchive);
+                Class55.method966(CacheArchive.modelCacheArchive, CacheArchive.gameDefinitionsCacheArchive);
                 Landscape.method936(CacheArchive.gameDefinitionsCacheArchive);
                 Main.method43(CacheArchive.gameDefinitionsCacheArchive);
                 GameInterface.createInterfaceMemoryBuffers();
@@ -194,11 +190,11 @@ public class Class40_Sub3 extends Node {
                 i++;
             } else {
                 AnimationSequence.minimapCompass = HuffmanEncoding.method1028(
-                        CacheArchive.gameImageCacheArchive, Native.compass, (byte) 21, "");
+                        CacheArchive.gameImageCacheArchive, Native.compass, "");
             }
             if(SpotAnimDefinition.minimapEdge == null) {
                 SpotAnimDefinition.minimapEdge = HuffmanEncoding.method1028(
-                        CacheArchive.gameImageCacheArchive, Native.aClass1_1427, (byte) 21, "");
+                        CacheArchive.gameImageCacheArchive, Native.aClass1_1427, "");
             } else {
                 i++;
             }
@@ -240,7 +236,7 @@ public class Class40_Sub3 extends Node {
             }
             if(LinkedList.aClass40_Sub5_Sub14_Sub4_1057 == null) {
                 LinkedList.aClass40_Sub5_Sub14_Sub4_1057 = HuffmanEncoding.method1028(
-                        CacheArchive.gameImageCacheArchive, Native.aClass1_2109, (byte) 21, "");
+                        CacheArchive.gameImageCacheArchive, Native.aClass1_2109, "");
             } else {
                 i++;
             }
@@ -320,7 +316,7 @@ public class Class40_Sub3 extends Node {
             }
         } else if(Class40_Sub5_Sub6.loadingPercent == 110) {
             Class12.mouseCapturer = new Class39();
-            Main.signlink.method394(10, 0, Class12.mouseCapturer);
+            Main.signlink.method394(10, Class12.mouseCapturer);
             Native.currentLoadingText = English.loadedInputHandler;
             Class40_Sub5_Sub6.loadingPercent = 120;
             MovedStatics.anInt1607 = 94;
@@ -352,22 +348,17 @@ public class Class40_Sub3 extends Node {
                                 Native.percent;
                 MovedStatics.anInt1607 = 100;
             }
-        } else {
-            if(arg0 != 100) {
-                aClass40_Sub5_Sub14_Sub4Array2019 = null;
-            }
-            if(Class40_Sub5_Sub6.loadingPercent == 140) {
-                OverlayDefinition.updateOverlay(10);
-            }
+        } else if(Class40_Sub5_Sub6.loadingPercent == 140) {
+            OverlayDefinition.updateOverlay(10);
         }
     }
 
     public static UnderlayDefinition method531(byte arg0, int arg1) {
-        UnderlayDefinition underlayDefinition = (UnderlayDefinition) WallDecoration.aClass9_1247.get((long) arg1);
+        UnderlayDefinition underlayDefinition = (UnderlayDefinition) WallDecoration.aClass9_1247.get(arg1);
         if(underlayDefinition != null) {
             return underlayDefinition;
         }
-        byte[] is = Actor.aCacheArchive_3150.getFile(1, arg1);
+        byte[] is = Actor.aCacheArchive_3150.getFile(arg1, 1);
         underlayDefinition = new UnderlayDefinition();
         if(is != null) {
             underlayDefinition.readValues(new Buffer(is));
@@ -376,25 +367,20 @@ public class Class40_Sub3 extends Node {
         if(arg0 >= -39) {
             English.commandFpson = null;
         }
-        WallDecoration.aClass9_1247.put((long) arg1, underlayDefinition);
+        WallDecoration.aClass9_1247.put(arg1, underlayDefinition);
         return underlayDefinition;
     }
 
-    public static void method977(int arg0, CacheArchive arg1, CacheArchive arg2) {
+    public static void method977(CacheArchive arg1, CacheArchive arg2) {
         MovedStatics.aCacheArchive_654 = arg2;
-        if(arg0 == 3) {
-            Class49.aCacheArchive_1150 = arg1;
-            PlayerAppearance.identityKitLength = Class49.aCacheArchive_1150.fileLength(3);
-        }
+        Class49.aCacheArchive_1150 = arg1;
+        PlayerAppearance.identityKitLength = Class49.aCacheArchive_1150.fileLength(3);
     }
 
-    public static void method980(int arg0, CacheArchive arg1, boolean arg2, CacheArchive arg3) {
+    public static void method980(CacheArchive arg1, boolean lowMemory, CacheArchive arg3) {
         CacheArchive.definitionCache = arg3;
         GameObjectDefinition.count = CacheArchive.definitionCache.fileLength(6);
-
-        Class35.aBoolean1734 = arg2;
-        if(arg0 == 28987) {
-            RSString.aCacheArchive_1705 = arg1;
-        }
+        Class35.aBoolean1734 = lowMemory;
+        RSString.aCacheArchive_1705 = arg1;
     }
 }

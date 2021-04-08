@@ -142,7 +142,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
                 }
             }
             if(meta == 1 && (ProducingGraphicsBuffer.oneMouseButton == 1 || Class33.menuHasAddFriend(
-                    (byte) 46, -1 + ActorDefinition.menuActionRow)) && ActorDefinition.menuActionRow > 2) {
+                    -1 + ActorDefinition.menuActionRow)) && ActorDefinition.menuActionRow > 2) {
                 meta = 2;
             }
             if(meta == 1 && ActorDefinition.menuActionRow > 0) {
@@ -154,11 +154,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
         }
     }
 
-    public static Class40_Sub9_Sub1 method1003(Signlink arg0, Component arg1, int arg2) {
-
-        if(arg2 != 29914) {
-            tile_overlayids = null;
-        }
+    public static Class40_Sub9_Sub1 method1003(Signlink arg0, Component arg1) {
         ProducingGraphicsBuffer.method1040(arg1, 0, arg0);
         Class40_Sub9_Sub1 class40_sub9_sub1 = new Class40_Sub9_Sub1();
         Class8.method218(class40_sub9_sub1);
@@ -166,15 +162,15 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
     }
 
-    public synchronized void mouseEntered(MouseEvent arg0) {
+    public synchronized void mouseEntered(MouseEvent event) {
         if(GameObject.frame != null) {
             LinkedList.anInt1073 = 0;
-            Class12.eventMouseX = arg0.getX();
-            MovedStatics.eventMouseY = arg0.getY();
+            Class12.eventMouseX = event.getX();
+            MovedStatics.eventMouseY = event.getY();
         }
     }
 
-    public synchronized void mouseExited(MouseEvent arg0) {
+    public synchronized void mouseExited(MouseEvent event) {
         if(GameObject.frame != null) {
             LinkedList.anInt1073 = 0;
             Class12.eventMouseX = -1;
@@ -182,7 +178,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
         }
     }
 
-    public synchronized void focusLost(FocusEvent arg0) {
+    public synchronized void focusLost(FocusEvent event) {
         if(GameObject.frame != null) {
             MovedStatics.mouseButtonPressed = 0;
         }
@@ -216,7 +212,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
         Class60.cameraVelocityVertical += j << 1;
     }
 
-    public void focusGained(FocusEvent arg0) {
+    public void focusGained(FocusEvent event) {
     }
 
     public synchronized void mousePressed(MouseEvent event) {
@@ -259,9 +255,9 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
         }
     }
 
-    public void mouseClicked(MouseEvent arg0) {
-        if(arg0.isPopupTrigger()) {
-            arg0.consume();
+    public void mouseClicked(MouseEvent event) {
+        if(event.isPopupTrigger()) {
+            event.consume();
         }
     }
 
@@ -374,22 +370,22 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
     }
 
 
-    public synchronized void mouseMoved(MouseEvent arg0) {
+    public synchronized void mouseMoved(MouseEvent event) {
         if(GameObject.frame != null) {
             LinkedList.anInt1073 = 0;
-            Class12.eventMouseX = arg0.getX();
-            MovedStatics.eventMouseY = arg0.getY();
+            Class12.eventMouseX = event.getX();
+            MovedStatics.eventMouseY = event.getY();
         }
     }
 
-    public synchronized void mouseReleased(MouseEvent arg0) {
+    public synchronized void mouseReleased(MouseEvent event) {
         if(GameObject.frame != null) {
             LinkedList.anInt1073 = 0;
             MovedStatics.mouseButtonPressed = 0;
             mouseWheelDown = false;
         }
-        if(arg0.isPopupTrigger()) {
-            arg0.consume();
+        if(event.isPopupTrigger()) {
+            event.consume();
         }
     }
 }
