@@ -182,7 +182,7 @@ public class ActorDefinition extends CachedNode implements EntityDefinition {
         }
         Model class40_sub5_sub17_sub5_0_;
         if(animation1 != null && animation2 != null) {
-            class40_sub5_sub17_sub5_0_ = animation1.method590(model1, animation2, arg4, arg3, (byte) 63);
+            class40_sub5_sub17_sub5_0_ = animation1.method590(model1, animation2, arg4, arg3);
         } else if(animation1 != null) {
             class40_sub5_sub17_sub5_0_ = animation1.method599(arg4, model1, false);
         } else if(animation2 == null) {

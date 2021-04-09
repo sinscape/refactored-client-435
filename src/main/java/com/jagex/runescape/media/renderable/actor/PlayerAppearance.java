@@ -192,7 +192,7 @@ public class PlayerAppearance {
                     finalModel = animation1.method599(unknown2, cachedModel, false);
                 }
             } else {
-                finalModel = animation1.method590(cachedModel, animation2, unknown2, unknown1, (byte) 63);
+                finalModel = animation1.method590(cachedModel, animation2, unknown2, unknown1);
             }
         } else {
             return cachedModel;
